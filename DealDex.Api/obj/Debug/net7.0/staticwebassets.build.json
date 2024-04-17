@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "zkQMTVbdy8mjpB5YLF9wN0G9vtcY+CbxwmOmD1eLJMg=",
+  "Source": "DealDex.Api",
+  "BasePath": "_content/DealDex.Api",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

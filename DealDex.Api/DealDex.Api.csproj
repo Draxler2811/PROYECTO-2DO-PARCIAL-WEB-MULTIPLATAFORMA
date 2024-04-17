@@ -1,0 +1,55 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <TargetFramework>net7.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <RootNamespace>Tecnm.Ecommerce1.Api</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Dapper" Version="2.1.37" />
+        <PackageReference Include="Dapper.Contrib" Version="2.0.78" />
+        <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.15"/>
+        <PackageReference Include="MySqlConnector" Version="2.3.5" />
+        <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0"/>
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\DealDex.Core\DealDex.Core.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Dto\Carrito\" />
+      <Folder Include="Dto\Compras\" />
+      <Folder Include="Dto\Favoritos\" />
+      <Folder Include="Dto\Publicaciones\" />
+      <Folder Include="Dto\Reseñas\" />
+      <Folder Include="Repositories\Carrito\" />
+      <Folder Include="Repositories\Compras\" />
+      <Folder Include="Repositories\Favoritos\" />
+      <Folder Include="Repositories\Interfecies\Carrito\" />
+      <Folder Include="Repositories\Interfecies\Compras\" />
+      <Folder Include="Repositories\Interfecies\Favoritos\" />
+      <Folder Include="Repositories\Interfecies\Product\" />
+      <Folder Include="Repositories\Interfecies\Publicaciones\" />
+      <Folder Include="Repositories\Interfecies\Reseñas\" />
+      <Folder Include="Repositories\Interfecies\Users\" />
+      <Folder Include="Repositories\Publicaciones\" />
+      <Folder Include="Repositories\Reseñas\" />
+      <Folder Include="Services\Carrito\" />
+      <Folder Include="Services\Compras\" />
+      <Folder Include="Services\Favorito\" />
+      <Folder Include="Services\Interfaces\Carrito\" />
+      <Folder Include="Services\Interfaces\Compras\" />
+      <Folder Include="Services\Interfaces\Favorito\" />
+      <Folder Include="Services\Interfaces\Product\" />
+      <Folder Include="Services\Interfaces\Publicaciones\" />
+      <Folder Include="Services\Interfaces\Reseñas\" />
+      <Folder Include="Services\Interfaces\Users\" />
+      <Folder Include="Services\Publicaciones\" />
+      <Folder Include="Services\Reseñas\" />
+      <Folder Include="Services\Users\" />
+    </ItemGroup>
+
+</Project>

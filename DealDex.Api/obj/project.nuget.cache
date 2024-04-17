@@ -1,0 +1,27 @@
+{
+  "version": 2,
+  "dgSpecHash": "tKkx0PaiuOBBDu6SIFl/7fepVoEjTtqPutENLrq7Ktw+g/WXdVB6cmMDUqZL5kND5TpexgJYIXn3HebB9l2gLA==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\ol196\\OneDrive\\Documentos\\Universidad\\Octavo Semestre\\Tecnologias web Multiplataforma\\Parcial 2\\DealDex\\DealDex.Api\\DealDex.Api.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\ol196\\.nuget\\packages\\dapper\\2.1.37\\dapper.2.1.37.nupkg.sha512",
+    "C:\\Users\\ol196\\.nuget\\packages\\dapper.contrib\\2.0.78\\dapper.contrib.2.0.78.nupkg.sha512",
+    "C:\\Users\\ol196\\.nuget\\packages\\microsoft.aspnetcore.openapi\\7.0.15\\microsoft.aspnetcore.openapi.7.0.15.nupkg.sha512",
+    "C:\\Users\\ol196\\.nuget\\packages\\microsoft.extensions.apidescription.server\\6.0.5\\microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
+    "C:\\Users\\ol196\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\7.0.1\\microsoft.extensions.logging.abstractions.7.0.1.nupkg.sha512",
+    "C:\\Users\\ol196\\.nuget\\packages\\microsoft.openapi\\1.4.3\\microsoft.openapi.1.4.3.nupkg.sha512",
+    "C:\\Users\\ol196\\.nuget\\packages\\mysqlconnector\\2.3.5\\mysqlconnector.2.3.5.nupkg.sha512",
+    "C:\\Users\\ol196\\.nuget\\packages\\swashbuckle.aspnetcore\\6.5.0\\swashbuckle.aspnetcore.6.5.0.nupkg.sha512",
+    "C:\\Users\\ol196\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.5.0\\swashbuckle.aspnetcore.swagger.6.5.0.nupkg.sha512",
+    "C:\\Users\\ol196\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.5.0\\swashbuckle.aspnetcore.swaggergen.6.5.0.nupkg.sha512",
+    "C:\\Users\\ol196\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\6.5.0\\swashbuckle.aspnetcore.swaggerui.6.5.0.nupkg.sha512"
+  ],
+  "logs": [
+    {
+      "code": "NU1900",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Error occurred while getting package vulnerability data: The download of 'https://api.nuget.org/v3-vulnerabilities/2024.04.17.00.57.37/vulnerability.base.json' timed out because no data was received for 60000ms."
+    }
+  ]
+}
