@@ -43,7 +43,6 @@
       <Folder Include="Services\Interfaces\Carrito\" />
       <Folder Include="Services\Interfaces\Compras\" />
       <Folder Include="Services\Interfaces\Favorito\" />
-      <Folder Include="Services\Interfaces\Product\" />
       <Folder Include="Services\Interfaces\Publicaciones\" />
       <Folder Include="Services\Interfaces\Reseñas\" />
       <Folder Include="Services\Interfaces\Users\" />

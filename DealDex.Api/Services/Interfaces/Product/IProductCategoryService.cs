@@ -7,10 +7,10 @@ public interface IProductCategoryService
     Task<bool> ProductCategoryExist(int id);
     
     //Metodo para guardar las categorias de producto
-    Task<ProductCategoryDto> SaveAsycn(ProductCategoryDto category);
+    Task<ProductCategoryDtoAdd> SaveAsycn(ProductCategoryDtoAdd category);
     
     //Metodo para Actualizar las categorias de producto
-    Task<ProductCategoryDto> UpdateAsync(ProductCategoryDto category);
+    Task<ProductCategoryDtoAdd> UpdateAsync(ProductCategoryDtoAdd category);
     
     //Metodo para retornar una lista de categorias de productos
     Task<List<ProductCategoryDto>> GetAllAsync();

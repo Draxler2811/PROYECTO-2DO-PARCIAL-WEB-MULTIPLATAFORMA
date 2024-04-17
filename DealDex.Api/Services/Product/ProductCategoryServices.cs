@@ -23,10 +23,14 @@ public class ProductCategoryServices : IProductCategoryService
         return (category != null);
     }
 
-    public async Task<ProductCategoryDto> SaveAsycn(ProductCategoryDto categoryDto)
+    public async Task<ProductCategoryDtoAdd> SaveAsycn(ProductCategoryDtoAdd categoryDto)
     {
         var catetegory = new ProductCategory
         {
+            Descripcion = categoryDto.Descripcion,
+            Categoria = categoryDto.Categoria,
+            Estado = categoryDto.Estado,
+            Ubicacion = categoryDto.Ubicacion,
             Image = categoryDto.Image,
             Titulo = categoryDto.Titulo,
             Precio = categoryDto.Precio,
@@ -41,16 +45,20 @@ public class ProductCategoryServices : IProductCategoryService
         return categoryDto;
     }
 
-    public async Task<ProductCategoryDto> UpdateAsync(ProductCategoryDto categoryDto)
+    public async Task<ProductCategoryDtoAdd> UpdateAsync(ProductCategoryDtoAdd categoryDto)
     {
         var category = await _productCategoryRepository.GetById(categoryDto.id);
 
         if (category == null)
             throw new Exception("Product Category Not founf");
-        
+        category.Descripcion = categoryDto.Descripcion;
+        category.Categoria = categoryDto.Categoria;
+        category.Estado = categoryDto.Estado;
+        category.Ubicacion = categoryDto.Ubicacion;
         category.Image = categoryDto.Image;
         category.Titulo = categoryDto.Titulo;
         category.Precio = categoryDto.Precio;
+        
         category.UpdatedBy = "Omar";
         category.UpdatedDate = DateTime.Now;
         await _productCategoryRepository.UpdateAsync(category);
@@ -83,4 +91,5 @@ public class ProductCategoryServices : IProductCategoryService
         };
         return categoryDto;
     }
+    
 }

@@ -34,9 +34,9 @@ public class ProductCategoriesController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<ActionResult<Response<ProductCategory>>> Post([FromBody] ProductCategoryDto categoryDto)
+    public async Task<ActionResult<Response<ProductCategoryDtoAdd>>> Post([FromBody] ProductCategoryDtoAdd categoryDto)
     {
-        var response = new Response<ProductCategoryDto>()
+        var response = new Response<ProductCategoryDtoAdd>()
         {
             Data = await _productCategoryService.SaveAsycn(categoryDto)
 
@@ -64,9 +64,9 @@ public class ProductCategoriesController : ControllerBase
     }
 
     [HttpPut]
-    public async Task<ActionResult<Response<ProductCategoryDto>>> Update([FromBody] ProductCategoryDto categoryDto)
+    public async Task<ActionResult<Response<ProductCategoryDtoAdd>>> Update([FromBody] ProductCategoryDtoAdd categoryDto)
     {
-        var response = new Response<ProductCategoryDto>();
+        var response = new Response<ProductCategoryDtoAdd>();
         if (!await _productCategoryService.ProductCategoryExist(categoryDto.id))
         {
             response.Errors.Add("Product Category not found");
