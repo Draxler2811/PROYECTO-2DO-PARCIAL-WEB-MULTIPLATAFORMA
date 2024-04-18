@@ -7,9 +7,13 @@ using DealDex.Api.Services;
 using DealDex.Api.Services.Interfaces;
 using Tecnm.Ecommerce1.Api.Repositories.Carrito;
 using Tecnm.Ecommerce1.Api.Repositories.Interfecies.Carrito;
+using Tecnm.Ecommerce1.Api.Repositories.Interfecies.Reseñas;
+using Tecnm.Ecommerce1.Api.Repositories.Reseñas;
 using Tecnm.Ecommerce1.Api.Services.Carrito;
 using Tecnm.Ecommerce1.Api.Services.Interfaces.Carrito;
+using Tecnm.Ecommerce1.Api.Services.Interfaces.Reseñas;
 using Tecnm.Ecommerce1.Api.Services.Interfaces.Users;
+using Tecnm.Ecommerce1.Api.Services.Reseñas;
 using Tecnm.Ecommerce1.Api.Services.Users;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -33,6 +37,9 @@ builder.Services.AddScoped<IUsersCategoryService, UsersCategoryService>();
 
 builder.Services.AddScoped<ICarritoCategoryReposioty, CarritoCategoryReposioty>();
 builder.Services.AddScoped<ICarritoCategoryServices, CarritoCategoryServices>();
+
+builder.Services.AddScoped<IReseñaCategoryRepository, ReseñaCategoryRepository>();
+builder.Services.AddScoped<IReseñasCategoryServices, ReseñasCategoryServices>();
 
 var app = builder.Build();
 
