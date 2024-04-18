@@ -5,6 +5,8 @@ using DealDex.Api.Repositories;
 using DealDex.Api.Repositories.Interfecies;
 using DealDex.Api.Services;
 using DealDex.Api.Services.Interfaces;
+using Tecnm.Ecommerce1.Api.Services.Interfaces.Users;
+using Tecnm.Ecommerce1.Api.Services.Users;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -22,6 +24,8 @@ builder.Services.AddScoped<IProductCategoryRepository, ProductCategoryRepositoty
 builder.Services.AddScoped<IProductCategoryService, ProductCategoryServices>();
 builder.Services.AddScoped<IDbContext, DbContext>();
 
+builder.Services.AddScoped<IUsersCategoryRepository, UsersCategoryRepository>();
+builder.Services.AddScoped<IUsersCategoryService, UsersCategoryService>();
 
 var app = builder.Build();
 

@@ -31,10 +31,8 @@
       <Folder Include="Repositories\Interfecies\Carrito\" />
       <Folder Include="Repositories\Interfecies\Compras\" />
       <Folder Include="Repositories\Interfecies\Favoritos\" />
-      <Folder Include="Repositories\Interfecies\Product\" />
       <Folder Include="Repositories\Interfecies\Publicaciones\" />
       <Folder Include="Repositories\Interfecies\Reseñas\" />
-      <Folder Include="Repositories\Interfecies\Users\" />
       <Folder Include="Repositories\Publicaciones\" />
       <Folder Include="Repositories\Reseñas\" />
       <Folder Include="Services\Carrito\" />
@@ -45,10 +43,8 @@
       <Folder Include="Services\Interfaces\Favorito\" />
       <Folder Include="Services\Interfaces\Publicaciones\" />
       <Folder Include="Services\Interfaces\Reseñas\" />
-      <Folder Include="Services\Interfaces\Users\" />
       <Folder Include="Services\Publicaciones\" />
       <Folder Include="Services\Reseñas\" />
-      <Folder Include="Services\Users\" />
     </ItemGroup>
 
 </Project>
