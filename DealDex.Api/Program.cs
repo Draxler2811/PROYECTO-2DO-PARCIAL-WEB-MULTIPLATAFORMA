@@ -5,6 +5,10 @@ using DealDex.Api.Repositories;
 using DealDex.Api.Repositories.Interfecies;
 using DealDex.Api.Services;
 using DealDex.Api.Services.Interfaces;
+using Tecnm.Ecommerce1.Api.Repositories.Carrito;
+using Tecnm.Ecommerce1.Api.Repositories.Interfecies.Carrito;
+using Tecnm.Ecommerce1.Api.Services.Carrito;
+using Tecnm.Ecommerce1.Api.Services.Interfaces.Carrito;
 using Tecnm.Ecommerce1.Api.Services.Interfaces.Users;
 using Tecnm.Ecommerce1.Api.Services.Users;
 
@@ -26,6 +30,9 @@ builder.Services.AddScoped<IDbContext, DbContext>();
 
 builder.Services.AddScoped<IUsersCategoryRepository, UsersCategoryRepository>();
 builder.Services.AddScoped<IUsersCategoryService, UsersCategoryService>();
+
+builder.Services.AddScoped<ICarritoCategoryReposioty, CarritoCategoryReposioty>();
+builder.Services.AddScoped<ICarritoCategoryServices, CarritoCategoryServices>();
 
 var app = builder.Build();
 
