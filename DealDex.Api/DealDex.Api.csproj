@@ -21,18 +21,13 @@
 
     <ItemGroup>
       <Folder Include="Dto\Compras\" />
-      <Folder Include="Dto\Favoritos\" />
       <Folder Include="Dto\Publicaciones\" />
       <Folder Include="Repositories\Compras\" />
-      <Folder Include="Repositories\Favoritos\" />
       <Folder Include="Repositories\Interfecies\Compras\" />
-      <Folder Include="Repositories\Interfecies\Favoritos\" />
       <Folder Include="Repositories\Interfecies\Publicaciones\" />
       <Folder Include="Repositories\Publicaciones\" />
       <Folder Include="Services\Compras\" />
-      <Folder Include="Services\Favorito\" />
       <Folder Include="Services\Interfaces\Compras\" />
-      <Folder Include="Services\Interfaces\Favorito\" />
       <Folder Include="Services\Interfaces\Publicaciones\" />
       <Folder Include="Services\Publicaciones\" />
     </ItemGroup>
