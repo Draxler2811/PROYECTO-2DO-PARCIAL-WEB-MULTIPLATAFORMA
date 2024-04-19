@@ -56,4 +56,11 @@ public  async Task<UsersCategory> SaveAsycn(UsersCategory category)
 
 
     }
+
+    public async Task<UsersCategory> GetUserByEmailAndPassword(string correo, string contraseña)
+    {
+        const string sql = "SELECT * FROM UsersCategory WHERE Correo = @Correo AND Contraseña = @Contraseña";
+        var user = await _dbContext.Connection.QueryFirstOrDefaultAsync<UsersCategory>(sql, new { Correo = correo, Contraseña = contraseña });
+        return user;
+    }
 }

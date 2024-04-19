@@ -18,4 +18,7 @@ public interface IUsersCategoryRepository
     
     //Metodo para obtener una categoria por id
     Task<UsersCategory> GetById(int id);
+    
+    Task<UsersCategory> GetUserByEmailAndPassword(string correo, string contraseña);
+
 }

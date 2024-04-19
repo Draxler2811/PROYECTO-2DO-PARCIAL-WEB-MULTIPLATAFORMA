@@ -37,8 +37,15 @@ public class UsersCategoriesController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<ActionResult<Response<UsersCategoryDto>>> Post([FromBody] UsersCategoryDto categoryDto)
+    public async Task<ActionResult<Response<UsersCategoryDto>>> Post([FromBody] UserCategoryDtoSinId categoryDtoSinId)
     {
+        UsersCategoryDto categoryDto = new UsersCategoryDto()
+        {
+            Correo = categoryDtoSinId.Correo,
+            Contraseña = categoryDtoSinId.Contraseña,
+            NombreUsu = categoryDtoSinId.NombreUsu
+        };
+        
         var response = new Response<UsersCategoryDto>()
         {
             Data = await _usersCategoryService.SaveAsycn(categoryDto)
@@ -46,6 +53,8 @@ public class UsersCategoriesController : ControllerBase
         };
         return Created($"/api/[controller]/{response.Data.id}", response);
     }
+
+
 
     [HttpGet]
     [Route("{id:int}")]
@@ -96,4 +105,34 @@ public class UsersCategoriesController : ControllerBase
         }
         return Ok(response);
     }
+    [HttpPost("login")]
+    public async Task<ActionResult<Response<string>>> Login([FromBody] UserCategoryDtoValidar categoryDto)
+    {
+        
+        
+        var response = new Response<string>();
+
+        if (string.IsNullOrEmpty(categoryDto.Correo) || string.IsNullOrEmpty(categoryDto.Contraseña))
+        {
+            response.Errors.Add("Correo y contraseña son obligatorios");
+            return BadRequest(response);
+        }
+
+        var isValidLogin = await _usersCategoryService.ValidateCredentials(categoryDto.Correo, categoryDto.Contraseña);
+
+        if (isValidLogin)
+        {
+            // Si las credenciales son válidas, devuelve un mensaje de éxito
+            response.Data = "Credenciales correctas";
+            return Ok(response);
+        }
+        else
+        {
+            response.Errors.Add("Usuario y/o contraseña incorrectos");
+            return BadRequest(response);
+        }
+    }
+
+
+
 }

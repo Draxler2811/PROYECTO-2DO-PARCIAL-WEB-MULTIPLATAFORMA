@@ -8,14 +8,14 @@ namespace Tecnm.Ecommerce1.Api.Services.Users;
 public class UsersCategoryService : IUsersCategoryService
 {
     private readonly IUsersCategoryRepository _usersCategoryRepository;
-    
+
 
     public UsersCategoryService(IUsersCategoryRepository usersCategoryRepository)
     {
         _usersCategoryRepository = usersCategoryRepository;
     }
-    
-    
+
+
     public async Task<bool> UsersCategoryExist(int id)
     {
         var category = await _usersCategoryRepository.GetById(id);
@@ -34,7 +34,7 @@ public class UsersCategoryService : IUsersCategoryService
             UpdatedBy = "Omar",
             UpdatedDate = DateTime.Now
         };
-        
+
         catetegory = await _usersCategoryRepository.SaveAsycn(catetegory);
         categoryDto.id = catetegory.id;
         return categoryDto;
@@ -55,14 +55,14 @@ public class UsersCategoryService : IUsersCategoryService
         return categoryDto;
     }
 
-    public  async Task<List<UsersCategoryDto>> GetAllAsync()
+    public async Task<List<UsersCategoryDto>> GetAllAsync()
     {
         var categories = await _usersCategoryRepository.GetAllAsync();
         var categoriesDto = categories.Select(c => new UsersCategoryDto(c)).ToList();
         return categoriesDto;
     }
 
-    public  async Task<bool> DeleteAsync(int id)
+    public async Task<bool> DeleteAsync(int id)
     {
         return await _usersCategoryRepository.DeleteAsync(id);
     }
@@ -80,4 +80,11 @@ public class UsersCategoryService : IUsersCategoryService
         };
         return categoryDto;
     }
+
+    public async Task<bool> ValidateCredentials(string correo, string contraseña)
+    {
+        var user = await _usersCategoryRepository.GetUserByEmailAndPassword(correo, contraseña);
+        return user != null;
+    }
+
 }

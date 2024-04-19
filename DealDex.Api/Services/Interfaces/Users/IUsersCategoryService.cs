@@ -21,4 +21,9 @@ public interface IUsersCategoryService
     
     //Metodo para obtener una categoria por id
     Task<UsersCategoryDto> GetById(int id);
+    
+    Task<bool> ValidateCredentials(string correo, string contraseña);
+
+
+    
 }
