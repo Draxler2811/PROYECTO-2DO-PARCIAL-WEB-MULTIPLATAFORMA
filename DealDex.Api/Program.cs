@@ -6,14 +6,19 @@ using DealDex.Api.Repositories.Interfecies;
 using DealDex.Api.Services;
 using DealDex.Api.Services.Interfaces;
 using Tecnm.Ecommerce1.Api.Repositories.Carrito;
+using Tecnm.Ecommerce1.Api.Repositories.Compras;
 using Tecnm.Ecommerce1.Api.Repositories.Favoritos;
 using Tecnm.Ecommerce1.Api.Repositories.Interfecies.Carrito;
+using Tecnm.Ecommerce1.Api.Repositories.Interfecies.Category;
+using Tecnm.Ecommerce1.Api.Repositories.Interfecies.Category;
 using Tecnm.Ecommerce1.Api.Repositories.Interfecies.Favoritos;
 using Tecnm.Ecommerce1.Api.Repositories.Interfecies.Reseñas;
 using Tecnm.Ecommerce1.Api.Repositories.Reseñas;
 using Tecnm.Ecommerce1.Api.Services.Carrito;
+using Tecnm.Ecommerce1.Api.Services.Category;
 using Tecnm.Ecommerce1.Api.Services.Favorito;
 using Tecnm.Ecommerce1.Api.Services.Interfaces.Carrito;
+using Tecnm.Ecommerce1.Api.Services.Interfaces.category;
 using Tecnm.Ecommerce1.Api.Services.Interfaces.Favorito;
 using Tecnm.Ecommerce1.Api.Services.Interfaces.Reseñas;
 using Tecnm.Ecommerce1.Api.Services.Interfaces.Users;
@@ -47,6 +52,9 @@ builder.Services.AddScoped<IReseñasCategoryServices, ReseñasCategoryServices>(
 
 builder.Services.AddScoped<IFavoriteProductRepository, FavoriteProductRepository>();
 builder.Services.AddScoped<IFavoriteProductServices, FavoriteProductServices>();
+
+builder.Services.AddScoped<ICategoryTypeRepository, CategoryTypeRepository>();
+builder.Services.AddScoped<ICategoryTypeServices, CategoryTypeServices>();
 
 var app = builder.Build();
 
