@@ -36,15 +36,57 @@ public class CarritoCategoriesController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<ActionResult<Response<CarritoCategoryDto>>> Post([FromBody] CarritoCategoryDto carritoDto)
+    public async Task<ActionResult<Response<CarritoCategoryDto>>> Post([FromBody] CarritoCategoryDtoSinAdd carritoCategoryDtoSinAdd)
     {
-        var response = new Response<CarritoCategoryDto>()
-        {
-            Data = await _carritoCategoryServices.SaveAsyc(carritoDto)
+        var response = new Response<CarritoCategoryDto>();
 
+        // Lista para almacenar los mensajes de error
+        var validationErrors = new List<string>();
+
+        // Validación del campo Image
+        if (string.IsNullOrEmpty(carritoCategoryDtoSinAdd.Image))
+        {
+            validationErrors.Add("El campo Image es obligatorio.");
+        }
+
+        // Validación del campo Titulo
+        if (string.IsNullOrEmpty(carritoCategoryDtoSinAdd.Titulo))
+        {
+            validationErrors.Add("El campo Titulo es obligatorio.");
+        }
+
+        // Validación del campo Precio
+        if (carritoCategoryDtoSinAdd.Precio <= 0)
+        {
+            validationErrors.Add("El campo Precio debe ser mayor que cero.");
+        }
+
+        // Validación del campo Cantidad
+        if (carritoCategoryDtoSinAdd.Cantidad <= 0)
+        {
+            validationErrors.Add("El campo Cantidad debe ser mayor que cero.");
+        }
+
+        // Si hay errores de validación, agregamos los mensajes a la respuesta
+        if (validationErrors.Any())
+        {
+            response.Errors.AddRange(validationErrors);
+            return BadRequest(response);
+        }
+
+        // Si no hay errores de validación, procedemos con la creación del carrito
+        CarritoCategoryDto carritoDto = new CarritoCategoryDto()
+        {
+            Image = carritoCategoryDtoSinAdd.Image,
+            Titulo = carritoCategoryDtoSinAdd.Titulo,
+            Precio = carritoCategoryDtoSinAdd.Precio,
+            Cantidad = carritoCategoryDtoSinAdd.Cantidad
         };
+
+        response.Data = await _carritoCategoryServices.SaveAsyc(carritoDto);
         return Created($"/api/[controller]/{response.Data.id}", response);
     }
+
 
     [HttpGet]
     [Route("{id:int}")]
@@ -69,6 +111,48 @@ public class CarritoCategoriesController : ControllerBase
     public async Task<ActionResult<Response<CarritoCategoryDto>>> Update([FromBody] CarritoCategoryDto carritoDto)
     {
         var response = new Response<CarritoCategoryDto>();
+
+        // Lista para almacenar los mensajes de error
+        var validationErrors = new List<string>();
+
+        // Validación del ID
+        if (carritoDto.id == 0)
+        {
+            validationErrors.Add("El campo ID no puede ser cero.");
+        }
+
+        // Validación del campo Image
+        if (string.IsNullOrEmpty(carritoDto.Image))
+        {
+            validationErrors.Add("El campo Image es obligatorio.");
+        }
+
+        // Validación del campo Titulo
+        if (string.IsNullOrEmpty(carritoDto.Titulo))
+        {
+            validationErrors.Add("El campo Titulo es obligatorio.");
+        }
+
+        // Validación del campo Precio
+        if (carritoDto.Precio <= 0)
+        {
+            validationErrors.Add("El campo Precio debe ser mayor que cero.");
+        }
+
+        // Validación del campo Cantidad
+        if (carritoDto.Cantidad <= 0)
+        {
+            validationErrors.Add("El campo Cantidad debe ser mayor que cero.");
+        }
+
+        // Si hay errores de validación, agregamos los mensajes a la respuesta
+        if (validationErrors.Any())
+        {
+            response.Errors.AddRange(validationErrors);
+            return BadRequest(response);
+        }
+
+        // Si no hay errores de validación, procedemos con la actualización del carrito
         if (!await _carritoCategoryServices.CarritoCategoryExist(carritoDto.id))
         {
             response.Errors.Add("Product Category not found");
@@ -77,8 +161,8 @@ public class CarritoCategoriesController : ControllerBase
 
         response.Data = await _carritoCategoryServices.UpdateAsync(carritoDto);
         return Ok(response);
-
     }
+
     
 
     [HttpDelete]
