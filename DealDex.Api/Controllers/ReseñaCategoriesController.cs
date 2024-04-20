@@ -33,17 +33,48 @@ public class ReseñaCategoriesController :ControllerBase
         };
         return Ok(response);
     }
-
     [HttpPost]
-    public async Task<ActionResult<Response<ReseñaCategoryDto>>> Post([FromBody] ReseñaCategoryDto categoryDto)
+    public async Task<ActionResult<Response<ReseñaCategoryDto>>> Post([FromBody] ReseñasCategoryDtoSinId categoryDtoSinId)
     {
-        var response = new Response<ReseñaCategoryDto>()
-        {
-            Data = await _reseñasCategoryServices.SaveAsycn(categoryDto)
+        var response = new Response<ReseñaCategoryDto>();
 
+        // Lista para almacenar los mensajes de error
+        var validationErrors = new List<string>();
+
+        // Validación del campo Titulo
+        if (string.IsNullOrEmpty(categoryDtoSinId.Titulo))
+        {
+            validationErrors.Add("El campo Titulo es obligatorio.");
+        }
+
+        // Validación del campo Valoracion
+        if (categoryDtoSinId.Valoracion <= 0 || categoryDtoSinId.Valoracion > 5)
+        {
+            validationErrors.Add("La Valoracion debe estar entre 1 y 5.");
+        }
+
+        // Si hay errores de validación, devolver una respuesta de error con todos los mensajes
+        if (validationErrors.Any())
+        {
+            response.Errors.AddRange(validationErrors);
+            return BadRequest(response);
+        }
+
+        // Mapeo del DTO
+        var categoryDto = new ReseñaCategoryDto
+        {
+            Titulo = categoryDtoSinId.Titulo,
+            Valoracion = categoryDtoSinId.Valoracion
         };
+
+        // Guardando la nueva reseña usando un servicio
+        response.Data = await _reseñasCategoryServices.SaveAsycn(categoryDto);
+
         return Created($"/api/[controller]/{response.Data.id}", response);
     }
+
+
+
 
     [HttpGet]
     [Route("{id:int}")]
@@ -68,16 +99,46 @@ public class ReseñaCategoriesController :ControllerBase
     public async Task<ActionResult<Response<ReseñaCategoryDto>>> Update([FromBody] ReseñaCategoryDto categoryDto)
     {
         var response = new Response<ReseñaCategoryDto>();
+
+        // Validación del ID
+        if (categoryDto.id <= 0)
+        {
+            response.Errors.Add("El ID debe ser mayor que cero.");
+        }
+
+        // Lista para almacenar los mensajes de error
+        var validationErrors = new List<string>();
+
+        // Validación del campo Titulo
+        if (string.IsNullOrEmpty(categoryDto.Titulo))
+        {
+            validationErrors.Add("El campo Titulo es obligatorio.");
+        }
+
+        // Validación del campo Valoracion
+        if (categoryDto.Valoracion <= 0 || categoryDto.Valoracion > 5)
+        {
+            validationErrors.Add("La Valoracion debe estar entre 1 y 5.");
+        }
+
+        // Si hay errores de validación, agregamos los mensajes a la respuesta
+        if (response.Errors.Any() || validationErrors.Any())
+        {
+            response.Errors.AddRange(validationErrors);
+            return BadRequest(response);
+        }
+
+        // Si el ID es válido y no hay errores de validación, procedemos con la actualización
         if (!await _reseñasCategoryServices.ReseñaCategoryExist(categoryDto.id))
         {
-            response.Errors.Add("Product Category not found");
+            response.Errors.Add("Reseña Category not found");
             return NotFound(response);
         }
 
         response.Data = await _reseñasCategoryServices.UpdateAsync(categoryDto);
         return Ok(response);
-
     }
+
     
 
     [HttpDelete]
