@@ -17,11 +17,14 @@ public class ReseñaCategoriesController :ControllerBase
     
     
     private readonly IReseñasCategoryServices _reseñasCategoryServices;
-    
-    public ReseñaCategoriesController(IReseñasCategoryServices reseñasCategoryServices)
+    private readonly IProductCategoryService _productCategoryService;
+
+    public ReseñaCategoriesController(IReseñasCategoryServices reseñasCategoryServices,IProductCategoryService productCategoryService)
     {
         
         _reseñasCategoryServices = reseñasCategoryServices;
+        _productCategoryService = productCategoryService;
+
     }
 
     [HttpGet]
@@ -41,6 +44,21 @@ public class ReseñaCategoriesController :ControllerBase
         // Lista para almacenar los mensajes de error
         var validationErrors = new List<string>();
 
+        // Verificar si la categoría asociada a IdCategory existe
+        if (!await _productCategoryService.ProductCategoryExist(categoryDtoSinId.IdProducto))
+        {
+            response.Errors.Add("La categoría asociada al IdCategory especificado no existe.");
+            return BadRequest(response);
+        }
+        
+        // Validar que IdCategory no sea cero
+        if (categoryDtoSinId.IdProducto == 0)
+        {
+            response.Errors.Add("El campo IdCategory es obligatorio.");
+            return BadRequest(response);
+        }
+        
+        
         // Validación del campo Titulo
         if (string.IsNullOrEmpty(categoryDtoSinId.Titulo))
         {
@@ -61,8 +79,9 @@ public class ReseñaCategoriesController :ControllerBase
         }
 
         // Mapeo del DTO
-        var categoryDto = new ReseñaCategoryDto
+        ReseñaCategoryDto  categoryDto = new ReseñaCategoryDto
         {
+            IdProducto = categoryDtoSinId.IdProducto,
             Titulo = categoryDtoSinId.Titulo,
             Valoracion = categoryDtoSinId.Valoracion
         };
@@ -100,6 +119,20 @@ public class ReseñaCategoriesController :ControllerBase
     {
         var response = new Response<ReseñaCategoryDto>();
 
+        // Verificar si la categoría asociada a IdCategory existe
+        if (!await _productCategoryService.ProductCategoryExist(categoryDto.IdProducto))
+        {
+            response.Errors.Add("La categoría asociada al IdCategory especificado no existe.");
+            return BadRequest(response);
+        }
+        
+        // Validar que IdCategory no sea cero
+        if (categoryDto.IdProducto == 0)
+        {
+            response.Errors.Add("El campo IdCategory es obligatorio.");
+            return BadRequest(response);
+        }
+        
         // Validación del ID
         if (categoryDto.id <= 0)
         {

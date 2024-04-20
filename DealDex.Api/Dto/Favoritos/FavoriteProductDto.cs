@@ -8,6 +8,8 @@ public class FavoriteProductDto  : DtoBase
     public string Titulo { get; set; }
     public decimal Precio { get; set; }
     public int Cantidad { get; set; }
+
+    public int IdUser { get; set; }
     
     public FavoriteProductDto()
     {
@@ -21,6 +23,7 @@ public class FavoriteProductDto  : DtoBase
         Titulo = category.Titulo;
         Precio = category.Precio;
         Cantidad = category.Cantidad;
+        IdUser = category.IdUser;
 
     }
 }

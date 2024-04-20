@@ -10,6 +10,7 @@ using DealDex.Api.Repositories.Interfecies;
 using DealDex.Api.Services.Interfaces;
 using Tecnm.Ecommerce1.Api.Repositories.Interfecies.Carrito;
 using Tecnm.Ecommerce1.Api.Services.Interfaces.Favorito;
+using Tecnm.Ecommerce1.Api.Services.Interfaces.Users;
 
 namespace DealDex.Api.Controllers;
 [ApiController]
@@ -17,11 +18,14 @@ namespace DealDex.Api.Controllers;
 public class FavoriteProductController : ControllerBase
 {
      private readonly IFavoriteProductServices _favoriteProductServices;
-    
-    public FavoriteProductController(IFavoriteProductServices favoriteProductServices)
+     private readonly IUsersCategoryService _usersCategoryService;
+
+    public FavoriteProductController(IFavoriteProductServices favoriteProductServices,IUsersCategoryService usersCategoryService)
     {
         
         _favoriteProductServices = favoriteProductServices;
+        _usersCategoryService = usersCategoryService;
+
     }
 
     [HttpGet]
@@ -41,6 +45,21 @@ public class FavoriteProductController : ControllerBase
 
         var validationErrors = new List<string>();
 
+        // Verificar si la categoría asociada a IdCategory existe
+        if (!await _usersCategoryService.UsersCategoryExist(favoriteProductDtoSinId.IdUser))
+        {
+            response.Errors.Add("La categoría asociada al IdCategory especificado no existe.");
+            return BadRequest(response);
+        }
+        
+        // Validar que IdCategory no sea cero
+        if (favoriteProductDtoSinId.IdUser == 0)
+        {
+            response.Errors.Add("El campo IdCategory es obligatorio.");
+            return BadRequest(response);
+        }
+        
+        
         // Validación del campo Image
         if (string.IsNullOrEmpty(favoriteProductDtoSinId.Image))
         {
@@ -74,6 +93,7 @@ public class FavoriteProductController : ControllerBase
 
         FavoriteProductDto favoriteDto = new FavoriteProductDto()
         {
+            IdUser = favoriteProductDtoSinId.IdUser,
             Image = favoriteProductDtoSinId.Image,
             Titulo = favoriteProductDtoSinId.Titulo,
             Precio = favoriteProductDtoSinId.Precio,
@@ -109,6 +129,20 @@ public class FavoriteProductController : ControllerBase
         var response = new Response<FavoriteProductDto>();
 
         var validationErrors = new List<string>();
+        
+        // Verificar si la categoría asociada a IdCategory existe
+        if (!await _usersCategoryService.UsersCategoryExist(favoritoDto.IdUser))
+        {
+            response.Errors.Add("La categoría asociada al IdCategory especificado no existe.");
+            return BadRequest(response);
+        }
+        
+        // Validar que IdCategory no sea cero
+        if (favoritoDto.IdUser == 0)
+        {
+            response.Errors.Add("El campo IdCategory es obligatorio.");
+            return BadRequest(response);
+        }
 
         // Validación del campo id
         if (favoritoDto.id == 0)

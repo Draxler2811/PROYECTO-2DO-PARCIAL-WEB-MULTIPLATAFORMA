@@ -9,6 +9,8 @@ using DealDex.Api.Repositories.Interfecies;
 using DealDex.Api.Services.Interfaces;
 using Tecnm.Ecommerce1.Api.Repositories.Interfecies.Carrito;
 using Tecnm.Ecommerce1.Api.Services.Interfaces.Carrito;
+using Tecnm.Ecommerce1.Api.Services.Interfaces.Users;
+using Tecnm.Ecommerce1.Api.Services.Users;
 
 namespace DealDex.Api.Controllers;
 
@@ -18,11 +20,14 @@ namespace DealDex.Api.Controllers;
 public class CarritoCategoriesController : ControllerBase
 {
      private readonly ICarritoCategoryServices _carritoCategoryServices;
-    
-    public CarritoCategoriesController(ICarritoCategoryServices carritoCategoryServices)
+     private readonly IUsersCategoryService _usersCategoryService;
+
+    public CarritoCategoriesController(ICarritoCategoryServices carritoCategoryServices,IUsersCategoryService usersCategoryService)
     {
         
         _carritoCategoryServices = carritoCategoryServices;
+        _usersCategoryService = usersCategoryService;
+
     }
 
     [HttpGet]
@@ -42,6 +47,20 @@ public class CarritoCategoriesController : ControllerBase
 
         // Lista para almacenar los mensajes de error
         var validationErrors = new List<string>();
+        
+        // Verificar si la categoría asociada a IdCategory existe
+        if (!await _usersCategoryService.UsersCategoryExist(carritoCategoryDtoSinAdd.IdUser))
+        {
+            response.Errors.Add("La categoría asociada al IdCategory especificado no existe.");
+            return BadRequest(response);
+        }
+        
+        // Validar que IdCategory no sea cero
+        if (carritoCategoryDtoSinAdd.IdUser == 0)
+        {
+            response.Errors.Add("El campo IdCategory es obligatorio.");
+            return BadRequest(response);
+        }
 
         // Validación del campo Image
         if (string.IsNullOrEmpty(carritoCategoryDtoSinAdd.Image))
@@ -77,6 +96,7 @@ public class CarritoCategoriesController : ControllerBase
         // Si no hay errores de validación, procedemos con la creación del carrito
         CarritoCategoryDto carritoDto = new CarritoCategoryDto()
         {
+            IdUser = carritoCategoryDtoSinAdd.IdUser,
             Image = carritoCategoryDtoSinAdd.Image,
             Titulo = carritoCategoryDtoSinAdd.Titulo,
             Precio = carritoCategoryDtoSinAdd.Precio,
@@ -114,7 +134,19 @@ public class CarritoCategoriesController : ControllerBase
 
         // Lista para almacenar los mensajes de error
         var validationErrors = new List<string>();
-
+        // Verificar si la categoría asociada a IdCategory existe
+        if (!await _usersCategoryService.UsersCategoryExist(carritoDto.IdUser))
+        {
+            response.Errors.Add("La categoría asociada al IdCategory especificado no existe.");
+            return BadRequest(response);
+        }
+        
+        // Validar que IdCategory no sea cero
+        if (carritoDto.IdUser == 0)
+        {
+            response.Errors.Add("El campo IdCategory es obligatorio.");
+            return BadRequest(response);
+        }
         // Validación del ID
         if (carritoDto.id == 0)
         {

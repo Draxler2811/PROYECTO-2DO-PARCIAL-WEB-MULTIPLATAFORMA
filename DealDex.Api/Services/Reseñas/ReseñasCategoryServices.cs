@@ -26,6 +26,7 @@ public class ReseñasCategoryServices : IReseñasCategoryServices
     {
         var catetegory = new ReseñaCategory
         {
+            IdProducto = categoryDto.IdProducto,
             Titulo = categoryDto.Titulo,
             Valoracion = categoryDto.Valoracion,
             CreatedBy = "Omar",
@@ -45,7 +46,7 @@ public class ReseñasCategoryServices : IReseñasCategoryServices
 
         if (category == null)
             throw new Exception("Product Category Not founf");
-      
+        category.IdProducto = categoryDto.IdProducto;
         category.Titulo = categoryDto.Titulo;
         category.Valoracion = categoryDto.Valoracion;     
         category.UpdatedBy = "Omar";
@@ -73,6 +74,7 @@ public class ReseñasCategoryServices : IReseñasCategoryServices
             throw new Exception("Product category not Found");
         var categoryDto = new ReseñaCategoryDto()
         {
+            IdProducto = category.IdProducto,
             Titulo = category.Titulo,
             Valoracion = category.Valoracion,
         };

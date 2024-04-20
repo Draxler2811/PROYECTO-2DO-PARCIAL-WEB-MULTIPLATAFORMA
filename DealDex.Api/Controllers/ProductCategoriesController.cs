@@ -6,6 +6,7 @@ using DealDex.Core.Http;
 using DealDex.Api.Dto;
 using DealDex.Api.Repositories.Interfecies;
 using DealDex.Api.Services.Interfaces;
+using Tecnm.Ecommerce1.Api.Services.Interfaces.category;
 
 namespace DealDex.Api.Controllers;
 
@@ -16,12 +17,14 @@ public class ProductCategoriesController : ControllerBase
 {
     // private readonly IProductCategoryRepository _productCategoryRepository;
     private readonly IProductCategoryService _productCategoryService;
+    private readonly ICategoryTypeServices _categoryTypeServices;
     
-    public ProductCategoriesController(IProductCategoryService productCategoryService)
+    public ProductCategoriesController(IProductCategoryService productCategoryService, ICategoryTypeServices categoryTypeServices)
     {
-        // _productCategoryRepository = productCategoryRepository;
         _productCategoryService = productCategoryService;
+        _categoryTypeServices = categoryTypeServices;
     }
+
 
     [HttpGet]
     public async Task<ActionResult<Response<List<ProductCategory>>>> GetAll()
@@ -38,6 +41,20 @@ public class ProductCategoriesController : ControllerBase
     {
         var response = new Response<ProductCategoryDtoAdd>();
 
+        // Verificar si la categoría asociada a IdCategory existe
+        if (!await _categoryTypeServices.CategoryTypeExist(categoryDtoSinId.IdCategory))
+        {
+            response.Errors.Add("La categoría asociada al IdCategory especificado no existe.");
+            return BadRequest(response);
+        }
+        
+        // Validar que IdCategory no sea cero
+        if (categoryDtoSinId.IdCategory == 0)
+        {
+            response.Errors.Add("El campo IdCategory es obligatorio.");
+            return BadRequest(response);
+        }
+        
         if (string.IsNullOrEmpty(categoryDtoSinId.Image))
         {
             response.Errors.Add("El campo Image es obligatorio.");
@@ -54,10 +71,7 @@ public class ProductCategoriesController : ControllerBase
         {
             response.Errors.Add("El campo Descripcion es obligatorio.");
         }
-        if (string.IsNullOrEmpty(categoryDtoSinId.Categoria))
-        {
-            response.Errors.Add("El campo Categoria es obligatorio.");
-        }
+        
         if (string.IsNullOrEmpty(categoryDtoSinId.Estado))
         {
             response.Errors.Add("El campo Estado es obligatorio.");
@@ -75,7 +89,7 @@ public class ProductCategoriesController : ControllerBase
         // Mapeo del DTO
         ProductCategoryDtoAdd categoryDto = new ProductCategoryDtoAdd()
         {
-            Categoria = categoryDtoSinId.Categoria,
+            IdCategory = categoryDtoSinId.IdCategory,
             Descripcion = categoryDtoSinId.Descripcion,
             Estado = categoryDtoSinId.Estado,
             Ubicacion = categoryDtoSinId.Ubicacion,
@@ -119,6 +133,20 @@ public class ProductCategoriesController : ControllerBase
         // Lista para almacenar los errores de validación
         var validationErrors = new List<string>();
 
+        // Verificar si la categoría asociada a IdCategory existe
+        if (!await _categoryTypeServices.CategoryTypeExist(categoryDto.IdCategory))
+        {
+            response.Errors.Add("La categoría asociada al IdCategory especificado no existe.");
+            return BadRequest(response);
+        }
+        
+        // Validar que IdCategory no sea cero
+        if (categoryDto.IdCategory == 0)
+        {
+            response.Errors.Add("El campo IdCategory es obligatorio.");
+            return BadRequest(response);
+        }
+        
         // Validación de ID
         if (categoryDto.id <= 0)
         {
@@ -146,10 +174,7 @@ public class ProductCategoriesController : ControllerBase
             validationErrors.Add("El campo Descripcion es obligatorio.");
         }
 
-        if (string.IsNullOrWhiteSpace(categoryDto.Categoria))
-        {
-            validationErrors.Add("El campo Categoria es obligatorio.");
-        }
+      
 
         if (string.IsNullOrWhiteSpace(categoryDto.Estado))
         {

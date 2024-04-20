@@ -7,4 +7,6 @@ public class CarritoCategory : EntityBase{
     public string Titulo { get; set; }
     public decimal Precio { get; set; }
     public int Cantidad { get; set; }
+
+    public int IdUser { get; set; }
 }

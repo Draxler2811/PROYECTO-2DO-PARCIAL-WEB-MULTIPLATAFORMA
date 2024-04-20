@@ -4,4 +4,5 @@ public class ReseñaCategory: EntityBase
 {
     public string Titulo { get; set; }
     public int Valoracion { get; set; }
+    public int IdProducto { get; set; }
 }

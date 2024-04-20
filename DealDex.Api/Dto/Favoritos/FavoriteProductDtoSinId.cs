@@ -8,6 +8,7 @@ public class FavoriteProductDtoSinId
     public string Titulo { get; set; }
     public decimal Precio { get; set; }
     public int Cantidad { get; set; }
+    public int IdUser { get; set; }
     
     public FavoriteProductDtoSinId()
     {
@@ -16,7 +17,7 @@ public class FavoriteProductDtoSinId
 
     public FavoriteProductDtoSinId(FavoriteProduct category)
     {
-        
+        IdUser = category.IdUser;
         Image = category.Imagen;
         Titulo = category.Titulo;
         Precio = category.Precio;

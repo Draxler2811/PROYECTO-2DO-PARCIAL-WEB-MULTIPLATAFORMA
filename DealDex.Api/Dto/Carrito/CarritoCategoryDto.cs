@@ -8,6 +8,7 @@ public class CarritoCategoryDto : DtoBase
     public string Titulo { get; set; }
     public decimal Precio { get; set; }
     public int Cantidad { get; set; }
+    public int IdUser { get; set; }
     
     public CarritoCategoryDto()
     {
@@ -16,6 +17,7 @@ public class CarritoCategoryDto : DtoBase
 
     public CarritoCategoryDto(CarritoCategory category)
     {
+        IdUser = category.IdUser;
         id = category.id;
         Image = category.Imagen;
         Titulo = category.Titulo;
