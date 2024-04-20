@@ -28,23 +28,34 @@ public class CategoryTypeController : ControllerBase
     [HttpGet]
     public async Task<ActionResult<Response<List<CategoryTypeDto>>>> GetAll()
     {
+        
         var response = new Response<List<CategoryTypeDto>>
         {
             Data = await _categoryTypeServices.GetAllAsync()
         };
         return Ok(response);
     }
-
     [HttpPost]
-    public async Task<ActionResult<Response<CategoryTypeDto>>> Post([FromBody] CategoryTypeDto carritoDto)
+    public async Task<ActionResult<Response<CategoryTypeDto>>> Post([FromBody] CategoryTypeDtoSinId categoryTypeDtoSinId)
     {
-        var response = new Response<CategoryTypeDto>()
-        {
-            Data = await _categoryTypeServices.SaveAsyc(carritoDto)
+        var response = new Response<CategoryTypeDto>();
 
+        // Validación del campo Nombre
+        if (string.IsNullOrEmpty(categoryTypeDtoSinId.Nombre))
+        {
+            response.Errors.Add("El campo Nombre es obligatorio.");
+            return BadRequest(response);
+        }
+
+        CategoryTypeDto categoryTypeDto = new CategoryTypeDto()
+        {
+            Nombre = categoryTypeDtoSinId.Nombre,
         };
+
+        response.Data = await _categoryTypeServices.SaveAsyc(categoryTypeDto);
         return Created($"/api/[controller]/{response.Data.id}", response);
     }
+
 
     [HttpGet]
     [Route("{id:int}")]
@@ -66,19 +77,40 @@ public class CategoryTypeController : ControllerBase
     }
 
     [HttpPut]
-    public async Task<ActionResult<Response<CategoryTypeDto>>> Update([FromBody] CategoryTypeDto carritoDto)
+    public async Task<ActionResult<Response<CategoryTypeDto>>> Update([FromBody] CategoryTypeDto categoryTypeDto)
     {
         var response = new Response<CategoryTypeDto>();
-        if (!await _categoryTypeServices.CategoryTypeExist(carritoDto.id))
+
+        // Validación del campo id
+        if (categoryTypeDto.id == 0)
+        {
+            response.Errors.Add("El campo id no puede ser cero.");
+        }
+
+        // Validación del campo Nombre
+        if (string.IsNullOrEmpty(categoryTypeDto.Nombre))
+        {
+            response.Errors.Add("El campo Nombre es obligatorio.");
+        }
+
+        // Si hay errores, devuelve un BadRequest con la lista de errores
+        if (response.Errors.Any())
+        {
+            return BadRequest(response);
+        }
+
+        // Verifica si existe la categoría
+        if (!await _categoryTypeServices.CategoryTypeExist(categoryTypeDto.id))
         {
             response.Errors.Add("Product Category not found");
             return NotFound(response);
         }
 
-        response.Data = await _categoryTypeServices.UpdateAsync(carritoDto);
+        // Actualiza la categoría
+        response.Data = await _categoryTypeServices.UpdateAsync(categoryTypeDto);
         return Ok(response);
-
     }
+
     
 
     [HttpDelete]
