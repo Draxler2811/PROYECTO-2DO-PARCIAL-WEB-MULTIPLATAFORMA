@@ -36,12 +36,40 @@ public class ProductCategoriesController : ControllerBase
     [HttpPost]
     public async Task<ActionResult<Response<ProductCategoryDtoAdd>>> Post([FromBody] ProductCategoryDtoSinId categoryDtoSinId)
     {
-        var response2 = new Response<string>();
+        var response = new Response<ProductCategoryDtoAdd>();
 
-        // Validación de Precio: si es mayor que cero
+        if (string.IsNullOrEmpty(categoryDtoSinId.Image))
+        {
+            response.Errors.Add("El campo Image es obligatorio.");
+        }
+        if (string.IsNullOrEmpty(categoryDtoSinId.Titulo))
+        {
+            response.Errors.Add("El campo Titulo es obligatorio.");
+        }
         if (categoryDtoSinId.Precio <= 0)
-        { response2.Errors.Add("Precio esta mal");
-            return BadRequest(response2);
+        {
+            response.Errors.Add("El campo Precio debe ser mayor que cero.");
+        }
+        if (string.IsNullOrEmpty(categoryDtoSinId.Descripcion))
+        {
+            response.Errors.Add("El campo Descripcion es obligatorio.");
+        }
+        if (string.IsNullOrEmpty(categoryDtoSinId.Categoria))
+        {
+            response.Errors.Add("El campo Categoria es obligatorio.");
+        }
+        if (string.IsNullOrEmpty(categoryDtoSinId.Estado))
+        {
+            response.Errors.Add("El campo Estado es obligatorio.");
+        }
+        if (string.IsNullOrEmpty(categoryDtoSinId.Ubicacion))
+        {
+            response.Errors.Add("El campo Ubicacion es obligatorio.");
+        }
+
+        if (response.Errors.Any())
+        {
+            return BadRequest(response);
         }
 
         // Mapeo del DTO
@@ -57,12 +85,10 @@ public class ProductCategoriesController : ControllerBase
         };
 
         // Guardando la nueva categoría de producto usando un servicio
-        var response = new Response<ProductCategoryDtoAdd>()
-        {
-            Data = await _productCategoryService.SaveAsycn(categoryDto)
-        };
+        response.Data = await _productCategoryService.SaveAsycn(categoryDto);
         return Created($"/api/[controller]/{response.Data.id}", response);
     }
+
 
 
 
@@ -89,16 +115,71 @@ public class ProductCategoriesController : ControllerBase
     public async Task<ActionResult<Response<ProductCategoryDtoAdd>>> Update([FromBody] ProductCategoryDtoAdd categoryDto)
     {
         var response = new Response<ProductCategoryDtoAdd>();
-        if (!await _productCategoryService.ProductCategoryExist(categoryDto.id))
+
+        // Lista para almacenar los errores de validación
+        var validationErrors = new List<string>();
+
+        // Validación de ID
+        if (categoryDto.id <= 0)
         {
-            response.Errors.Add("Product Category not found");
-            return NotFound(response);
+            validationErrors.Add("El ID debe ser mayor que cero.");
         }
 
+        // Validación de campos no vacíos
+        if (string.IsNullOrWhiteSpace(categoryDto.Image))
+        {
+            validationErrors.Add("El campo Image es obligatorio.");
+        }
+
+        if (string.IsNullOrWhiteSpace(categoryDto.Titulo))
+        {
+            validationErrors.Add("El campo Titulo es obligatorio.");
+        }
+
+        if (categoryDto.Precio <= 0)
+        {
+            validationErrors.Add("El campo Precio debe ser mayor que cero.");
+        }
+
+        if (string.IsNullOrWhiteSpace(categoryDto.Descripcion))
+        {
+            validationErrors.Add("El campo Descripcion es obligatorio.");
+        }
+
+        if (string.IsNullOrWhiteSpace(categoryDto.Categoria))
+        {
+            validationErrors.Add("El campo Categoria es obligatorio.");
+        }
+
+        if (string.IsNullOrWhiteSpace(categoryDto.Estado))
+        {
+            validationErrors.Add("El campo Estado es obligatorio.");
+        }
+
+        if (string.IsNullOrWhiteSpace(categoryDto.Ubicacion))
+        {
+            validationErrors.Add("El campo Ubicacion es obligatorio.");
+        }
+
+        // Validación de existencia de la categoría
+        if (!await _productCategoryService.ProductCategoryExist(categoryDto.id))
+        {
+            validationErrors.Add("Product Category not found");
+        }
+
+        // Si hay errores de validación, devolverlos todos juntos
+        if (validationErrors.Any())
+        {
+            response.Errors.AddRange(validationErrors);
+            return BadRequest(response);
+        }
+
+        // Actualización de la categoría si pasa todas las validaciones
         response.Data = await _productCategoryService.UpdateAsync(categoryDto);
         return Ok(response);
-
     }
+
+
     
 
     [HttpDelete]
