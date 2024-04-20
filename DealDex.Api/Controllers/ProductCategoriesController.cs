@@ -34,15 +34,37 @@ public class ProductCategoriesController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<ActionResult<Response<ProductCategoryDtoAdd>>> Post([FromBody] ProductCategoryDtoAdd categoryDto)
+    public async Task<ActionResult<Response<ProductCategoryDtoAdd>>> Post([FromBody] ProductCategoryDtoSinId categoryDtoSinId)
     {
+        var response2 = new Response<string>();
+
+        // Validación de Precio: si es mayor que cero
+        if (categoryDtoSinId.Precio <= 0)
+        { response2.Errors.Add("Precio esta mal");
+            return BadRequest(response2);
+        }
+
+        // Mapeo del DTO
+        ProductCategoryDtoAdd categoryDto = new ProductCategoryDtoAdd()
+        {
+            Categoria = categoryDtoSinId.Categoria,
+            Descripcion = categoryDtoSinId.Descripcion,
+            Estado = categoryDtoSinId.Estado,
+            Ubicacion = categoryDtoSinId.Ubicacion,
+            Image = categoryDtoSinId.Image,
+            Titulo = categoryDtoSinId.Titulo,
+            Precio = categoryDtoSinId.Precio,
+        };
+
+        // Guardando la nueva categoría de producto usando un servicio
         var response = new Response<ProductCategoryDtoAdd>()
         {
             Data = await _productCategoryService.SaveAsycn(categoryDto)
-
         };
         return Created($"/api/[controller]/{response.Data.id}", response);
     }
+
+
 
     [HttpGet]
     [Route("{id:int}")]

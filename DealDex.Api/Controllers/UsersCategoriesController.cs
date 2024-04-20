@@ -39,18 +39,34 @@ public class UsersCategoriesController : ControllerBase
     [HttpPost]
     public async Task<ActionResult<Response<UsersCategoryDto>>> Post([FromBody] UserCategoryDtoSinId categoryDtoSinId)
     {
+        var response = new Response<UsersCategoryDto>();
+
+        if (string.IsNullOrEmpty(categoryDtoSinId.Correo))
+        {
+            response.Errors.Add("El campo Correo es obligatorio.");
+        }
+        if (string.IsNullOrEmpty(categoryDtoSinId.Contraseña))
+        {
+            response.Errors.Add("El campo Contraseña es obligatorio.");
+        }
+        if (string.IsNullOrEmpty(categoryDtoSinId.NombreUsu))
+        {
+            response.Errors.Add("El campo Nombre de usuario es obligatorio.");
+        }
+
+        if (response.Errors.Any())
+        {
+            return BadRequest(response);
+        }
+
         UsersCategoryDto categoryDto = new UsersCategoryDto()
         {
             Correo = categoryDtoSinId.Correo,
             Contraseña = categoryDtoSinId.Contraseña,
             NombreUsu = categoryDtoSinId.NombreUsu
         };
-        
-        var response = new Response<UsersCategoryDto>()
-        {
-            Data = await _usersCategoryService.SaveAsycn(categoryDto)
 
-        };
+        response.Data = await _usersCategoryService.SaveAsycn(categoryDto);
         return Created($"/api/[controller]/{response.Data.id}", response);
     }
 
@@ -74,11 +90,35 @@ public class UsersCategoriesController : ControllerBase
         response.Data = await _usersCategoryService.GetById(id); 
         return Ok(response);
     }
-
     [HttpPut]
     public async Task<ActionResult<Response<UsersCategoryDto>>> Update([FromBody] UsersCategoryDto categoryDto)
     {
         var response = new Response<UsersCategoryDto>();
+
+        if (categoryDto.id <= 0)
+        {
+            response.Errors.Add("El campo ID debe ser mayor que cero.");
+            return BadRequest(response);
+        }
+
+        if (string.IsNullOrEmpty(categoryDto.Correo))
+        {
+            response.Errors.Add("El campo Correo es obligatorio.");
+        }
+        if (string.IsNullOrEmpty(categoryDto.Contraseña))
+        {
+            response.Errors.Add("El campo Contraseña es obligatorio.");
+        }
+        if (string.IsNullOrEmpty(categoryDto.NombreUsu))
+        {
+            response.Errors.Add("El campo Nombre de usuario es obligatorio.");
+        }
+
+        if (response.Errors.Any())
+        {
+            return BadRequest(response);
+        }
+
         if (!await _usersCategoryService.UsersCategoryExist(categoryDto.id))
         {
             response.Errors.Add("Product Category not found");
@@ -87,9 +127,8 @@ public class UsersCategoriesController : ControllerBase
 
         response.Data = await _usersCategoryService.UpdateAsync(categoryDto);
         return Ok(response);
-
     }
-    
+
 
     [HttpDelete]
     [Route("{id:int}")]
