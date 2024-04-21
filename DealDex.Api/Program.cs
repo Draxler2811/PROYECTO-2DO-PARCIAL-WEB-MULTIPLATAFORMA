@@ -13,7 +13,9 @@ using Tecnm.Ecommerce1.Api.Repositories.Interfecies.Category;
 using Tecnm.Ecommerce1.Api.Repositories.Interfecies.Category;
 using Tecnm.Ecommerce1.Api.Repositories.Interfecies.Favoritos;
 using Tecnm.Ecommerce1.Api.Repositories.Interfecies.Reseñas;
+using Tecnm.Ecommerce1.Api.Repositories.Interfecies.Supplier;
 using Tecnm.Ecommerce1.Api.Repositories.Reseñas;
+using Tecnm.Ecommerce1.Api.Repositories.Supplier;
 using Tecnm.Ecommerce1.Api.Services.Carrito;
 using Tecnm.Ecommerce1.Api.Services.Category;
 using Tecnm.Ecommerce1.Api.Services.Favorito;
@@ -21,8 +23,10 @@ using Tecnm.Ecommerce1.Api.Services.Interfaces.Carrito;
 using Tecnm.Ecommerce1.Api.Services.Interfaces.category;
 using Tecnm.Ecommerce1.Api.Services.Interfaces.Favorito;
 using Tecnm.Ecommerce1.Api.Services.Interfaces.Reseñas;
+using Tecnm.Ecommerce1.Api.Services.Interfaces.Supplier;
 using Tecnm.Ecommerce1.Api.Services.Interfaces.Users;
 using Tecnm.Ecommerce1.Api.Services.Reseñas;
+using Tecnm.Ecommerce1.Api.Services.Supplier;
 using Tecnm.Ecommerce1.Api.Services.Users;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -55,6 +59,9 @@ builder.Services.AddScoped<IFavoriteProductServices, FavoriteProductServices>();
 
 builder.Services.AddScoped<ICategoryTypeRepository, CategoryTypeRepository>();
 builder.Services.AddScoped<ICategoryTypeServices, CategoryTypeServices>();
+
+builder.Services.AddScoped<ISupplierInfoRepository, SupplierInfoRepository>();
+builder.Services.AddScoped<ISupplierInfoService, SupplierInfoServices>();
 
 var app = builder.Build();
 

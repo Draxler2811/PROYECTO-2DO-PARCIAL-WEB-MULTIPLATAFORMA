@@ -19,12 +19,4 @@
       <ProjectReference Include="..\DealDex.Core\DealDex.Core.csproj" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="Dto\Compras\" />
-      <Folder Include="Repositories\Interfecies\Publicaciones\" />
-      <Folder Include="Repositories\Publicaciones\" />
-      <Folder Include="Services\Interfaces\Publicaciones\" />
-      <Folder Include="Services\Publicaciones\" />
-    </ItemGroup>
-
 </Project>
