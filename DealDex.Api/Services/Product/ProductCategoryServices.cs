@@ -27,6 +27,7 @@ public class ProductCategoryServices : IProductCategoryService
     {
         var catetegory = new ProductCategory
         {
+            IdSupplier = categoryDto.IdSupplier,
             Descripcion = categoryDto.Descripcion,
             IdCategory = categoryDto.IdCategory,
             Estado = categoryDto.Estado,
@@ -51,6 +52,7 @@ public class ProductCategoryServices : IProductCategoryService
 
         if (category == null)
             throw new Exception("Product Category Not founf");
+        category.IdSupplier = categoryDto.IdSupplier;
         category.Descripcion = categoryDto.Descripcion;
         category.IdCategory = categoryDto.IdCategory;
         category.Estado = categoryDto.Estado;

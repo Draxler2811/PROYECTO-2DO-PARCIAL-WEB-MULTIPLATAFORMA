@@ -16,6 +16,9 @@ public class ProductCategoryDtoAdd : DtoBase
     public string Estado { get; set; }
     public string Ubicacion { get; set; }
     
+    public int IdSupplier { get; set; }
+
+    
     
     public ProductCategoryDtoAdd()
     {
@@ -25,6 +28,7 @@ public class ProductCategoryDtoAdd : DtoBase
     public ProductCategoryDtoAdd(ProductCategory category)
     {
         id = category.id;
+        IdSupplier = category.IdSupplier;
         Image = category.Image;
         Titulo = category.Titulo;
         Precio = category.Precio;

@@ -27,6 +27,7 @@ public class SupplierInfoServices : ISupplierInfoService
     {
         var supplier = new SupplierInfo
         {
+            
             Nombre = supplierInfoDto.Nombre,
             Direccion = supplierInfoDto.Direccion,
             Cuidad = supplierInfoDto.Cuidad,

@@ -15,6 +15,8 @@ public class ProductCategoryDtoSinId
     public string Estado { get; set; }
     public string Ubicacion { get; set; }
 
+    public int IdSupplier { get; set; }
+
 
 
     public ProductCategoryDtoSinId()
@@ -24,6 +26,7 @@ public class ProductCategoryDtoSinId
 
     public ProductCategoryDtoSinId(ProductCategory category)
     {
+        IdSupplier = category.IdSupplier;
         Image = category.Image;
         Titulo = category.Titulo;
         Precio = category.Precio;

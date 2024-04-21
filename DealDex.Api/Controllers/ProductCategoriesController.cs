@@ -7,6 +7,7 @@ using DealDex.Api.Dto;
 using DealDex.Api.Repositories.Interfecies;
 using DealDex.Api.Services.Interfaces;
 using Tecnm.Ecommerce1.Api.Services.Interfaces.category;
+using Tecnm.Ecommerce1.Api.Services.Interfaces.Supplier;
 
 namespace DealDex.Api.Controllers;
 
@@ -18,11 +19,16 @@ public class ProductCategoriesController : ControllerBase
     // private readonly IProductCategoryRepository _productCategoryRepository;
     private readonly IProductCategoryService _productCategoryService;
     private readonly ICategoryTypeServices _categoryTypeServices;
+    private readonly ISupplierInfoService _supplierInfoService;
+
     
-    public ProductCategoriesController(IProductCategoryService productCategoryService, ICategoryTypeServices categoryTypeServices)
+    public ProductCategoriesController(IProductCategoryService productCategoryService, ICategoryTypeServices categoryTypeServices,
+        ISupplierInfoService supplierInfoService)
     {
         _productCategoryService = productCategoryService;
         _categoryTypeServices = categoryTypeServices;
+        _supplierInfoService = supplierInfoService;
+
     }
 
 
@@ -47,11 +53,25 @@ public class ProductCategoriesController : ControllerBase
             response.Errors.Add("La categoría asociada al IdCategory especificado no existe.");
             return BadRequest(response);
         }
-        
+
         // Validar que IdCategory no sea cero
         if (categoryDtoSinId.IdCategory == 0)
         {
             response.Errors.Add("El campo IdCategory es obligatorio.");
+            return BadRequest(response);
+        }
+        
+        // Verificar si la categoría asociada a IdCategory existe
+        if (!await _supplierInfoService.SupplierInfoExist(categoryDtoSinId.IdSupplier))
+        {
+            response.Errors.Add("La categoría asociada al IdSupplier especificado no existe.");
+            return BadRequest(response);
+        }
+
+        // Validar que IdCategory no sea cero
+        if (categoryDtoSinId.IdSupplier == 0)
+        {
+            response.Errors.Add("El campo IdSupplier es obligatorio.");
             return BadRequest(response);
         }
         
@@ -89,6 +109,7 @@ public class ProductCategoriesController : ControllerBase
         // Mapeo del DTO
         ProductCategoryDtoAdd categoryDto = new ProductCategoryDtoAdd()
         {
+            IdSupplier = categoryDtoSinId.IdSupplier,
             IdCategory = categoryDtoSinId.IdCategory,
             Descripcion = categoryDtoSinId.Descripcion,
             Estado = categoryDtoSinId.Estado,
@@ -132,13 +153,28 @@ public class ProductCategoriesController : ControllerBase
 
         // Lista para almacenar los errores de validación
         var validationErrors = new List<string>();
-
+        
+        
         // Verificar si la categoría asociada a IdCategory existe
         if (!await _categoryTypeServices.CategoryTypeExist(categoryDto.IdCategory))
         {
             response.Errors.Add("La categoría asociada al IdCategory especificado no existe.");
             return BadRequest(response);
         }
+        // Verificar si la categoría asociada a IdCategory existe
+        if (!await _categoryTypeServices.CategoryTypeExist(categoryDto.IdSupplier))
+        {
+            response.Errors.Add("La categoría asociada al IdSupplier especificado no existe.");
+            return BadRequest(response);
+        }
+                
+        // Validar que IdCategory no sea cero
+        if (categoryDto.IdSupplier == 0)
+        {
+            response.Errors.Add("El campo IdSupplier es obligatorio.");
+            return BadRequest(response);
+        }
+
         
         // Validar que IdCategory no sea cero
         if (categoryDto.IdCategory == 0)
