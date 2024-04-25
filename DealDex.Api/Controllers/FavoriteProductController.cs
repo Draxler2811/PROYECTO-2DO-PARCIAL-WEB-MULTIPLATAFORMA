@@ -35,74 +35,73 @@ public class FavoriteProductController : ControllerBase
         {
             Data = await _favoriteProductServices.GetAllAsync()
         };
+
+        if (response.Data == null || !response.Data.Any())
+        {
+            response.Errors.Add("No se encontraron datos.");
+            return NotFound(response);
+        }
+
         return Ok(response);
     }
 
-    [HttpPost]
-    public async Task<ActionResult<Response<FavoriteProductDto>>> Post([FromBody] FavoriteProductDtoSinId favoriteProductDtoSinId)
+   [HttpPost]
+public async Task<ActionResult<Response<FavoriteProductDto>>> Post([FromBody] FavoriteProductDtoSinId favoriteProductDtoSinId)
+{
+    var response = new Response<FavoriteProductDto>();
+
+    var validationErrors = new List<string>();
+
+    if (!await _usersCategoryService.UsersCategoryExist(favoriteProductDtoSinId.IdUser))
     {
-        var response = new Response<FavoriteProductDto>();
-
-        var validationErrors = new List<string>();
-
-        // Verificar si la categoría asociada a IdCategory existe
-        if (!await _usersCategoryService.UsersCategoryExist(favoriteProductDtoSinId.IdUser))
-        {
-            response.Errors.Add("La categoría asociada al IdCategory especificado no existe.");
-            return BadRequest(response);
-        }
-        
-        // Validar que IdCategory no sea cero
-        if (favoriteProductDtoSinId.IdUser == 0)
-        {
-            response.Errors.Add("El campo IdCategory es obligatorio.");
-            return BadRequest(response);
-        }
-        
-        
-        // Validación del campo Image
-        if (string.IsNullOrEmpty(favoriteProductDtoSinId.Image))
-        {
-            validationErrors.Add("El campo Image es obligatorio.");
-        }
-
-        // Validación del campo Titulo
-        if (string.IsNullOrEmpty(favoriteProductDtoSinId.Titulo))
-        {
-            validationErrors.Add("El campo Titulo es obligatorio.");
-        }
-
-        // Validación del campo Precio
-        if (favoriteProductDtoSinId.Precio <= 0)
-        {
-            validationErrors.Add("El campo Precio debe ser mayor que cero.");
-        }
-
-        // Validación del campo Cantidad
-        if (favoriteProductDtoSinId.Cantidad <= 0)
-        {
-            validationErrors.Add("El campo Cantidad debe ser mayor que cero.");
-        }
-
-        // Si hay errores de validación, agregamos los mensajes a la respuesta
-        if (validationErrors.Any())
-        {
-            response.Errors.AddRange(validationErrors);
-            return BadRequest(response);
-        }
-
-        FavoriteProductDto favoriteDto = new FavoriteProductDto()
-        {
-            IdUser = favoriteProductDtoSinId.IdUser,
-            Image = favoriteProductDtoSinId.Image,
-            Titulo = favoriteProductDtoSinId.Titulo,
-            Precio = favoriteProductDtoSinId.Precio,
-            Cantidad = favoriteProductDtoSinId.Cantidad
-        };
-
-        response.Data = await _favoriteProductServices.SaveAsyc(favoriteDto);
-        return Created($"/api/[controller]/{response.Data.id}", response);
+        validationErrors.Add("El id usuario  especificado no existe.");
     }
+    
+    if (favoriteProductDtoSinId.IdUser == 0)
+    {
+        validationErrors.Add("El campo IdCategory es obligatorio.");
+    }
+    
+    
+    if (string.IsNullOrEmpty(favoriteProductDtoSinId.Image))
+    {
+        validationErrors.Add("El campo Image es obligatorio.");
+    }
+
+    if (string.IsNullOrEmpty(favoriteProductDtoSinId.Titulo))
+    {
+        validationErrors.Add("El campo Titulo es obligatorio.");
+    }
+
+    if (favoriteProductDtoSinId.Precio <= 0)
+    {
+        validationErrors.Add("El campo Precio debe ser mayor que cero.");
+    }
+
+    if (favoriteProductDtoSinId.Cantidad <= 0)
+    {
+        validationErrors.Add("El campo Cantidad debe ser mayor que cero.");
+    }
+
+    if (validationErrors.Any())
+    {
+        response.Errors.AddRange(validationErrors);
+        return BadRequest(response);
+    }
+
+    FavoriteProductDto favoriteDto = new FavoriteProductDto()
+    {
+        IdUser = favoriteProductDtoSinId.IdUser,
+        Image = favoriteProductDtoSinId.Image,
+        Titulo = favoriteProductDtoSinId.Titulo,
+        Precio = favoriteProductDtoSinId.Precio,
+        Cantidad = favoriteProductDtoSinId.Cantidad
+    };
+
+    response.Data = await _favoriteProductServices.SaveAsyc(favoriteDto);
+    return Created($"/api/[controller]/{response.Data.id}", response);
+}
+
 
     [HttpGet]
     [Route("{id:int}")]
@@ -114,7 +113,7 @@ public class FavoriteProductController : ControllerBase
 
         if (!await _favoriteProductServices.FavoriteProductExist(id))
         {
-            response.Errors.Add("Category not found");
+            response.Errors.Add("Id del producto favorito no fue encontrado");
             return NotFound(response);
         }
 
@@ -129,68 +128,58 @@ public class FavoriteProductController : ControllerBase
         var response = new Response<FavoriteProductDto>();
 
         var validationErrors = new List<string>();
-        
-        // Verificar si la categoría asociada a IdCategory existe
+    
         if (!await _usersCategoryService.UsersCategoryExist(favoritoDto.IdUser))
         {
-            response.Errors.Add("La categoría asociada al IdCategory especificado no existe.");
-            return BadRequest(response);
+            validationErrors.Add("El campo Idusuario especificado no existe.");
         }
-        
-        // Validar que IdCategory no sea cero
+    
         if (favoritoDto.IdUser == 0)
         {
-            response.Errors.Add("El campo IdCategory es obligatorio.");
-            return BadRequest(response);
+            validationErrors.Add("El campo IdCategory es obligatorio.");
         }
 
-        // Validación del campo id
         if (favoritoDto.id == 0)
         {
-            response.Errors.Add("El campo id no puede ser cero.");
+            validationErrors.Add("El campo id no puede ser cero.");
         }
-        
-        // Validación del campo Image
+    
         if (string.IsNullOrEmpty(favoritoDto.Image))
         {
             validationErrors.Add("El campo Image es obligatorio.");
         }
 
-        // Validación del campo Titulo
         if (string.IsNullOrEmpty(favoritoDto.Titulo))
         {
             validationErrors.Add("El campo Titulo es obligatorio.");
         }
 
-        // Validación del campo Precio
         if (favoritoDto.Precio <= 0)
         {
             validationErrors.Add("El campo Precio debe ser mayor que cero.");
         }
 
-        // Validación del campo Cantidad
         if (favoritoDto.Cantidad <= 0)
         {
             validationErrors.Add("El campo Cantidad debe ser mayor que cero.");
         }
 
-        // Si hay errores de validación, agregamos los mensajes a la respuesta
         if (validationErrors.Any())
         {
             response.Errors.AddRange(validationErrors);
             return BadRequest(response);
         }
-        
+    
         if (!await _favoriteProductServices.FavoriteProductExist(favoritoDto.id))
         {
-            response.Errors.Add("Product Category not found");
+            response.Errors.Add("Id del producto favorito no fue encontrado");
             return NotFound(response);
         }
 
         response.Data = await _favoriteProductServices.UpdateAsync(favoritoDto);
         return Ok(response);
-
     }
+
     
 
     [HttpDelete]
@@ -201,9 +190,11 @@ public class FavoriteProductController : ControllerBase
 
         if (!await _favoriteProductServices.DeleteAsync(id))
         {
-            response.Errors.Add("id not found");
+            response.Errors.Add("id no encontrado");
             return NotFound(response);
         }
+
+        response.Message = "Borrado exitosamente";
         return Ok(response);
     }
 }

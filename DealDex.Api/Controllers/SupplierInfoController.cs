@@ -32,10 +32,17 @@ public class SupplierInfoController : ControllerBase
     [HttpGet]
     public async Task<ActionResult<Response<List<SupplierInfoDto>>>> GetAll()
     {
-        var response = new Response<List<SupplierInfoDto>>
+        var response = new Response<List<SupplierInfoDto>>();
+
+        var suppliers = await _supplierInfoService.GetAllAsync();
+
+        if (suppliers == null || !suppliers.Any())
         {
-            Data = await _supplierInfoService.GetAllAsync()
-        };
+            response.Errors.Add("No se encontraron proveedores.");
+            return NotFound(response);
+        }
+
+        response.Data = suppliers;
         return Ok(response);
     }
 
@@ -44,39 +51,32 @@ public class SupplierInfoController : ControllerBase
     {
         var response = new Response<SupplierInfoDto>();
 
-        // Lista para almacenar los mensajes de error
         var validationErrors = new List<string>();
         
-        // Validación del campo Image
         if (string.IsNullOrEmpty(supplierInfoDtoSinId.Nombre))
         {
             validationErrors.Add("El campo Nombre es obligatorio.");
         }
 
-        // Validación del campo Titulo
         if (string.IsNullOrEmpty(supplierInfoDtoSinId.Direccion))
         {
             validationErrors.Add("El campo Direccion es obligatorio.");
         }
 
-        // Validación del campo Titulo
         if (string.IsNullOrEmpty(supplierInfoDtoSinId.Cuidad))
         {
             validationErrors.Add("El campo Cuidad es obligatorio.");
         }
-        // Validación del campo Titulo
         if (string.IsNullOrEmpty(supplierInfoDtoSinId.Correo))
         {
             validationErrors.Add("El campo Correo es obligatorio.");
         }
-        // Si hay errores de validación, agregamos los mensajes a la respuesta
         if (validationErrors.Any())
         {
             response.Errors.AddRange(validationErrors);
             return BadRequest(response);
         }
 
-        // Si no hay errores de validación, procedemos con la creación del carrito
         SupplierInfoDto supplierInfoDto = new SupplierInfoDto()
         {
             Nombre =  supplierInfoDtoSinId.Nombre,
@@ -100,7 +100,7 @@ public class SupplierInfoController : ControllerBase
 
         if (!await _supplierInfoService.SupplierInfoExist(id))
         {
-            response.Errors.Add("Category not found");
+            response.Errors.Add("El id no fue encontrado");
             return NotFound(response);
         }
 
@@ -114,55 +114,51 @@ public class SupplierInfoController : ControllerBase
     {
         var response = new Response<SupplierInfoDto>();
 
-        // Lista para almacenar los mensajes de error
         var validationErrors = new List<string>();
-       
-        // Validación de ID
+
         if (supplierInfoDto.id <= 0)
         {
             validationErrors.Add("El ID debe ser mayor que cero.");
         }
-   
-        // Validación del campo Image
+
         if (string.IsNullOrEmpty(supplierInfoDto.Nombre))
         {
             validationErrors.Add("El campo Nombre es obligatorio.");
         }
 
-        // Validación del campo Titulo
         if (string.IsNullOrEmpty(supplierInfoDto.Direccion))
         {
             validationErrors.Add("El campo Direccion es obligatorio.");
         }
 
-        // Validación del campo Titulo
         if (string.IsNullOrEmpty(supplierInfoDto.Cuidad))
         {
             validationErrors.Add("El campo Cuidad es obligatorio.");
         }
-        // Validación del campo Titulo
+
         if (string.IsNullOrEmpty(supplierInfoDto.Correo))
         {
             validationErrors.Add("El campo Correo es obligatorio.");
         }
 
-        // Si hay errores de validación, agregamos los mensajes a la respuesta
+        if (supplierInfoDto.id > 0)
+        {
+            if (!await _supplierInfoService.SupplierInfoExist(supplierInfoDto.id))
+            {
+                validationErrors.Add("El ID del proveedor no fue encontrado.");
+            }
+        }
+
         if (validationErrors.Any())
         {
             response.Errors.AddRange(validationErrors);
             return BadRequest(response);
         }
 
-        // Si no hay errores de validación, procedemos con la actualización del carrito
-        if (!await _supplierInfoService.SupplierInfoExist(supplierInfoDto.id))
-        {
-            response.Errors.Add("Product Category not found");
-            return NotFound(response);
-        }
-
         response.Data = await _supplierInfoService.UpdateAsync(supplierInfoDto);
         return Ok(response);
     }
+
 
     
 
@@ -174,9 +170,11 @@ public class SupplierInfoController : ControllerBase
 
         if (!await _supplierInfoService.DeleteAsync(id))
         {
-            response.Errors.Add("id not found");
+            response.Errors.Add("id no encontrado");
             return NotFound(response);
         }
+
+        response.Message = "Borrado exitosamente";
         return Ok(response);
     }
     }

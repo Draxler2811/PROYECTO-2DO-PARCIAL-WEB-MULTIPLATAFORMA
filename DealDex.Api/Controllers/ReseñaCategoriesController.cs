@@ -30,10 +30,17 @@ public class ReseñaCategoriesController :ControllerBase
     [HttpGet]
     public async Task<ActionResult<Response<List<ReseñaCategory>>>> GetAll()
     {
-        var response = new Response<List<ReseñaCategoryDto>>
+        var response = new Response<List<ReseñaCategoryDto>>();
+
+        var reseñas = await _reseñasCategoryServices.GetAllAsync();
+
+        if (reseñas == null || !reseñas.Any())
         {
-            Data = await _reseñasCategoryServices.GetAllAsync()
-        };
+            response.Errors.Add("No hay reseñas disponibles.");
+            return NotFound(response);
+        }
+
+        response.Data = reseñas;
         return Ok(response);
     }
     [HttpPost]
@@ -41,52 +48,41 @@ public class ReseñaCategoriesController :ControllerBase
     {
         var response = new Response<ReseñaCategoryDto>();
 
-        // Lista para almacenar los mensajes de error
         var validationErrors = new List<string>();
 
-        // Verificar si la categoría asociada a IdCategory existe
         if (!await _productCategoryService.ProductCategoryExist(categoryDtoSinId.IdProducto))
         {
-            response.Errors.Add("La categoría asociada al IdCategory especificado no existe.");
-            return BadRequest(response);
+            validationErrors.Add("La categoría asociada al IdProducto especificado no existe.");
         }
-        
-        // Validar que IdCategory no sea cero
+
         if (categoryDtoSinId.IdProducto == 0)
         {
-            response.Errors.Add("El campo IdCategory es obligatorio.");
-            return BadRequest(response);
+            validationErrors.Add("El campo IdProducto es obligatorio.");
         }
-        
-        
-        // Validación del campo Titulo
+    
         if (string.IsNullOrEmpty(categoryDtoSinId.Titulo))
         {
             validationErrors.Add("El campo Titulo es obligatorio.");
         }
 
-        // Validación del campo Valoracion
         if (categoryDtoSinId.Valoracion <= 0 || categoryDtoSinId.Valoracion > 5)
         {
             validationErrors.Add("La Valoracion debe estar entre 1 y 5.");
         }
 
-        // Si hay errores de validación, devolver una respuesta de error con todos los mensajes
         if (validationErrors.Any())
         {
             response.Errors.AddRange(validationErrors);
             return BadRequest(response);
         }
 
-        // Mapeo del DTO
-        ReseñaCategoryDto  categoryDto = new ReseñaCategoryDto
+        ReseñaCategoryDto categoryDto = new ReseñaCategoryDto
         {
             IdProducto = categoryDtoSinId.IdProducto,
             Titulo = categoryDtoSinId.Titulo,
             Valoracion = categoryDtoSinId.Valoracion
         };
 
-        // Guardando la nueva reseña usando un servicio
         response.Data = await _reseñasCategoryServices.SaveAsycn(categoryDto);
 
         return Created($"/api/[controller]/{response.Data.id}", response);
@@ -105,7 +101,7 @@ public class ReseñaCategoriesController :ControllerBase
 
         if (!await _reseñasCategoryServices.ReseñaCategoryExist(id))
         {
-            response.Errors.Add("Category not found");
+            response.Errors.Add("El id de la reseña no fue encontrado");
             return NotFound(response);
         }
 
@@ -113,64 +109,55 @@ public class ReseñaCategoriesController :ControllerBase
         response.Data = await _reseñasCategoryServices.GetById(id); 
         return Ok(response);
     }
-
     [HttpPut]
     public async Task<ActionResult<Response<ReseñaCategoryDto>>> Update([FromBody] ReseñaCategoryDto categoryDto)
     {
         var response = new Response<ReseñaCategoryDto>();
 
-        // Verificar si la categoría asociada a IdCategory existe
+        var errors = new List<string>();
+
         if (!await _productCategoryService.ProductCategoryExist(categoryDto.IdProducto))
         {
-            response.Errors.Add("La categoría asociada al IdCategory especificado no existe.");
-            return BadRequest(response);
+            errors.Add("La categoría asociada al IdProducto especificado no existe.");
         }
-        
-        // Validar que IdCategory no sea cero
-        if (categoryDto.IdProducto == 0)
+        else if (categoryDto.IdProducto == 0)
         {
-            response.Errors.Add("El campo IdCategory es obligatorio.");
-            return BadRequest(response);
+            errors.Add("El campo IdProducto es obligatorio.");
         }
-        
-        // Validación del ID
+    
         if (categoryDto.id <= 0)
         {
-            response.Errors.Add("El ID debe ser mayor que cero.");
+            errors.Add("El ID debe ser mayor que cero.");
         }
 
-        // Lista para almacenar los mensajes de error
-        var validationErrors = new List<string>();
-
-        // Validación del campo Titulo
         if (string.IsNullOrEmpty(categoryDto.Titulo))
         {
-            validationErrors.Add("El campo Titulo es obligatorio.");
+            errors.Add("El campo Titulo es obligatorio.");
         }
 
-        // Validación del campo Valoracion
         if (categoryDto.Valoracion <= 0 || categoryDto.Valoracion > 5)
         {
-            validationErrors.Add("La Valoracion debe estar entre 1 y 5.");
+            errors.Add("La Valoracion debe estar entre 1 y 5.");
         }
 
-        // Si hay errores de validación, agregamos los mensajes a la respuesta
-        if (response.Errors.Any() || validationErrors.Any())
+        if (errors.Any())
         {
-            response.Errors.AddRange(validationErrors);
+            response.Errors.AddRange(errors);
             return BadRequest(response);
         }
 
-        // Si el ID es válido y no hay errores de validación, procedemos con la actualización
         if (!await _reseñasCategoryServices.ReseñaCategoryExist(categoryDto.id))
         {
-            response.Errors.Add("Reseña Category not found");
+            response.Errors.Add("Id de la Reseña no fue encontrado");
             return NotFound(response);
         }
 
         response.Data = await _reseñasCategoryServices.UpdateAsync(categoryDto);
         return Ok(response);
     }
+
+
+
 
     
 
@@ -182,9 +169,11 @@ public class ReseñaCategoriesController :ControllerBase
 
         if (!await _reseñasCategoryServices.DeleteAsync(id))
         {
-            response.Errors.Add("id not found");
+            response.Errors.Add("id no encontrado");
             return NotFound(response);
         }
+
+        response.Message = "Borrado exitosamente";
         return Ok(response);
     }
 }

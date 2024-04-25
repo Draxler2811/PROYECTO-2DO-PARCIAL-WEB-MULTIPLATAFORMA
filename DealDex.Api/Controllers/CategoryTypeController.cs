@@ -28,11 +28,17 @@ public class CategoryTypeController : ControllerBase
     [HttpGet]
     public async Task<ActionResult<Response<List<CategoryTypeDto>>>> GetAll()
     {
-        
         var response = new Response<List<CategoryTypeDto>>
         {
             Data = await _categoryTypeServices.GetAllAsync()
         };
+
+        if (response.Data == null || !response.Data.Any())
+        {
+            response.Errors.Add("No se encontraron datos.");
+            return NotFound(response);
+        }
+
         return Ok(response);
     }
     [HttpPost]
@@ -40,7 +46,6 @@ public class CategoryTypeController : ControllerBase
     {
         var response = new Response<CategoryTypeDto>();
 
-        // Validación del campo Nombre
         if (string.IsNullOrEmpty(categoryTypeDtoSinId.Nombre))
         {
             response.Errors.Add("El campo Nombre es obligatorio.");
@@ -67,7 +72,7 @@ public class CategoryTypeController : ControllerBase
 
         if (!await _categoryTypeServices.CategoryTypeExist(id))
         {
-            response.Errors.Add("Category not found");
+            response.Errors.Add("El id de la categoria no fue encontrado");
             return NotFound(response);
         }
 
@@ -81,32 +86,27 @@ public class CategoryTypeController : ControllerBase
     {
         var response = new Response<CategoryTypeDto>();
 
-        // Validación del campo id
         if (categoryTypeDto.id == 0)
         {
             response.Errors.Add("El campo id no puede ser cero.");
         }
 
-        // Validación del campo Nombre
         if (string.IsNullOrEmpty(categoryTypeDto.Nombre))
         {
             response.Errors.Add("El campo Nombre es obligatorio.");
         }
 
-        // Si hay errores, devuelve un BadRequest con la lista de errores
         if (response.Errors.Any())
         {
             return BadRequest(response);
         }
 
-        // Verifica si existe la categoría
         if (!await _categoryTypeServices.CategoryTypeExist(categoryTypeDto.id))
         {
-            response.Errors.Add("Product Category not found");
+            response.Errors.Add("El id de la categoria no fue encontrado");
             return NotFound(response);
         }
 
-        // Actualiza la categoría
         response.Data = await _categoryTypeServices.UpdateAsync(categoryTypeDto);
         return Ok(response);
     }
@@ -121,9 +121,11 @@ public class CategoryTypeController : ControllerBase
 
         if (!await _categoryTypeServices.DeleteAsync(id))
         {
-            response.Errors.Add("id not found");
+            response.Errors.Add("id no encontrado");
             return NotFound(response);
         }
+
+        response.Message = "Borrado exitosamente";
         return Ok(response);
     }
 }

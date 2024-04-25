@@ -29,10 +29,17 @@ public class UsersCategoriesController : ControllerBase
     [HttpGet]
     public async Task<ActionResult<Response<List<UsersCategory>>>> GetAll()
     {
-        var response = new Response<List<UsersCategoryDto>>
+        var response = new Response<List<UsersCategoryDto>>();
+
+        var categories = await _usersCategoryService.GetAllAsync();
+
+        if (categories == null || categories.Count == 0)
         {
-            Data = await _usersCategoryService.GetAllAsync()
-        };
+            response.Errors.Add("No se encontraron  usuarios");
+            return NotFound(response);
+        }
+
+        response.Data = categories;
         return Ok(response);
     }
 
@@ -82,7 +89,7 @@ public class UsersCategoriesController : ControllerBase
 
         if (!await _usersCategoryService.UsersCategoryExist(id))
         {
-            response.Errors.Add("Category not found");
+            response.Errors.Add("Id usuario no encontrado ");
             return NotFound(response);
         }
 
@@ -95,34 +102,35 @@ public class UsersCategoriesController : ControllerBase
     {
         var response = new Response<UsersCategoryDto>();
 
+        var validationErrors = new List<string>();
+
         if (categoryDto.id <= 0)
         {
-            response.Errors.Add("El campo ID debe ser mayor que cero.");
-            return BadRequest(response);
+            validationErrors.Add("El campo ID debe ser mayor que cero.");
         }
 
         if (string.IsNullOrEmpty(categoryDto.Correo))
         {
-            response.Errors.Add("El campo Correo es obligatorio.");
+            validationErrors.Add("El campo Correo es obligatorio.");
         }
         if (string.IsNullOrEmpty(categoryDto.Contraseña))
         {
-            response.Errors.Add("El campo Contraseña es obligatorio.");
+            validationErrors.Add("El campo Contraseña es obligatorio.");
         }
         if (string.IsNullOrEmpty(categoryDto.NombreUsu))
         {
-            response.Errors.Add("El campo Nombre de usuario es obligatorio.");
-        }
-
-        if (response.Errors.Any())
-        {
-            return BadRequest(response);
+            validationErrors.Add("El campo Nombre de usuario es obligatorio.");
         }
 
         if (!await _usersCategoryService.UsersCategoryExist(categoryDto.id))
         {
-            response.Errors.Add("Product Category not found");
-            return NotFound(response);
+            validationErrors.Add("Id del usuario no encontrado");
+        }
+
+        if (validationErrors.Any())
+        {
+            response.Errors.AddRange(validationErrors);
+            return BadRequest(response);
         }
 
         response.Data = await _usersCategoryService.UpdateAsync(categoryDto);
@@ -130,18 +138,20 @@ public class UsersCategoriesController : ControllerBase
     }
 
 
+
     [HttpDelete]
     [Route("{id:int}")]
     public async Task<ActionResult<Response<bool>>> Delete(int id)
     {
         var response = new Response<bool>();
-        // var category = await _productCategoryRepository.GetById(id);
 
         if (!await _usersCategoryService.DeleteAsync(id))
         {
-            response.Errors.Add("id not found");
+            response.Errors.Add("id no encotrado");
             return NotFound(response);
         }
+
+        response.Message = "Borrado exitosamente";
         return Ok(response);
     }
     [HttpPost("login")]
@@ -161,7 +171,6 @@ public class UsersCategoriesController : ControllerBase
 
         if (isValidLogin)
         {
-            // Si las credenciales son válidas, devuelve un mensaje de éxito
             response.Data = "Credenciales correctas";
             return Ok(response);
         }

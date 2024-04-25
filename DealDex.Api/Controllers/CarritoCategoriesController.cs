@@ -33,79 +33,75 @@ public class CarritoCategoriesController : ControllerBase
     [HttpGet]
     public async Task<ActionResult<Response<List<CarritoCategoryDto>>>> GetAll()
     {
-        var response = new Response<List<CarritoCategoryDto>>
+        var response = new Response<List<CarritoCategoryDto>>();
+
+        var categories = await _carritoCategoryServices.GetAllAsync();
+
+        if (categories == null || categories.Count == 0)
         {
-            Data = await _carritoCategoryServices.GetAllAsync()
-        };
+            response.Errors.Add("No se encontraron datos.");
+            return NotFound(response);
+        }
+
+        response.Data = categories;
         return Ok(response);
     }
 
-    [HttpPost]
-    public async Task<ActionResult<Response<CarritoCategoryDto>>> Post([FromBody] CarritoCategoryDtoSinAdd carritoCategoryDtoSinAdd)
+   [HttpPost]
+public async Task<ActionResult<Response<CarritoCategoryDto>>> Post([FromBody] CarritoCategoryDtoSinAdd carritoCategoryDtoSinAdd)
+{
+    var response = new Response<CarritoCategoryDto>();
+
+    var validationErrors = new List<string>();
+    
+    if (!await _usersCategoryService.UsersCategoryExist(carritoCategoryDtoSinAdd.IdUser))
     {
-        var response = new Response<CarritoCategoryDto>();
-
-        // Lista para almacenar los mensajes de error
-        var validationErrors = new List<string>();
-        
-        // Verificar si la categoría asociada a IdCategory existe
-        if (!await _usersCategoryService.UsersCategoryExist(carritoCategoryDtoSinAdd.IdUser))
-        {
-            response.Errors.Add("La categoría asociada al IdCategory especificado no existe.");
-            return BadRequest(response);
-        }
-        
-        // Validar que IdCategory no sea cero
-        if (carritoCategoryDtoSinAdd.IdUser == 0)
-        {
-            response.Errors.Add("El campo IdCategory es obligatorio.");
-            return BadRequest(response);
-        }
-
-        // Validación del campo Image
-        if (string.IsNullOrEmpty(carritoCategoryDtoSinAdd.Image))
-        {
-            validationErrors.Add("El campo Image es obligatorio.");
-        }
-
-        // Validación del campo Titulo
-        if (string.IsNullOrEmpty(carritoCategoryDtoSinAdd.Titulo))
-        {
-            validationErrors.Add("El campo Titulo es obligatorio.");
-        }
-
-        // Validación del campo Precio
-        if (carritoCategoryDtoSinAdd.Precio <= 0)
-        {
-            validationErrors.Add("El campo Precio debe ser mayor que cero.");
-        }
-
-        // Validación del campo Cantidad
-        if (carritoCategoryDtoSinAdd.Cantidad <= 0)
-        {
-            validationErrors.Add("El campo Cantidad debe ser mayor que cero.");
-        }
-
-        // Si hay errores de validación, agregamos los mensajes a la respuesta
-        if (validationErrors.Any())
-        {
-            response.Errors.AddRange(validationErrors);
-            return BadRequest(response);
-        }
-
-        // Si no hay errores de validación, procedemos con la creación del carrito
-        CarritoCategoryDto carritoDto = new CarritoCategoryDto()
-        {
-            IdUser = carritoCategoryDtoSinAdd.IdUser,
-            Image = carritoCategoryDtoSinAdd.Image,
-            Titulo = carritoCategoryDtoSinAdd.Titulo,
-            Precio = carritoCategoryDtoSinAdd.Precio,
-            Cantidad = carritoCategoryDtoSinAdd.Cantidad
-        };
-
-        response.Data = await _carritoCategoryServices.SaveAsyc(carritoDto);
-        return Created($"/api/[controller]/{response.Data.id}", response);
+        validationErrors.Add("La categoría asociada al IdCategory especificado no existe .");
     }
+    
+    if (carritoCategoryDtoSinAdd.IdUser == 0)
+    {
+        validationErrors.Add("El campo IdCategory es obligatorio.");
+    }
+
+    if (string.IsNullOrEmpty(carritoCategoryDtoSinAdd.Image))
+    {
+        validationErrors.Add("El campo Image es obligatorio.");
+    }
+
+    if (string.IsNullOrEmpty(carritoCategoryDtoSinAdd.Titulo))
+    {
+        validationErrors.Add("El campo Titulo es obligatorio.");
+    }
+
+    if (carritoCategoryDtoSinAdd.Precio <= 0)
+    {
+        validationErrors.Add("El campo Precio debe ser mayor que cero.");
+    }
+
+    if (carritoCategoryDtoSinAdd.Cantidad <= 0)
+    {
+        validationErrors.Add("El campo Cantidad debe ser mayor que cero.");
+    }
+
+    if (validationErrors.Any())
+    {
+        response.Errors.AddRange(validationErrors);
+        return BadRequest(response);
+    }
+
+    CarritoCategoryDto carritoDto = new CarritoCategoryDto()
+    {
+        IdUser = carritoCategoryDtoSinAdd.IdUser,
+        Image = carritoCategoryDtoSinAdd.Image,
+        Titulo = carritoCategoryDtoSinAdd.Titulo,
+        Precio = carritoCategoryDtoSinAdd.Precio,
+        Cantidad = carritoCategoryDtoSinAdd.Cantidad
+    };
+
+    response.Data = await _carritoCategoryServices.SaveAsyc(carritoDto);
+    return Created($"/api/[controller]/{response.Data.id}", response);
+}
 
 
     [HttpGet]
@@ -118,7 +114,7 @@ public class CarritoCategoriesController : ControllerBase
 
         if (!await _carritoCategoryServices.CarritoCategoryExist(id))
         {
-            response.Errors.Add("Category not found");
+            response.Errors.Add("Id del carrito no encontrado");
             return NotFound(response);
         }
 
@@ -127,75 +123,64 @@ public class CarritoCategoriesController : ControllerBase
         return Ok(response);
     }
 
-    [HttpPut]
-    public async Task<ActionResult<Response<CarritoCategoryDto>>> Update([FromBody] CarritoCategoryDto carritoDto)
+   [HttpPut]
+public async Task<ActionResult<Response<CarritoCategoryDto>>> Update([FromBody] CarritoCategoryDto carritoDto)
+{
+    var response = new Response<CarritoCategoryDto>();
+
+    var validationErrors = new List<string>();
+
+    if (!await _usersCategoryService.UsersCategoryExist(carritoDto.IdUser))
     {
-        var response = new Response<CarritoCategoryDto>();
-
-        // Lista para almacenar los mensajes de error
-        var validationErrors = new List<string>();
-        // Verificar si la categoría asociada a IdCategory existe
-        if (!await _usersCategoryService.UsersCategoryExist(carritoDto.IdUser))
-        {
-            response.Errors.Add("La categoría asociada al IdCategory especificado no existe.");
-            return BadRequest(response);
-        }
-        
-        // Validar que IdCategory no sea cero
-        if (carritoDto.IdUser == 0)
-        {
-            response.Errors.Add("El campo IdCategory es obligatorio.");
-            return BadRequest(response);
-        }
-        // Validación del ID
-        if (carritoDto.id == 0)
-        {
-            validationErrors.Add("El campo ID no puede ser cero.");
-        }
-
-        // Validación del campo Image
-        if (string.IsNullOrEmpty(carritoDto.Image))
-        {
-            validationErrors.Add("El campo Image es obligatorio.");
-        }
-
-        // Validación del campo Titulo
-        if (string.IsNullOrEmpty(carritoDto.Titulo))
-        {
-            validationErrors.Add("El campo Titulo es obligatorio.");
-        }
-
-        // Validación del campo Precio
-        if (carritoDto.Precio <= 0)
-        {
-            validationErrors.Add("El campo Precio debe ser mayor que cero.");
-        }
-
-        // Validación del campo Cantidad
-        if (carritoDto.Cantidad <= 0)
-        {
-            validationErrors.Add("El campo Cantidad debe ser mayor que cero.");
-        }
-
-        // Si hay errores de validación, agregamos los mensajes a la respuesta
-        if (validationErrors.Any())
-        {
-            response.Errors.AddRange(validationErrors);
-            return BadRequest(response);
-        }
-
-        // Si no hay errores de validación, procedemos con la actualización del carrito
-        if (!await _carritoCategoryServices.CarritoCategoryExist(carritoDto.id))
-        {
-            response.Errors.Add("Product Category not found");
-            return NotFound(response);
-        }
-
-        response.Data = await _carritoCategoryServices.UpdateAsync(carritoDto);
-        return Ok(response);
+        validationErrors.Add("La categoría asociada al IdCategory especificado no existe.");
+    }
+    
+    if (carritoDto.IdUser == 0)
+    {
+        validationErrors.Add("El campo IdCategory es obligatorio.");
     }
 
-    
+    if (carritoDto.id == 0)
+    {
+        validationErrors.Add("El campo ID no puede ser cero.");
+    }
+
+    if (string.IsNullOrEmpty(carritoDto.Image))
+    {
+        validationErrors.Add("El campo Image es obligatorio.");
+    }
+
+    if (string.IsNullOrEmpty(carritoDto.Titulo))
+    {
+        validationErrors.Add("El campo Titulo es obligatorio.");
+    }
+
+    if (carritoDto.Precio <= 0)
+    {
+        validationErrors.Add("El campo Precio debe ser mayor que cero.");
+    }
+
+    if (carritoDto.Cantidad <= 0)
+    {
+        validationErrors.Add("El campo Cantidad debe ser mayor que cero.");
+    }
+
+    if (validationErrors.Any())
+    {
+        response.Errors.AddRange(validationErrors);
+        return BadRequest(response);
+    }
+
+    if (!await _carritoCategoryServices.CarritoCategoryExist(carritoDto.id))
+    {
+        response.Errors.Add(" IdCarrito no encontrado");
+        return NotFound(response);
+    }
+
+    response.Data = await _carritoCategoryServices.UpdateAsync(carritoDto);
+    return Ok(response);
+}
+
 
     [HttpDelete]
     [Route("{id:int}")]
@@ -205,9 +190,10 @@ public class CarritoCategoriesController : ControllerBase
 
         if (!await _carritoCategoryServices.DeleteAsync(id))
         {
-            response.Errors.Add("id not found");
+            response.Errors.Add("id no encontrado");
             return NotFound(response);
         }
+        response.Message = "Borrado con exitoso";
         return Ok(response);
     }
 }
