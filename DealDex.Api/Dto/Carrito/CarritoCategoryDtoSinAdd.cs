@@ -14,7 +14,6 @@ public class CarritoCategoryDtoSinAdd
     {
         
     }
-
     public CarritoCategoryDtoSinAdd(CarritoCategory category)
     {
         IdUser = category.IdUser;

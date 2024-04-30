@@ -15,11 +15,11 @@ namespace DealDex.Api.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class CategoryTypeController : ControllerBase
+public class CategoryProductController : ControllerBase
 {
     private readonly ICategoryTypeServices _categoryTypeServices;
     
-    public CategoryTypeController(ICategoryTypeServices categoryTypeServices)
+    public CategoryProductController(ICategoryTypeServices categoryTypeServices)
     {
         
         _categoryTypeServices = categoryTypeServices;
@@ -68,15 +68,11 @@ public class CategoryTypeController : ControllerBase
     {
         
         var response = new Response<CategoryTypeDto>();
-        
-
         if (!await _categoryTypeServices.CategoryTypeExist(id))
         {
             response.Errors.Add("El id de la categoria no fue encontrado");
             return NotFound(response);
         }
-
-
         response.Data = await _categoryTypeServices.GetById(id); 
         return Ok(response);
     }

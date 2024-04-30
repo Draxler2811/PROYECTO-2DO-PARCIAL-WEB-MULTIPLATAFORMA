@@ -14,14 +14,14 @@ namespace DealDex.Api.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class ProductCategoriesController : ControllerBase
+public class ProductController : ControllerBase
 {
     private readonly IProductCategoryService _productCategoryService;
     private readonly ICategoryTypeServices _categoryTypeServices;
     private readonly ISupplierInfoService _supplierInfoService;
 
     
-    public ProductCategoriesController(IProductCategoryService productCategoryService, ICategoryTypeServices categoryTypeServices,
+    public ProductController(IProductCategoryService productCategoryService, ICategoryTypeServices categoryTypeServices,
         ISupplierInfoService supplierInfoService)
     {
         _productCategoryService = productCategoryService;
@@ -138,8 +138,6 @@ public async Task<ActionResult<Response<ProductCategoryDtoAdd>>> Post([FromBody]
             response.Errors.Add("El id del producto no fue encontrado");
             return NotFound(response);
         }
-
-
         response.Data = await _productCategoryService.GetById(id); 
         return Ok(response);
     }

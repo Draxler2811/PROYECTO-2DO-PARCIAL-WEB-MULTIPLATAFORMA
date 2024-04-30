@@ -14,7 +14,6 @@ public class FavoriteProductDtoSinId
     {
         
     }
-
     public FavoriteProductDtoSinId(FavoriteProduct category)
     {
         IdUser = category.IdUser;

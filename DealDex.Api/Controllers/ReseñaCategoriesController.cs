@@ -12,14 +12,14 @@ using Tecnm.Ecommerce1.Api.Services.Interfaces.Reseñas;
 namespace DealDex.Api.Controllers;
 [ApiController]
 [Route("api/[controller]")]
-public class ReseñaCategoriesController :ControllerBase
+public class ProductReviewController :ControllerBase
 {
     
     
     private readonly IReseñasCategoryServices _reseñasCategoryServices;
     private readonly IProductCategoryService _productCategoryService;
 
-    public ReseñaCategoriesController(IReseñasCategoryServices reseñasCategoryServices,IProductCategoryService productCategoryService)
+    public ProductReviewController(IReseñasCategoryServices reseñasCategoryServices,IProductCategoryService productCategoryService)
     {
         
         _reseñasCategoryServices = reseñasCategoryServices;
@@ -95,17 +95,12 @@ public class ReseñaCategoriesController :ControllerBase
     [Route("{id:int}")]
     public async Task<ActionResult<Response<ReseñaCategoryDto>>> GetById(int id)
     {
-        
         var response = new Response<ReseñaCategoryDto>();
-        
-
         if (!await _reseñasCategoryServices.ReseñaCategoryExist(id))
         {
             response.Errors.Add("El id de la reseña no fue encontrado");
             return NotFound(response);
         }
-
-
         response.Data = await _reseñasCategoryServices.GetById(id); 
         return Ok(response);
     }

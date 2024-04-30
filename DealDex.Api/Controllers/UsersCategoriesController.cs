@@ -15,12 +15,12 @@ namespace DealDex.Api.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class UsersCategoriesController : ControllerBase
+public class UsersController : ControllerBase
 {
     
     private readonly IUsersCategoryService _usersCategoryService;
     
-    public UsersCategoriesController(IUsersCategoryService usersCategoryService)
+    public UsersController(IUsersCategoryService usersCategoryService)
     {
         
         _usersCategoryService = usersCategoryService;
@@ -83,17 +83,12 @@ public class UsersCategoriesController : ControllerBase
     [Route("{id:int}")]
     public async Task<ActionResult<Response<UsersCategoryDto>>> GetById(int id)
     {
-        
         var response = new Response<UsersCategoryDto>();
-        
-
         if (!await _usersCategoryService.UsersCategoryExist(id))
         {
             response.Errors.Add("Id usuario no encontrado ");
             return NotFound(response);
         }
-
-
         response.Data = await _usersCategoryService.GetById(id); 
         return Ok(response);
     }
@@ -157,8 +152,6 @@ public class UsersCategoriesController : ControllerBase
     [HttpPost("login")]
     public async Task<ActionResult<Response<string>>> Login([FromBody] UserCategoryDtoValidar categoryDto)
     {
-        
-        
         var response = new Response<string>();
 
         if (string.IsNullOrEmpty(categoryDto.Correo) || string.IsNullOrEmpty(categoryDto.Contraseña))
@@ -166,7 +159,6 @@ public class UsersCategoriesController : ControllerBase
             response.Errors.Add("Correo y contraseña son obligatorios");
             return BadRequest(response);
         }
-
         var isValidLogin = await _usersCategoryService.ValidateCredentials(categoryDto.Correo, categoryDto.Contraseña);
 
         if (isValidLogin)

@@ -17,12 +17,12 @@ namespace DealDex.Api.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class CarritoCategoriesController : ControllerBase
+public class CartController : ControllerBase
 {
      private readonly ICarritoCategoryServices _carritoCategoryServices;
      private readonly IUsersCategoryService _usersCategoryService;
 
-    public CarritoCategoriesController(ICarritoCategoryServices carritoCategoryServices,IUsersCategoryService usersCategoryService)
+    public CartController(ICarritoCategoryServices carritoCategoryServices,IUsersCategoryService usersCategoryService)
     {
         
         _carritoCategoryServices = carritoCategoryServices;

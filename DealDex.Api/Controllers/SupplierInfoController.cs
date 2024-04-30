@@ -18,12 +18,12 @@ namespace DealDex.Api.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class SupplierInfoController : ControllerBase
+public class SupplierController : ControllerBase
 {
     private readonly ISupplierInfoService _supplierInfoService;
 
 
-    public SupplierInfoController(ISupplierInfoService supplierInfoService)
+    public SupplierController(ISupplierInfoService supplierInfoService)
     {
 
         _supplierInfoService = supplierInfoService;
@@ -94,17 +94,13 @@ public class SupplierInfoController : ControllerBase
     [Route("{id:int}")]
     public async Task<ActionResult<Response<SupplierInfoDto>>> GetById(int id)
     {
-        
         var response = new Response<SupplierInfoDto>();
         
-
         if (!await _supplierInfoService.SupplierInfoExist(id))
         {
             response.Errors.Add("El id no fue encontrado");
             return NotFound(response);
         }
-
-
         response.Data = await _supplierInfoService.GetById(id); 
         return Ok(response);
     }

@@ -22,7 +22,6 @@ public class SupplierInfoServices : ISupplierInfoService
         var category = await _supplierInfoRepository.GetById(id);
         return (category != null);
     }
-
     public async Task<SupplierInfoDto> SaveAsycn(SupplierInfoDto supplierInfoDto)
     {
         var supplier = new SupplierInfo
