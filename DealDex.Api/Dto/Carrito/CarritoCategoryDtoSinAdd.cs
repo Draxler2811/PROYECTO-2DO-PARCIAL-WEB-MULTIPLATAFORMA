@@ -9,7 +9,9 @@ public class CarritoCategoryDtoSinAdd
     public decimal Precio { get; set; }
     public int Cantidad { get; set; }
     public int IdUser { get; set; }
-    
+
+    public int IdProducto { get; set; }
+
     public CarritoCategoryDtoSinAdd()
     {
         
@@ -17,6 +19,7 @@ public class CarritoCategoryDtoSinAdd
     public CarritoCategoryDtoSinAdd(CarritoCategory category)
     {
         IdUser = category.IdUser;
+        IdProducto = category.IdProducto;
         Image = category.Imagen;
         Titulo = category.Titulo;
         Precio = category.Precio;

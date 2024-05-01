@@ -28,6 +28,7 @@ public class CarritoCategoryServices : ICarritoCategoryServices
     {
         var carrito = new CarritoCategory 
         {
+            IdProducto = carritoDto.IdProducto,
             IdUser = carritoDto.IdUser,
             Imagen = carritoDto.Image,
             Titulo = carritoDto.Titulo,
@@ -50,6 +51,7 @@ public class CarritoCategoryServices : ICarritoCategoryServices
 
         if (carrito == null)
             throw new Exception("Product Category Not founf");
+        carrito.IdProducto = carritoDto.IdProducto;
         carrito.IdUser = carritoDto.IdUser;
         carrito.Titulo = carritoDto.Titulo;
         carrito.Imagen = carritoDto.Image;
@@ -81,6 +83,7 @@ public class CarritoCategoryServices : ICarritoCategoryServices
             throw new Exception("Product category not Found");
         var carritoDto = new CarritoCategoryDto()
         {
+            IdProducto = carrito.IdProducto,
             IdUser = carrito.IdUser,
             Image = carrito.Imagen,
             Titulo = carrito.Titulo,

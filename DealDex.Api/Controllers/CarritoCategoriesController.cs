@@ -21,10 +21,12 @@ public class CartController : ControllerBase
 {
      private readonly ICarritoCategoryServices _carritoCategoryServices;
      private readonly IUsersCategoryService _usersCategoryService;
+     private readonly IProductCategoryService _productCategoryService;
 
-    public CartController(ICarritoCategoryServices carritoCategoryServices,IUsersCategoryService usersCategoryService)
+    public CartController(ICarritoCategoryServices carritoCategoryServices,IUsersCategoryService usersCategoryService,
+        IProductCategoryService productCategoryService)
     {
-        
+        _productCategoryService = productCategoryService;
         _carritoCategoryServices = carritoCategoryServices;
         _usersCategoryService = usersCategoryService;
 
@@ -56,12 +58,21 @@ public async Task<ActionResult<Response<CarritoCategoryDto>>> Post([FromBody] Ca
     
     if (!await _usersCategoryService.UsersCategoryExist(carritoCategoryDtoSinAdd.IdUser))
     {
-        validationErrors.Add("La categoría asociada al IdCategory especificado no existe .");
+        validationErrors.Add("El usuarios asociado no existe");
     }
     
     if (carritoCategoryDtoSinAdd.IdUser == 0)
     {
-        validationErrors.Add("El campo IdCategory es obligatorio.");
+        validationErrors.Add("El campo IdUser es obligatorio.");
+    }
+    if (!await _productCategoryService.ProductCategoryExist(carritoCategoryDtoSinAdd.IdProducto))
+    {
+        validationErrors.Add("El producto relacionado no existe");
+    }
+    
+    if (carritoCategoryDtoSinAdd.IdProducto == 0)
+    {
+        validationErrors.Add("El campo IdProducto es obligatorio.");
     }
 
     if (string.IsNullOrEmpty(carritoCategoryDtoSinAdd.Image))
@@ -92,6 +103,7 @@ public async Task<ActionResult<Response<CarritoCategoryDto>>> Post([FromBody] Ca
 
     CarritoCategoryDto carritoDto = new CarritoCategoryDto()
     {
+        IdProducto = carritoCategoryDtoSinAdd.IdProducto,
         IdUser = carritoCategoryDtoSinAdd.IdUser,
         Image = carritoCategoryDtoSinAdd.Image,
         Titulo = carritoCategoryDtoSinAdd.Titulo,
@@ -139,7 +151,15 @@ public async Task<ActionResult<Response<CarritoCategoryDto>>> Update([FromBody] 
     {
         validationErrors.Add("El campo IdCategory es obligatorio.");
     }
-
+    if (!await _productCategoryService.ProductCategoryExist(carritoDto.IdProducto))
+    {
+        validationErrors.Add("El id Producto especificado no existe.");
+    }
+    
+    if (carritoDto.IdProducto == 0)
+    {
+        validationErrors.Add("El campo IdProducto es obligatorio.");
+    }
     if (carritoDto.id == 0)
     {
         validationErrors.Add("El campo ID no puede ser cero.");

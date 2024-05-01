@@ -28,6 +28,7 @@ public class FavoriteProductServices : IFavoriteProductServices
     {
         var carrito = new FavoriteProduct
         {
+            IdProducto = favoriteDto.IdProducto,
             IdUser = favoriteDto.IdUser,
             Imagen = favoriteDto.Image,
             Titulo = favoriteDto.Titulo,
@@ -50,6 +51,7 @@ public class FavoriteProductServices : IFavoriteProductServices
 
         if (carrito == null)
             throw new Exception("Product Category Not founf");
+        carrito.IdProducto = favoriteDto.IdProducto;
         carrito.IdUser = favoriteDto.IdUser;
         carrito.Titulo = favoriteDto.Titulo;
         carrito.Imagen = favoriteDto.Image;
@@ -83,6 +85,7 @@ public class FavoriteProductServices : IFavoriteProductServices
             throw new Exception("Product category not Found");
         var favoriteDto = new FavoriteProductDto()
         {
+            IdProducto = carrito.IdProducto,
             IdUser = carrito.IdUser,
             Image = carrito.Imagen,
             Titulo = carrito.Titulo,

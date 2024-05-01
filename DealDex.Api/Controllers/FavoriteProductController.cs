@@ -17,12 +17,14 @@ namespace DealDex.Api.Controllers;
 [Route("api/[controller]")]
 public class FavoriteProductController : ControllerBase
 {
+    private readonly IProductCategoryService _productCategoryService;
      private readonly IFavoriteProductServices _favoriteProductServices;
      private readonly IUsersCategoryService _usersCategoryService;
 
-    public FavoriteProductController(IFavoriteProductServices favoriteProductServices,IUsersCategoryService usersCategoryService)
+    public FavoriteProductController(IFavoriteProductServices favoriteProductServices,IUsersCategoryService usersCategoryService,
+        IProductCategoryService productCategoryService)
     {
-        
+        _productCategoryService = productCategoryService;
         _favoriteProductServices = favoriteProductServices;
         _usersCategoryService = usersCategoryService;
 
@@ -61,6 +63,16 @@ public async Task<ActionResult<Response<FavoriteProductDto>>> Post([FromBody] Fa
     {
         validationErrors.Add("El campo IdCategory es obligatorio.");
     }
+    if (!await _productCategoryService.ProductCategoryExist(favoriteProductDtoSinId.IdProducto))
+    {
+        validationErrors.Add("El id del producto  especificado no existe.");
+    }
+    
+    if (favoriteProductDtoSinId.IdProducto == 0)
+    {
+        validationErrors.Add("El campo IdProducto es obligatorio.");
+    }
+
     
     
     if (string.IsNullOrEmpty(favoriteProductDtoSinId.Image))
@@ -91,6 +103,7 @@ public async Task<ActionResult<Response<FavoriteProductDto>>> Post([FromBody] Fa
 
     FavoriteProductDto favoriteDto = new FavoriteProductDto()
     {
+        IdProducto = favoriteProductDtoSinId.IdProducto,
         IdUser = favoriteProductDtoSinId.IdUser,
         Image = favoriteProductDtoSinId.Image,
         Titulo = favoriteProductDtoSinId.Titulo,
@@ -137,6 +150,16 @@ public async Task<ActionResult<Response<FavoriteProductDto>>> Post([FromBody] Fa
         if (favoritoDto.IdUser == 0)
         {
             validationErrors.Add("El campo IdCategory es obligatorio.");
+        }
+        
+        if (!await _productCategoryService.ProductCategoryExist(favoritoDto.IdProducto))
+        {
+            validationErrors.Add("El campo IdProducto especificado no existe.");
+        }
+    
+        if (favoritoDto.IdProducto == 0)
+        {
+            validationErrors.Add("El campo IdProducto es obligatorio.");
         }
 
         if (favoritoDto.id == 0)

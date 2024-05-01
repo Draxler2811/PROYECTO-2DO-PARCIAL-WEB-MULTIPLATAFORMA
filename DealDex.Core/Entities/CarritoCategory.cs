@@ -9,4 +9,6 @@ public class CarritoCategory : EntityBase{
     public int Cantidad { get; set; }
 
     public int IdUser { get; set; }
+    public int IdProducto { get; set; }
+
 }

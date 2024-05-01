@@ -10,7 +10,8 @@ public class FavoriteProductDto  : DtoBase
     public int Cantidad { get; set; }
 
     public int IdUser { get; set; }
-    
+    public int IdProducto { get; set; }
+
     public FavoriteProductDto()
     {
         
@@ -24,6 +25,7 @@ public class FavoriteProductDto  : DtoBase
         Precio = category.Precio;
         Cantidad = category.Cantidad;
         IdUser = category.IdUser;
+        IdProducto = category.IdProducto;
 
     }
 }
