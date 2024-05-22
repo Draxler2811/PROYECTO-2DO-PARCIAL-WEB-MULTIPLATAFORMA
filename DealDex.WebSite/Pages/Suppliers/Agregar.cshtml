@@ -1,19 +1,55 @@
 ﻿@page
 @model DealDex.WebSite.Pages.Suppliers.Agregar
 
-@{
-    Layout = null;
-}
-
-<!DOCTYPE html>
-
-<html>
-<head>
-    <title></title>
-</head>
-<body>
-<div>
-    
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-10"></div>
+        <h2>Agregar</h2>
+        <form method="post">
+            <input type="hidden"/>
+            <div class="form-group">
+                <label asp-for="SupplierInfoDto.Correo"></label>
+                <input asp-for="SupplierInfoDto.Correo" class="form-control" maxlength="45"/>
+                <span class="text-danger" asp-validation-for="SupplierInfoDto.Correo"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SupplierInfoDto.Nombre"></label>
+                <input asp-for="SupplierInfoDto.Nombre" class="form-control" maxlength="45"/>
+                <span class="text-danger" asp-validation-for="SupplierInfoDto.Nombre"></span>
+            </div>
+            
+            <div class="form-group">
+                <label asp-for="SupplierInfoDto.Cuidad"></label>
+                <input asp-for="SupplierInfoDto.Cuidad" class="form-control" maxlength="45"/>
+                <span class="text-danger" asp-validation-for="SupplierInfoDto.Cuidad"></span>
+            </div>
+           
+            <div class="form-group">
+                <label asp-for="SupplierInfoDto.Direccion"></label>
+                <input asp-for="SupplierInfoDto.Direccion" class="form-control" maxlength="45"/>
+                <span class="text-danger" asp-validation-for="SupplierInfoDto.Direccion"></span>
+            </div>
+            @if (Model.Errors.Count > 0)
+            {
+                <div class="alert alert-danger" role="alert">
+                    <ul>
+                        @foreach (var error in Model.Errors)
+                        {
+                            <li>An error</li>
+                        }
+                    </ul>
+                </div>
+            }
+            <div class="row">
+                <div class="col-md-12 text-right">
+                    <button type="submit" class="btn btn-primary mr-3">Save</button>
+                    <a class="btn btn-secondary">Cancel</a>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div>
+        <div class="col-md-1"></div>
+    </div>
 </div>
-</body>
-</html>

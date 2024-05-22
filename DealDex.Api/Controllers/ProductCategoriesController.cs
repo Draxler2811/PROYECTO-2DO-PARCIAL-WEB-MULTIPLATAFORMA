@@ -55,9 +55,9 @@ public async Task<ActionResult<Response<ProductCategoryDtoAdd>>> Post([FromBody]
 
     var validationErrors = new List<string>();
     
-    if (await _categoryTypeServices.ExistByName(categoryDtoSinId.Titulo))
+    if (await _productCategoryService.ExistByName(categoryDtoSinId.Titulo))
     {
-        response.Errors.Add($"Brand name {categoryDtoSinId.Titulo} already exists");
+        response.Errors.Add($"Product Category name {categoryDtoSinId.Titulo} already exists");
         return BadRequest(response);
     }
 
