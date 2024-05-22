@@ -53,9 +53,10 @@ public class SupplierController : ControllerBase
 
         var validationErrors = new List<string>();
         
-        if (string.IsNullOrEmpty(supplierInfoDtoSinId.Nombre))
+        if (await _supplierInfoService.ExistByName(supplierInfoDtoSinId.Correo))
         {
-            validationErrors.Add("El campo Nombre es obligatorio.");
+            response.Errors.Add($"Brand name {supplierInfoDtoSinId.Correo} already exists");
+            return BadRequest(response);
         }
 
         if (string.IsNullOrEmpty(supplierInfoDtoSinId.Direccion))
@@ -112,6 +113,17 @@ public class SupplierController : ControllerBase
 
         var validationErrors = new List<string>();
 
+        if (!await _supplierInfoService.SupplierInfoExist(supplierInfoDto.id))
+        {
+            response.Errors.Add("Product Category not found");
+            return NotFound(response);
+        }
+        if (await _supplierInfoService.ExistByName(supplierInfoDto.Nombre, supplierInfoDto.id))
+        {
+            response.Errors.Add($"Product Brand Name {supplierInfoDto.Nombre} already exists");
+            return BadRequest(response);
+        }
+        
         if (supplierInfoDto.id <= 0)
         {
             validationErrors.Add("El ID debe ser mayor que cero.");

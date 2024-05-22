@@ -1,17 +1,17 @@
 ﻿@page
 @model DealDex.WebSite.Pages.Product.ListModel
-@* <div class="container-fluid"> *@
-@*     <form method="get"> *@
-@*         <div class = "row"> *@
-@*             <div class = "col-md-8"></div> *@
-@*             <div class = "col-md-4"> *@
-@*                 <br/> *@
-@*                 <button id = "btnSearch" class="btn btn-primary mr-3" >Search</button> *@
-@*                 <a asp-page="/Brand/Agregar" class="btn btn-success"> Add New</a> *@
-@*             </div> *@
-@*         </div> *@
-@*     </form> *@
-@*      *@
+<div class="container-fluid">
+    <form method="get">
+        <div class = "row">
+            <div class = "col-md-8"></div>
+            <div class = "col-md-4">
+                <br/>
+                <button id = "btnSearch" class="btn btn-primary mr-3" >Search</button>
+                <a asp-page="/Brand/Agregar" class="btn btn-success"> Add New</a>
+            </div>
+        </div>
+    </form>
+
     
     <div class="row">
         <div class="col-md-1"></div>
@@ -21,19 +21,30 @@
                     <th>Titulo</th>
                     <th>Precio</th>
                     <th>Image</th>
+                    <th>Descripcion</th>
+                    <th>IdCategory</th>
+                    <th>Estado</th>
+                    <th>Ubicaion</th>
+                    <th>IdSupplier</th>
                     <th></th>
                 </tr>
-                @foreach (var category in @Model.Brands)
+                @foreach (var category in @Model.Product)
                 {
                     <tr>
                         <td>@category.Titulo</td>
                         <td>@category.Precio</td>
                         <td>@category.Image</td>
+                        <td>@category.Descripcion</td>
+                        <td>@category.IdCategory</td>
+                        <td>@category.Estado</td>
+                        <td>@category.Ubicacion</td>
+                        <td>@category.IdSupplier</td>
+
                         <td>
-                            @* <a a-asp-area="" asp-page="/Brand/Editar" asp-route-id="@category.id" *@
-                            @*    class="btn btn-primary" role="button">Edit</a> *@
-                            @* <a a-asp-area="" asp-page="/Brand/Delete" asp-route-id="@category.id" *@
-                            @*    class="btn btn-danger" role="button">Delete</a> *@
+                            <a a-asp-area="" asp-page="/Product/Editar" asp-route-id="@category.id"
+                               class="btn btn-primary" role="button">Edit</a>
+                            <a a-asp-area="" asp-page="/Product/Delete" asp-route-id="@category.id"
+                               class="btn btn-danger" role="button">Delete</a>
                         </td>
                     </tr>
                 }
@@ -42,4 +53,4 @@
         <div class="col-md-1"></div>
     </div>
     
-@* </div> *@
+</div>

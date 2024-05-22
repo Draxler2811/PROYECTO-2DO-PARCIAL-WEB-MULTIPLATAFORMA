@@ -55,4 +55,12 @@ public class ProductCategoryRepositoty : IProductCategoryRepository
 
 
     }
+
+    public  async Task<ProductCategory> GetByName(string name, int id = 0)
+    {
+        string sql = $"SELECT * FROM ProductCategory WHERE Titulo = '{name}' AND id <> {id}";
+        var categories = await _dbContext.Connection.QueryAsync<ProductCategory>(sql);
+
+        return categories.ToList().FirstOrDefault();
+    }
 }

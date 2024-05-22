@@ -13,4 +13,6 @@ public interface ICategoryTypeRepository
     Task<bool> DeleteAsync(int id);
     
     Task<CategoryType> GetById(int id);
+    Task<CategoryType> GetByName(string name, int id = 0);
+
 }

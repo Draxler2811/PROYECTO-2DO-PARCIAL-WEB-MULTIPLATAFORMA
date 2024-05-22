@@ -13,4 +13,6 @@ public interface IFavoriteProductRepository
     Task<bool> DeleteAsync(int id);
     
     Task<FavoriteProduct> GetById(int id);
+    Task<FavoriteProduct> GetByName(string name, int id = 0);
+
 }

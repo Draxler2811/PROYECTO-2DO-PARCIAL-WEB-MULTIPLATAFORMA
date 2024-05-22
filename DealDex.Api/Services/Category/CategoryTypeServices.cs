@@ -65,13 +65,17 @@ public class CategoryTypeServices : ICategoryTypeServices
 
     public async Task<CategoryTypeDto> GetById(int id)
     {
-        var category = await  _categoryTypeRepository.GetById(id);
+        var category = await _categoryTypeRepository.GetById(id);
         if (category == null)
             throw new Exception("Product category not Found");
-        var categoryDto = new CategoryTypeDto()
-        {
-            Nombre = category.Nombre,
-        };
+        var categoryDto = new CategoryTypeDto(category);
         return categoryDto;
+    }
+    
+
+    public async Task<bool> ExistByName(string name, int id = 0)
+    {
+        var category = await _categoryTypeRepository.GetByName(name, id);
+        return category != null;
     }
 }

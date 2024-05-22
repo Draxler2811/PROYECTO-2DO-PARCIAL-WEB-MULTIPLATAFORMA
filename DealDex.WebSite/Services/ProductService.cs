@@ -1,5 +1,4 @@
-﻿using System.Text.Json.Serialization;
-using DealDex.Api.Dto;
+﻿using DealDex.Api.Dto;
 using DealDex.Core.Http;
 using DealDex.WebSite.Services.Interfaces;
 using Newtonsoft.Json;
@@ -17,28 +16,29 @@ public class ProductService : IProductService
     }
     
     
-    public async Task<Response<List<ProductCategoryDto>>> GetAllAsync()
+    public async Task<Response<List<ProductCategoryDtoAdd>>> GetAllAsync()
     {
         var url = $"{_baseURL}{_endpoint}";
         var cliente = new HttpClient();
         var res = await cliente.GetAsync(url);
         var json = await res.Content.ReadAsStringAsync();
 
-        var response = JsonConvert.DeserializeObject<Response<List<ProductCategoryDto>>>(json);
+        var response = JsonConvert.DeserializeObject<Response<List<ProductCategoryDtoAdd>>>(json);
+        return response;
         
-        return response;    }
+    }
 
-    public async Task<Response<ProductCategoryDto>> GetById(int id)
+    public async Task<Response<ProductCategoryDtoAdd>> GetById(int id)
     {
         var url = $"{_baseURL}{_endpoint}/{id}";
         var cliente = new HttpClient();
         var res = await cliente.GetAsync(url);
         var json = await res.Content.ReadAsStringAsync();
-        var response = JsonConvert.DeserializeObject<Response<ProductCategoryDto>>(json);
+        var response = JsonConvert.DeserializeObject<Response<ProductCategoryDtoAdd>>(json);
         return response;
     }
 
-    public async Task<Response<ProductCategoryDto>> SaveAsync(ProductCategoryDto productCategoryDto)
+    public async Task<Response<ProductCategoryDtoAdd>> SaveAsync(ProductCategoryDtoAdd productCategoryDto)
     {
         var url = $"{_baseURL}{_endpoint}";
         var jsonRequest = JsonConvert.SerializeObject(productCategoryDto);
@@ -47,12 +47,11 @@ public class ProductService : IProductService
         var res = await client.PostAsync(url, content);
         var json = await res.Content.ReadAsStringAsync();
         
-        var response = JsonConvert.DeserializeObject<Response<ProductCategoryDto>>(json);
+        var response = JsonConvert.DeserializeObject<Response<ProductCategoryDtoAdd>>(json);
 
-        return response;
-    }
+        return response;    }
 
-    public async Task<Response<ProductCategoryDto>> UpdateAsync(ProductCategoryDto productCategoryDto)
+    public async Task<Response<ProductCategoryDtoAdd>> UpdateAsync(ProductCategoryDtoAdd productCategoryDto)
     {
         var url = $"{_baseURL}{_endpoint}";
         var jsonRequest = JsonConvert.SerializeObject(productCategoryDto);
@@ -60,9 +59,10 @@ public class ProductService : IProductService
         var client = new HttpClient();
         var res = await client.PutAsync(url, content);
         var json = await res.Content.ReadAsStringAsync();
-        var response = JsonConvert.DeserializeObject<Response<ProductCategoryDto>>(json);
+        var response = JsonConvert.DeserializeObject<Response<ProductCategoryDtoAdd>>(json);
         return response;
     }
+
 
     public async Task<Response<bool>> DeleteAsync(int id)
     {

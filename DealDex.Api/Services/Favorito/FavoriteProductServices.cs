@@ -80,18 +80,16 @@ public class FavoriteProductServices : IFavoriteProductServices
 
     public async Task<FavoriteProductDto> GetById(int id)
     {
-        var carrito = await _favoriteProductRepository.GetById(id);
-        if (carrito == null)
+        var category = await _favoriteProductRepository.GetById(id);
+        if (category == null)
             throw new Exception("Product category not Found");
-        var favoriteDto = new FavoriteProductDto()
-        {
-            IdProducto = carrito.IdProducto,
-            IdUser = carrito.IdUser,
-            Image = carrito.Imagen,
-            Titulo = carrito.Titulo,
-            Precio = carrito.Precio,
-            Cantidad = carrito.Cantidad,
-        };
-        return favoriteDto;
+        var categoryDto = new FavoriteProductDto(category);
+        return categoryDto;
+    }
+
+    public async Task<bool> ExistByName(string name, int id = 0)
+    {
+        var category = await _favoriteProductRepository.GetByName(name, id);
+        return category != null;
     }
 }

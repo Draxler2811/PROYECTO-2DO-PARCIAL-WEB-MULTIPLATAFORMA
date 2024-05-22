@@ -55,4 +55,12 @@ public class FavoriteProductRepository : IFavoriteProductRepository
         return category.IsDeleted == true ? null : category;
 
     }
+
+    public async Task<FavoriteProduct> GetByName(string name, int id = 0)
+    {
+        string sql = $"SELECT * FROM FavoriteProduct WHERE Titulo = '{name}' AND id <> {id}";
+        var categories = await _dbContext.Connection.QueryAsync<FavoriteProduct>(sql);
+
+        return categories.ToList().FirstOrDefault();
+    }
 }

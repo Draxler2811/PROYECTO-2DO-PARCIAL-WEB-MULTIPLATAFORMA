@@ -14,4 +14,6 @@ public interface ICarritoCategoryReposioty
     Task<bool> DeleteAsync(int id);
     
     Task<CarritoCategory> GetById(int id);
+    //Metodo para obtebner una categoria por nombre 
+    Task<CarritoCategory> GetByName(string name, int id = 0);
 }

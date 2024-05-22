@@ -48,6 +48,11 @@ public class UsersController : ControllerBase
     {
         var response = new Response<UsersCategoryDto>();
 
+        if (await _usersCategoryService.ExistByName(categoryDtoSinId.Correo))
+        {
+            response.Errors.Add($"Brand name {categoryDtoSinId.Correo} already exists");
+            return BadRequest(response);
+        }
         if (string.IsNullOrEmpty(categoryDtoSinId.Correo))
         {
             response.Errors.Add("El campo Correo es obligatorio.");
@@ -99,6 +104,16 @@ public class UsersController : ControllerBase
 
         var validationErrors = new List<string>();
 
+        if (!await _usersCategoryService.UsersCategoryExist(categoryDto.id))
+        {
+            response.Errors.Add("Product Category not found");
+            return NotFound(response);
+        }
+        if (await _usersCategoryService.ExistByName(categoryDto.NombreUsu, categoryDto.id))
+        {
+            response.Errors.Add($"Product Brand Name {categoryDto.NombreUsu} already exists");
+            return BadRequest(response);
+        }
         if (categoryDto.id <= 0)
         {
             validationErrors.Add("El campo ID debe ser mayor que cero.");

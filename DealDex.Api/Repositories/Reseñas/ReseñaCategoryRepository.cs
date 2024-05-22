@@ -55,4 +55,12 @@ public class ReseñaCategoryRepository: IReseñaCategoryRepository
         return category.IsDeleted == true ? null : category;
 
     }
+
+    public async Task<ReseñaCategory> GetByName(string name, int id = 0)
+    {
+        string sql = $"SELECT * FROM ReseñaCategory WHERE Titulo = '{name}' AND id <> {id}";
+        var categories = await _dbContext.Connection.QueryAsync<ReseñaCategory>(sql);
+
+        return categories.ToList().FirstOrDefault();
+    }
 }

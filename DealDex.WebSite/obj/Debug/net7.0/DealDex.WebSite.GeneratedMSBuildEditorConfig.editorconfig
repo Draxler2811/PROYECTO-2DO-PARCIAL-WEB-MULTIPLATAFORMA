@@ -1,0 +1,157 @@
+is_global = true
+build_property.TargetFramework = net7.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = DealDex.WebSite
+build_property.RootNamespace = DealDex.WebSite
+build_property.ProjectDir = C:\Users\ol196\OneDrive\Documentos\Universidad\Octavo Semestre\Tecnologias web Multiplataforma\Parcial 2\DealDex\DealDex.WebSite\
+build_property.RazorLangVersion = 7.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = C:\Users\ol196\OneDrive\Documentos\Universidad\Octavo Semestre\Tecnologias web Multiplataforma\Parcial 2\DealDex\DealDex.WebSite
+build_property._RazorSourceGeneratorDebug = 
+
+[C:/Users/ol196/OneDrive/Documentos/Universidad/Octavo Semestre/Tecnologias web Multiplataforma/Parcial 2/DealDex/DealDex.WebSite/Pages/Cart/Agregar.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2FydFxBZ3JlZ2FyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ol196/OneDrive/Documentos/Universidad/Octavo Semestre/Tecnologias web Multiplataforma/Parcial 2/DealDex/DealDex.WebSite/Pages/Cart/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2FydFxEZWxldGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ol196/OneDrive/Documentos/Universidad/Octavo Semestre/Tecnologias web Multiplataforma/Parcial 2/DealDex/DealDex.WebSite/Pages/Cart/Editar.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2FydFxFZGl0YXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ol196/OneDrive/Documentos/Universidad/Octavo Semestre/Tecnologias web Multiplataforma/Parcial 2/DealDex/DealDex.WebSite/Pages/Cart/List.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2FydFxMaXN0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ol196/OneDrive/Documentos/Universidad/Octavo Semestre/Tecnologias web Multiplataforma/Parcial 2/DealDex/DealDex.WebSite/Pages/Category/Agregar.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2F0ZWdvcnlcQWdyZWdhci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ol196/OneDrive/Documentos/Universidad/Octavo Semestre/Tecnologias web Multiplataforma/Parcial 2/DealDex/DealDex.WebSite/Pages/Category/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2F0ZWdvcnlcRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ol196/OneDrive/Documentos/Universidad/Octavo Semestre/Tecnologias web Multiplataforma/Parcial 2/DealDex/DealDex.WebSite/Pages/Category/Editar.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2F0ZWdvcnlcRWRpdGFyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ol196/OneDrive/Documentos/Universidad/Octavo Semestre/Tecnologias web Multiplataforma/Parcial 2/DealDex/DealDex.WebSite/Pages/Category/List.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2F0ZWdvcnlcTGlzdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ol196/OneDrive/Documentos/Universidad/Octavo Semestre/Tecnologias web Multiplataforma/Parcial 2/DealDex/DealDex.WebSite/Pages/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXJyb3IuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ol196/OneDrive/Documentos/Universidad/Octavo Semestre/Tecnologias web Multiplataforma/Parcial 2/DealDex/DealDex.WebSite/Pages/Favorite/Agregar.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRmF2b3JpdGVcQWdyZWdhci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ol196/OneDrive/Documentos/Universidad/Octavo Semestre/Tecnologias web Multiplataforma/Parcial 2/DealDex/DealDex.WebSite/Pages/Favorite/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRmF2b3JpdGVcRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ol196/OneDrive/Documentos/Universidad/Octavo Semestre/Tecnologias web Multiplataforma/Parcial 2/DealDex/DealDex.WebSite/Pages/Favorite/Editar.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRmF2b3JpdGVcRWRpdGFyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ol196/OneDrive/Documentos/Universidad/Octavo Semestre/Tecnologias web Multiplataforma/Parcial 2/DealDex/DealDex.WebSite/Pages/Favorite/List.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRmF2b3JpdGVcTGlzdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ol196/OneDrive/Documentos/Universidad/Octavo Semestre/Tecnologias web Multiplataforma/Parcial 2/DealDex/DealDex.WebSite/Pages/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ol196/OneDrive/Documentos/Universidad/Octavo Semestre/Tecnologias web Multiplataforma/Parcial 2/DealDex/DealDex.WebSite/Pages/Privacy.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJpdmFjeS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ol196/OneDrive/Documentos/Universidad/Octavo Semestre/Tecnologias web Multiplataforma/Parcial 2/DealDex/DealDex.WebSite/Pages/Product/Agregar.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJvZHVjdFxBZ3JlZ2FyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ol196/OneDrive/Documentos/Universidad/Octavo Semestre/Tecnologias web Multiplataforma/Parcial 2/DealDex/DealDex.WebSite/Pages/Product/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJvZHVjdFxEZWxldGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ol196/OneDrive/Documentos/Universidad/Octavo Semestre/Tecnologias web Multiplataforma/Parcial 2/DealDex/DealDex.WebSite/Pages/Product/Editar.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJvZHVjdFxFZGl0YXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ol196/OneDrive/Documentos/Universidad/Octavo Semestre/Tecnologias web Multiplataforma/Parcial 2/DealDex/DealDex.WebSite/Pages/Product/List.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJvZHVjdFxMaXN0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ol196/OneDrive/Documentos/Universidad/Octavo Semestre/Tecnologias web Multiplataforma/Parcial 2/DealDex/DealDex.WebSite/Pages/Reseña/Agregar.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUmVzZcOxYVxBZ3JlZ2FyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ol196/OneDrive/Documentos/Universidad/Octavo Semestre/Tecnologias web Multiplataforma/Parcial 2/DealDex/DealDex.WebSite/Pages/Reseña/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUmVzZcOxYVxEZWxldGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ol196/OneDrive/Documentos/Universidad/Octavo Semestre/Tecnologias web Multiplataforma/Parcial 2/DealDex/DealDex.WebSite/Pages/Reseña/Editar.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUmVzZcOxYVxFZGl0YXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ol196/OneDrive/Documentos/Universidad/Octavo Semestre/Tecnologias web Multiplataforma/Parcial 2/DealDex/DealDex.WebSite/Pages/Reseña/List.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUmVzZcOxYVxMaXN0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ol196/OneDrive/Documentos/Universidad/Octavo Semestre/Tecnologias web Multiplataforma/Parcial 2/DealDex/DealDex.WebSite/Pages/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ol196/OneDrive/Documentos/Universidad/Octavo Semestre/Tecnologias web Multiplataforma/Parcial 2/DealDex/DealDex.WebSite/Pages/Suppliers/Agregar.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU3VwcGxpZXJzXEFncmVnYXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ol196/OneDrive/Documentos/Universidad/Octavo Semestre/Tecnologias web Multiplataforma/Parcial 2/DealDex/DealDex.WebSite/Pages/Suppliers/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU3VwcGxpZXJzXERlbGV0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ol196/OneDrive/Documentos/Universidad/Octavo Semestre/Tecnologias web Multiplataforma/Parcial 2/DealDex/DealDex.WebSite/Pages/Suppliers/Editar.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU3VwcGxpZXJzXEVkaXRhci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ol196/OneDrive/Documentos/Universidad/Octavo Semestre/Tecnologias web Multiplataforma/Parcial 2/DealDex/DealDex.WebSite/Pages/Suppliers/List.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU3VwcGxpZXJzXExpc3QuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ol196/OneDrive/Documentos/Universidad/Octavo Semestre/Tecnologias web Multiplataforma/Parcial 2/DealDex/DealDex.WebSite/Pages/Users/Agregar.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXNlcnNcQWdyZWdhci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ol196/OneDrive/Documentos/Universidad/Octavo Semestre/Tecnologias web Multiplataforma/Parcial 2/DealDex/DealDex.WebSite/Pages/Users/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXNlcnNcRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ol196/OneDrive/Documentos/Universidad/Octavo Semestre/Tecnologias web Multiplataforma/Parcial 2/DealDex/DealDex.WebSite/Pages/Users/Editar.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXNlcnNcRWRpdGFyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ol196/OneDrive/Documentos/Universidad/Octavo Semestre/Tecnologias web Multiplataforma/Parcial 2/DealDex/DealDex.WebSite/Pages/Users/List.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXNlcnNcTGlzdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ol196/OneDrive/Documentos/Universidad/Octavo Semestre/Tecnologias web Multiplataforma/Parcial 2/DealDex/DealDex.WebSite/Pages/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ol196/OneDrive/Documentos/Universidad/Octavo Semestre/Tecnologias web Multiplataforma/Parcial 2/DealDex/DealDex.WebSite/Pages/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ol196/OneDrive/Documentos/Universidad/Octavo Semestre/Tecnologias web Multiplataforma/Parcial 2/DealDex/DealDex.WebSite/Pages/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = b-ofxwxyqy8r

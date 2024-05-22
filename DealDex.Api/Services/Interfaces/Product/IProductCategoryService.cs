@@ -10,9 +10,11 @@ public interface IProductCategoryService
     
     Task<ProductCategoryDtoAdd> UpdateAsync(ProductCategoryDtoAdd category);
     
-    Task<List<ProductCategoryDto>> GetAllAsync();
+    Task<List<ProductCategoryDtoAdd>> GetAllAsync();
     
     Task<bool> DeleteAsync(int id);
     
-    Task<ProductCategoryDtoById> GetById(int id);
+    Task<ProductCategoryDtoAdd> GetById(int id);
+    Task<bool> ExistByName(string name, int id = 0);
+
 }

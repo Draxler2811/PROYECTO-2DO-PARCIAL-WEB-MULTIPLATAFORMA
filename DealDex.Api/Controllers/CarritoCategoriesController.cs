@@ -56,9 +56,10 @@ public async Task<ActionResult<Response<CarritoCategoryDto>>> Post([FromBody] Ca
 
     var validationErrors = new List<string>();
     
-    if (!await _usersCategoryService.UsersCategoryExist(carritoCategoryDtoSinAdd.IdUser))
+    if (await _carritoCategoryServices.ExistByName(carritoCategoryDtoSinAdd.Titulo))
     {
-        validationErrors.Add("El usuarios asociado no existe");
+        response.Errors.Add($"Brand name {carritoCategoryDtoSinAdd.Titulo} already exists");
+        return BadRequest(response);
     }
     
     if (carritoCategoryDtoSinAdd.IdUser == 0)
@@ -109,8 +110,11 @@ public async Task<ActionResult<Response<CarritoCategoryDto>>> Post([FromBody] Ca
         Titulo = carritoCategoryDtoSinAdd.Titulo,
         Precio = carritoCategoryDtoSinAdd.Precio,
         Cantidad = carritoCategoryDtoSinAdd.Cantidad
+        
+        
     };
-
+    
+   
     response.Data = await _carritoCategoryServices.SaveAsyc(carritoDto);
     return Created($"/api/[controller]/{response.Data.id}", response);
 }
@@ -142,6 +146,18 @@ public async Task<ActionResult<Response<CarritoCategoryDto>>> Update([FromBody] 
 
     var validationErrors = new List<string>();
 
+    if (!await _carritoCategoryServices.CarritoCategoryExist(carritoDto.id))
+    {
+        response.Errors.Add("Product Category not found");
+        return NotFound(response);
+    }
+    if (await _carritoCategoryServices.ExistByName(carritoDto.Titulo, carritoDto.id))
+    {
+        response.Errors.Add($"Product Brand Name {carritoDto.Titulo} already exists");
+        return BadRequest(response);
+    }
+    
+    
     if (!await _usersCategoryService.UsersCategoryExist(carritoDto.IdUser))
     {
         validationErrors.Add("La categoría asociada al IdCategory especificado no existe.");
@@ -196,6 +212,7 @@ public async Task<ActionResult<Response<CarritoCategoryDto>>> Update([FromBody] 
         response.Errors.Add(" IdCarrito no encontrado");
         return NotFound(response);
     }
+   
 
     response.Data = await _carritoCategoryServices.UpdateAsync(carritoDto);
     return Ok(response);

@@ -56,4 +56,12 @@ public class SupplierInfoRepository : ISupplierInfoRepository
         return category.IsDeleted == true ? null : category;
 
     }
+
+    public async Task<SupplierInfo> GetByName(string name, int id = 0)
+    {
+        string sql = $"SELECT * FROM SupplierInfo WHERE Correo = '{name}' AND id <> {id}";
+        var categories = await _dbContext.Connection.QueryAsync<SupplierInfo>(sql);
+
+        return categories.ToList().FirstOrDefault();
+    }
 }

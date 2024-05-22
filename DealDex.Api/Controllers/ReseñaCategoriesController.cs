@@ -50,9 +50,10 @@ public class ProductReviewController :ControllerBase
 
         var validationErrors = new List<string>();
 
-        if (!await _productCategoryService.ProductCategoryExist(categoryDtoSinId.IdProducto))
+        if (await _reseñasCategoryServices.ExistByName(categoryDtoSinId.Titulo))
         {
-            validationErrors.Add("La categoría asociada al IdProducto especificado no existe.");
+            response.Errors.Add($"Brand name {categoryDtoSinId.Titulo} already exists");
+            return BadRequest(response);
         }
 
         if (categoryDtoSinId.IdProducto == 0)
@@ -110,6 +111,18 @@ public class ProductReviewController :ControllerBase
         var response = new Response<ReseñaCategoryDto>();
 
         var errors = new List<string>();
+        
+        if (!await _reseñasCategoryServices.ReseñaCategoryExist(categoryDto.id))
+        {
+            response.Errors.Add("Product Category not found");
+            return NotFound(response);
+        }
+        if (await _reseñasCategoryServices.ExistByName(categoryDto.Titulo, categoryDto.id))
+        {
+            response.Errors.Add($"Product Brand Name {categoryDto.Titulo} already exists");
+            return BadRequest(response);
+        }
+        
 
         if (!await _productCategoryService.ProductCategoryExist(categoryDto.IdProducto))
         {

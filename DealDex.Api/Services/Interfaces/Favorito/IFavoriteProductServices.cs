@@ -15,4 +15,6 @@ public interface IFavoriteProductServices
     Task<bool> DeleteAsync(int id);
     
     Task<FavoriteProductDto> GetById(int id);
+    Task<bool> ExistByName(string name, int id = 0);
+
 }

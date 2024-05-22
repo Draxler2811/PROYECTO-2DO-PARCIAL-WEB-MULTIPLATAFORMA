@@ -19,6 +19,7 @@ public interface IUsersCategoryService
     
     Task<bool> ValidateCredentials(string correo, string contraseña);
 
+    Task<bool> ExistByName(string name, int id = 0);
 
     
 }

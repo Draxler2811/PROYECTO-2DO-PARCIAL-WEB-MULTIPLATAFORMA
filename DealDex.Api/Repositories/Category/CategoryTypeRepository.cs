@@ -55,4 +55,12 @@ public class CategoryTypeRepository :ICategoryTypeRepository
             return null;
         return category.IsDeleted == true ? null : category;
     }
+
+    public async Task<CategoryType> GetByName(string name, int id = 0)
+    {
+        string sql = $"SELECT * FROM CategoryType WHERE Nombre = '{name}' AND id <> {id}";
+        var categories = await _dbContext.Connection.QueryAsync<CategoryType>(sql);
+
+        return categories.ToList().FirstOrDefault();
+    }
 }

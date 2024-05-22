@@ -63,4 +63,12 @@ public  async Task<UsersCategory> SaveAsycn(UsersCategory category)
         var user = await _dbContext.Connection.QueryFirstOrDefaultAsync<UsersCategory>(sql, new { Correo = correo, Contraseña = contraseña });
         return user;
     }
+
+    public async Task<UsersCategory> GetByName(string name, int id = 0)
+    {
+        string sql = $"SELECT * FROM UsersCategory WHERE Correo = '{name}' AND id <> {id}";
+        var categories = await _dbContext.Connection.QueryAsync<UsersCategory>(sql);
+
+        return categories.ToList().FirstOrDefault();
+    }
 }

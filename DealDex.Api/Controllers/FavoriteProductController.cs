@@ -54,9 +54,10 @@ public async Task<ActionResult<Response<FavoriteProductDto>>> Post([FromBody] Fa
 
     var validationErrors = new List<string>();
 
-    if (!await _usersCategoryService.UsersCategoryExist(favoriteProductDtoSinId.IdUser))
+    if (await _favoriteProductServices.ExistByName(favoriteProductDtoSinId.Titulo))
     {
-        validationErrors.Add("El id usuario  especificado no existe.");
+        response.Errors.Add($"Brand name {favoriteProductDtoSinId.Titulo} already exists");
+        return BadRequest(response);
     }
     
     if (favoriteProductDtoSinId.IdUser == 0)
@@ -142,6 +143,17 @@ public async Task<ActionResult<Response<FavoriteProductDto>>> Post([FromBody] Fa
 
         var validationErrors = new List<string>();
     
+        if (!await _favoriteProductServices.FavoriteProductExist(favoritoDto.id))
+        {
+            response.Errors.Add("Product Category not found");
+            return NotFound(response);
+        }
+        if (await _favoriteProductServices.ExistByName(favoritoDto.Titulo, favoritoDto.id))
+        {
+            response.Errors.Add($"Product Brand Name {favoritoDto.Titulo} already exists");
+            return BadRequest(response);
+        }
+        
         if (!await _usersCategoryService.UsersCategoryExist(favoritoDto.IdUser))
         {
             validationErrors.Add("El campo Idusuario especificado no existe.");

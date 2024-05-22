@@ -77,13 +77,13 @@ public class SupplierInfoServices : ISupplierInfoService
         var category = await _supplierInfoRepository.GetById(id);
         if (category == null)
             throw new Exception("Product category not Found");
-        var categoryDto = new SupplierInfoDto()
-        {
-            Nombre = category.Nombre,
-            Direccion = category.Direccion,
-            Cuidad = category.Cuidad,
-            Correo = category.Correo
-        };
+        var categoryDto = new SupplierInfoDto(category);
         return categoryDto;
+    }
+
+    public async Task<bool> ExistByName(string name, int id = 0)
+    {
+        var category = await _supplierInfoRepository.GetByName(name, id);
+        return category != null;
     }
 }

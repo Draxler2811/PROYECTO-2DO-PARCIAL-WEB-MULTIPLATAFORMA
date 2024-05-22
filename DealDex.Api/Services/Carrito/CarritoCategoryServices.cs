@@ -74,22 +74,22 @@ public class CarritoCategoryServices : ICarritoCategoryServices
 
     public async Task<bool> DeleteAsync(int id)
     {
-        return await _carritoCategoryReposioty.DeleteAsync(id);    }
+        return await _carritoCategoryReposioty.DeleteAsync(id);
+        
+    }
 
     public async Task<CarritoCategoryDto> GetById(int id)
     {
-        var carrito = await _carritoCategoryReposioty.GetById(id);
-        if (carrito == null)
+        var category = await _carritoCategoryReposioty.GetById(id);
+        if (category == null)
             throw new Exception("Product category not Found");
-        var carritoDto = new CarritoCategoryDto()
-        {
-            IdProducto = carrito.IdProducto,
-            IdUser = carrito.IdUser,
-            Image = carrito.Imagen,
-            Titulo = carrito.Titulo,
-            Precio = carrito.Precio,
-            Cantidad = carrito.Cantidad,
-        };
-        return carritoDto;
+        var categoryDto = new CarritoCategoryDto(category);
+        return categoryDto;
+    }
+
+    public async Task<bool> ExistByName(string name, int id = 0)
+    {
+        var category = await _carritoCategoryReposioty.GetByName(name, id);
+        return category != null;
     }
 }

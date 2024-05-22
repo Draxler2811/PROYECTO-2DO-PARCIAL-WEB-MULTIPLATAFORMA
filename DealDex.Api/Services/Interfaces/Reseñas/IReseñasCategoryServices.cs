@@ -15,4 +15,6 @@ public interface IReseñasCategoryServices
     Task<bool> DeleteAsync(int id);
     
     Task<ReseñaCategoryDto> GetById(int id);
+    Task<bool> ExistByName(string name, int id = 0);
+
 }

@@ -67,10 +67,10 @@ public class ProductCategoryServices : IProductCategoryService
         return categoryDto;
     }
 
-    public async Task<List<ProductCategoryDto>> GetAllAsync()
+    public async Task<List<ProductCategoryDtoAdd>> GetAllAsync()
     {
         var categories = await _productCategoryRepository.GetAllAsync();
-        var categoriesDto = categories.Select(c => new ProductCategoryDto(c)).ToList();
+        var categoriesDto = categories.Select(c => new ProductCategoryDtoAdd(c)).ToList();
         return categoriesDto;
     }
 
@@ -79,19 +79,18 @@ public class ProductCategoryServices : IProductCategoryService
         return await _productCategoryRepository.DeleteAsync(id);
     }
 
-    public async Task<ProductCategoryDtoById> GetById(int id)
+    public async Task<ProductCategoryDtoAdd> GetById(int id)
     {
         var category = await _productCategoryRepository.GetById(id);
         if (category == null)
             throw new Exception("Product category not Found");
-        var categoryDto = new ProductCategoryDtoById()
-        {
-            Image = category.Image,
-            Titulo = category.Titulo,
-            Precio = category.Precio,
-            Descripcion = category.Descripcion
-        };
+        var categoryDto = new ProductCategoryDtoAdd(category);
         return categoryDto;
     }
-    
+
+    public async Task<bool> ExistByName(string name, int id = 0)
+    {
+        var category = await _productCategoryRepository.GetByName(name, id);
+        return category != null;
+    }
 }

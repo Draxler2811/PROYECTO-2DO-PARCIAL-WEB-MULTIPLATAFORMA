@@ -13,4 +13,7 @@ public interface IReseñaCategoryRepository
     Task<bool> DeleteAsync(int id);
     
     Task<ReseñaCategory> GetById(int id);
+    
+    Task<ReseñaCategory> GetByName(string name, int id = 0);
+
 }

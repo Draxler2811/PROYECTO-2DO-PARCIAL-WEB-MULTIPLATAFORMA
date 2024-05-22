@@ -55,4 +55,12 @@ public class CarritoCategoryReposioty : ICarritoCategoryReposioty
         return category.IsDeleted == true ? null : category;
 
     }
+
+    public async Task<CarritoCategory> GetByName(string name, int id = 0)
+    {
+        string sql = $"SELECT * FROM CarritoCategory WHERE Titulo = '{name}' AND id <> {id}";
+        var categories = await _dbContext.Connection.QueryAsync<CarritoCategory>(sql);
+
+        return categories.ToList().FirstOrDefault();
+    }
 }

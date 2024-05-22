@@ -72,12 +72,7 @@ public class UsersCategoryService : IUsersCategoryService
         var category = await _usersCategoryRepository.GetById(id);
         if (category == null)
             throw new Exception("Product category not Found");
-        var categoryDto = new UsersCategoryDto()
-        {
-            Correo = category.Correo,
-            Contraseña = category.Contraseña,
-            NombreUsu = category.NombreUsu,
-        };
+        var categoryDto = new UsersCategoryDto(category);
         return categoryDto;
     }
 
@@ -87,4 +82,9 @@ public class UsersCategoryService : IUsersCategoryService
         return user != null;
     }
 
+    public async Task<bool> ExistByName(string name, int id = 0)
+    {
+        var category = await _usersCategoryRepository.GetByName(name, id);
+        return category != null;
+    }
 }

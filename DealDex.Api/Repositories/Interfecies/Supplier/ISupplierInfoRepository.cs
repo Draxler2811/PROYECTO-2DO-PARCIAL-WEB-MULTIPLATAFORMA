@@ -13,4 +13,6 @@ public interface ISupplierInfoRepository
     Task<bool> DeleteAsync(int id);
     
     Task<SupplierInfo> GetById(int id);
+    Task<SupplierInfo> GetByName(string name, int id = 0);
+
 }

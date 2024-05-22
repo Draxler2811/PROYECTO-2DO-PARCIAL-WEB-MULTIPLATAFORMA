@@ -72,12 +72,13 @@ public class ReseñasCategoryServices : IReseñasCategoryServices
         var category = await _reseñaCategoryRepository.GetById(id);
         if (category == null)
             throw new Exception("Product category not Found");
-        var categoryDto = new ReseñaCategoryDto()
-        {
-            IdProducto = category.IdProducto,
-            Titulo = category.Titulo,
-            Valoracion = category.Valoracion,
-        };
+        var categoryDto = new ReseñaCategoryDto(category);
         return categoryDto;
+    }
+
+    public async Task<bool> ExistByName(string name, int id = 0)
+    {
+        var category = await _reseñaCategoryRepository.GetByName(name, id);
+        return category != null;
     }
 }

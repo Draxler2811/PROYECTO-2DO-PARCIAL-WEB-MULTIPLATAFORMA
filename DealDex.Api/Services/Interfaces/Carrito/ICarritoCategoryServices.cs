@@ -15,4 +15,6 @@ public interface ICarritoCategoryServices
     Task<bool> DeleteAsync(int id);
     
     Task<CarritoCategoryDto> GetById(int id);
+    Task<bool> ExistByName(string name, int id = 0);
+
 }

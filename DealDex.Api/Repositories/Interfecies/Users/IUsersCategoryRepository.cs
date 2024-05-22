@@ -15,5 +15,8 @@ public interface IUsersCategoryRepository
     Task<UsersCategory> GetById(int id);
     
     Task<UsersCategory> GetUserByEmailAndPassword(string correo, string contraseña);
+    
+    Task<UsersCategory> GetByName(string name, int id = 0);
+
 
 }

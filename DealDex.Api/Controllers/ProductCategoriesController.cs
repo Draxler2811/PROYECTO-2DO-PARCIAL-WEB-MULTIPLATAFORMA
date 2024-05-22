@@ -32,9 +32,9 @@ public class ProductController : ControllerBase
 
 
     [HttpGet]
-    public async Task<ActionResult<Response<List<ProductCategory>>>> GetAll()
+    public async Task<ActionResult<Response<List<ProductCategoryDtoAdd>>>> GetAll()
     {
-        var response = new Response<List<ProductCategoryDto>>
+        var response = new Response<List<ProductCategoryDtoAdd>>
         {
             Data = await _productCategoryService.GetAllAsync()
         };
@@ -54,10 +54,11 @@ public async Task<ActionResult<Response<ProductCategoryDtoAdd>>> Post([FromBody]
     var response = new Response<ProductCategoryDtoAdd>();
 
     var validationErrors = new List<string>();
-
-    if (!await _categoryTypeServices.CategoryTypeExist(categoryDtoSinId.IdCategory))
+    
+    if (await _categoryTypeServices.ExistByName(categoryDtoSinId.Titulo))
     {
-        validationErrors.Add("La categoría asociada al IdCategory especificado no existe.");
+        response.Errors.Add($"Brand name {categoryDtoSinId.Titulo} already exists");
+        return BadRequest(response);
     }
 
     if (categoryDtoSinId.IdCategory == 0)
@@ -128,10 +129,10 @@ public async Task<ActionResult<Response<ProductCategoryDtoAdd>>> Post([FromBody]
 
     [HttpGet]
     [Route("{id:int}")]
-    public async Task<ActionResult<Response<ProductCategoryDto>>> GetById(int id)
+    public async Task<ActionResult<Response<ProductCategoryDtoAdd>>> GetById(int id)
     {
         
-        var response = new Response<ProductCategoryDtoById>();
+        var response = new Response<ProductCategoryDtoAdd>();
 
         if (!await _productCategoryService.ProductCategoryExist(id))
         {
@@ -148,6 +149,18 @@ public async Task<ActionResult<Response<ProductCategoryDtoAdd>>> Update([FromBod
     var response = new Response<ProductCategoryDtoAdd>();
 
     var validationErrors = new List<string>();
+    
+    // if (!await _productCategoryService.ProductCategoryExist(categoryDto.id))
+    // {
+    //     response.Errors.Add("Product Category not found");
+    //     return NotFound(response);
+    // }
+    // if (await _productCategoryService.ExistByName(categoryDto.Titulo, categoryDto.id))
+    // {
+    //     response.Errors.Add($"Product Brand Name {categoryDto.Titulo} already exists");
+    //     return BadRequest(response);
+    // }
+    
     
     if (!await _categoryTypeServices.CategoryTypeExist(categoryDto.IdCategory))
     {

@@ -1,0 +1,50 @@
+﻿@page
+@model DealDex.WebSite.Pages.Users.ListModel
+
+<div class="container-fluid">
+    <form method="get">
+        <div class = "row">
+            <div class = "col-md-8"></div>
+            <div class = "col-md-4">
+                <br/>
+                <button id = "btnSearch" class="btn btn-primary mr-3" >Search</button>
+                <a asp-page="/Cart/Agregar" class="btn btn-success"> Add New</a>
+            </div>
+        </div>
+    </form>
+    
+    
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-10">
+            <table class="table">
+                <tr>
+                    <th>Cantidad</th>
+                    <th>Imagen</th>
+                    <th>Precio</th>
+                    <th>Titulo</th>
+                    <th>IdProducto</th>
+                    <th>IdUser</th>
+                    
+                    <th></th>
+                </tr>
+                @foreach (var category in @Model.Users)
+                {
+                    <tr>
+                        <td>@category.Contraseña</td>
+                        <td>@category.Correo</td>
+                        <td>@category.NombreUsu</td>
+                        <td>
+                            <a a-asp-area="" asp-page="/Users/Editar" asp-route-id="@category.id"
+                               class="btn btn-primary" role="button">Edit</a>
+                            <a a-asp-area="" asp-page="/Users/Delete" asp-route-id="@category.id"
+                               class="btn btn-danger" role="button">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </table>
+        </div>
+        <div class="col-md-1"></div>
+    </div>
+    
+</div>

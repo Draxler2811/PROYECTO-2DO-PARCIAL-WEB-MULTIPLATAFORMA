@@ -45,7 +45,13 @@ public class CategoryProductController : ControllerBase
     public async Task<ActionResult<Response<CategoryTypeDto>>> Post([FromBody] CategoryTypeDtoSinId categoryTypeDtoSinId)
     {
         var response = new Response<CategoryTypeDto>();
-
+        
+        if (await _categoryTypeServices.ExistByName(categoryTypeDtoSinId.Nombre))
+        {
+            response.Errors.Add($"Brand name {categoryTypeDtoSinId.Nombre} already exists");
+            return BadRequest(response);
+        }
+        
         if (string.IsNullOrEmpty(categoryTypeDtoSinId.Nombre))
         {
             response.Errors.Add("El campo Nombre es obligatorio.");
@@ -82,6 +88,17 @@ public class CategoryProductController : ControllerBase
     {
         var response = new Response<CategoryTypeDto>();
 
+        if (!await _categoryTypeServices.CategoryTypeExist(categoryTypeDto.id))
+        {
+            response.Errors.Add("Product Category not found");
+            return NotFound(response);
+        }
+        if (await _categoryTypeServices.ExistByName(categoryTypeDto.Nombre, categoryTypeDto.id))
+        {
+            response.Errors.Add($"Product Brand Name {categoryTypeDto.Nombre} already exists");
+            return BadRequest(response);
+        }
+        
         if (categoryTypeDto.id == 0)
         {
             response.Errors.Add("El campo id no puede ser cero.");

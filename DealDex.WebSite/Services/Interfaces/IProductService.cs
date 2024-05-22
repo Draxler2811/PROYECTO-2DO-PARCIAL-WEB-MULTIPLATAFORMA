@@ -4,13 +4,13 @@ namespace DealDex.WebSite.Services.Interfaces;
 
 public interface IProductService
 {
-    Task<Response<List<ProductCategoryDto>>> GetAllAsync();
+    Task<Response<List<ProductCategoryDtoAdd>>> GetAllAsync();
     
-    Task<Response<ProductCategoryDto>> GetById(int id);
+    Task<Response<ProductCategoryDtoAdd>> GetById(int id);
     
-    Task<Response<ProductCategoryDto>> SaveAsync(ProductCategoryDto productCategoryDto);
+    Task<Response<ProductCategoryDtoAdd>> SaveAsync(ProductCategoryDtoAdd productCategoryDto);
     
-    Task<Response<ProductCategoryDto>> UpdateAsync(ProductCategoryDto productCategoryDto);
-
+    Task<Response<ProductCategoryDtoAdd>> UpdateAsync(ProductCategoryDtoAdd productCategoryDto);
+    
     Task<Response<bool>> DeleteAsync(int id);
 }

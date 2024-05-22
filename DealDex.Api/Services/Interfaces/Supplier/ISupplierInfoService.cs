@@ -16,4 +16,6 @@ public interface ISupplierInfoService
     Task<bool> DeleteAsync(int id);
     
     Task<SupplierInfoDto> GetById(int id);
+    Task<bool> ExistByName(string name, int id = 0);
+
 }
