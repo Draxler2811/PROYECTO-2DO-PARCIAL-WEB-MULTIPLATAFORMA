@@ -48,17 +48,11 @@ public class Editar : PageModel
 
         Response<CarritoCategoryDto> response;
 
-        //Actualizacion
-        if (CarritoCategoryDto.id > 0)
-        {
+        
             response = await _service.UpdateAsync(CarritoCategoryDto);
-        }
-        else
-        {
-            //Insercion
-            response = await _service.SaveAsync(CarritoCategoryDto);
-
-        }
+        
+        
+        
 
         CarritoCategoryDto = response.Data;
         return RedirectToPage("./List");

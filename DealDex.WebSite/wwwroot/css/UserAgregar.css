@@ -1,0 +1,64 @@
+﻿/* Agregar.css */
+.agregar-page {
+    margin-top: 50px;
+}
+
+.agregar-page .logo-container {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.agregar-page .logo-container img {
+    width: 150px; /* Ajusta el tamaño de la imagen del logo */
+    border-radius: 50%; /* Hace que la imagen sea circular */
+}
+
+.agregar-page h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: white; /* Cambia el color del texto a blanco */
+}
+
+.agregar-page .form-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.agregar-page .form-group label {
+    font-weight: bold;
+    text-align: center;
+    width: 100%; /* Asegura que el label esté centrado */
+}
+
+.agregar-page .form-group input {
+    width: 50%; /* Ajusta el ancho del campo de entrada */
+    padding: 5px; /* Ajusta el relleno del campo de entrada */
+    margin-bottom: 10px;
+    text-align: center; /* Asegura que el texto dentro del campo esté centrado */
+}
+
+.agregar-page .alert-danger ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-align: center; /* Centra el texto dentro de la alerta */
+}
+
+.agregar-page .btn-primary {
+    background-color: #b300ff; /* Color morado */
+    border-color: #ffffff;     /* Color blanco */
+}
+
+.agregar-page .background-image {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: -1;
+}
+
+.agregar-page .btn-container {
+    text-align: center;
+    margin-top: 10px;
+}

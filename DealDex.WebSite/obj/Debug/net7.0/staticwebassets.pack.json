@@ -5,6 +5,34 @@
       "PackagePath": "staticwebassets\\DealDex.WebSite.bundle.scp.css"
     },
     {
+      "Id": "C:\\Users\\ol196\\OneDrive\\Documentos\\Universidad\\Octavo Semestre\\Tecnologias web Multiplataforma\\Parcial 2\\DealDex\\DealDex.WebSite\\wwwroot\\css\\ListCart.css",
+      "PackagePath": "staticwebassets\\css\\ListCart.css"
+    },
+    {
+      "Id": "C:\\Users\\ol196\\OneDrive\\Documentos\\Universidad\\Octavo Semestre\\Tecnologias web Multiplataforma\\Parcial 2\\DealDex\\DealDex.WebSite\\wwwroot\\css\\ListProduct.css",
+      "PackagePath": "staticwebassets\\css\\ListProduct.css"
+    },
+    {
+      "Id": "C:\\Users\\ol196\\OneDrive\\Documentos\\Universidad\\Octavo Semestre\\Tecnologias web Multiplataforma\\Parcial 2\\DealDex\\DealDex.WebSite\\wwwroot\\css\\ListUser.css",
+      "PackagePath": "staticwebassets\\css\\ListUser.css"
+    },
+    {
+      "Id": "C:\\Users\\ol196\\OneDrive\\Documentos\\Universidad\\Octavo Semestre\\Tecnologias web Multiplataforma\\Parcial 2\\DealDex\\DealDex.WebSite\\wwwroot\\css\\Login.css",
+      "PackagePath": "staticwebassets\\css\\Login.css"
+    },
+    {
+      "Id": "C:\\Users\\ol196\\OneDrive\\Documentos\\Universidad\\Octavo Semestre\\Tecnologias web Multiplataforma\\Parcial 2\\DealDex\\DealDex.WebSite\\wwwroot\\css\\Logo.jpeg",
+      "PackagePath": "staticwebassets\\css\\Logo.jpeg"
+    },
+    {
+      "Id": "C:\\Users\\ol196\\OneDrive\\Documentos\\Universidad\\Octavo Semestre\\Tecnologias web Multiplataforma\\Parcial 2\\DealDex\\DealDex.WebSite\\wwwroot\\css\\UserAgregar.css",
+      "PackagePath": "staticwebassets\\css\\UserAgregar.css"
+    },
+    {
+      "Id": "C:\\Users\\ol196\\OneDrive\\Documentos\\Universidad\\Octavo Semestre\\Tecnologias web Multiplataforma\\Parcial 2\\DealDex\\DealDex.WebSite\\wwwroot\\css\\UserEditar.css",
+      "PackagePath": "staticwebassets\\css\\UserEditar.css"
+    },
+    {
       "Id": "C:\\Users\\ol196\\OneDrive\\Documentos\\Universidad\\Octavo Semestre\\Tecnologias web Multiplataforma\\Parcial 2\\DealDex\\DealDex.WebSite\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },

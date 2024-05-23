@@ -150,16 +150,16 @@ public async Task<ActionResult<Response<ProductCategoryDtoAdd>>> Update([FromBod
 
     var validationErrors = new List<string>();
     
-    // if (!await _productCategoryService.ProductCategoryExist(categoryDto.id))
-    // {
-    //     response.Errors.Add("Product Category not found");
-    //     return NotFound(response);
-    // }
-    // if (await _productCategoryService.ExistByName(categoryDto.Titulo, categoryDto.id))
-    // {
-    //     response.Errors.Add($"Product Brand Name {categoryDto.Titulo} already exists");
-    //     return BadRequest(response);
-    // }
+    if (!await _productCategoryService.ProductCategoryExist(categoryDto.id))
+    {
+        response.Errors.Add("Product Category not found");
+        return NotFound(response);
+    }
+    if (await _productCategoryService.ExistByName(categoryDto.Titulo, categoryDto.id))
+    {
+        response.Errors.Add($"Product Brand Name {categoryDto.Titulo} already exists");
+        return BadRequest(response);
+    }
     
     
     if (!await _categoryTypeServices.CategoryTypeExist(categoryDto.IdCategory))

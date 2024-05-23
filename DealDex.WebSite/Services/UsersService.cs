@@ -1,4 +1,5 @@
-﻿using DealDex.Api.Dto;
+﻿using System.Text;
+using DealDex.Api.Dto;
 using DealDex.Core.Http;
 using DealDex.WebSite.Services.Interfaces;
 using Newtonsoft.Json;
@@ -12,8 +13,9 @@ public class UsersService : IUsersService
 
     public UsersService()
     {
-        
+
     }
+
     public async Task<Response<List<UsersCategoryDto>>> GetAllAsync()
     {
         var url = $"{_baseURL}{_endpoint}";
@@ -22,7 +24,7 @@ public class UsersService : IUsersService
         var json = await res.Content.ReadAsStringAsync();
 
         var response = JsonConvert.DeserializeObject<Response<List<UsersCategoryDto>>>(json);
-        
+
         return response;
     }
 
@@ -44,13 +46,13 @@ public class UsersService : IUsersService
         var client = new HttpClient();
         var res = await client.PostAsync(url, content);
         var json = await res.Content.ReadAsStringAsync();
-        
+
         var response = JsonConvert.DeserializeObject<Response<UsersCategoryDto>>(json);
 
         return response;
     }
 
-    public  async Task<Response<UsersCategoryDto>> UpdateAsync(UsersCategoryDto usersDto)
+    public async Task<Response<UsersCategoryDto>> UpdateAsync(UsersCategoryDto usersDto)
     {
         var url = $"{_baseURL}{_endpoint}";
         var jsonRequest = JsonConvert.SerializeObject(usersDto);
@@ -58,7 +60,7 @@ public class UsersService : IUsersService
         var client = new HttpClient();
         var res = await client.PutAsync(url, content);
         var json = await res.Content.ReadAsStringAsync();
-        
+
         var response = JsonConvert.DeserializeObject<Response<UsersCategoryDto>>(json);
 
         return response;
@@ -71,8 +73,28 @@ public class UsersService : IUsersService
         var res = await client.DeleteAsync(url);
         var json = await res.Content.ReadAsStringAsync();
 
-        var response = JsonConvert.DeserializeObject <Response<bool>>(json);
+        var response = JsonConvert.DeserializeObject<Response<bool>>(json);
 
         return response;
     }
+
+    public async Task<bool> ValidateCredentials(string correo, string contraseña)
+    {
+        var url = $"{_baseURL}{_endpoint}/login";
+        var loginDto = new UserCategoryDtoValidar
+        {
+            Correo = correo,
+            Contraseña = contraseña
+        };
+        var jsonRequest = JsonConvert.SerializeObject(loginDto);
+        var content = new StringContent(jsonRequest, Encoding.UTF8, "application/json");
+        using var client = new HttpClient();
+        var res = await client.PostAsync(url, content);
+        var json = await res.Content.ReadAsStringAsync();
+        var response = JsonConvert.DeserializeObject<Response<string>>(json);
+
+        return res.IsSuccessStatusCode && response != null && response.Data == "Credenciales correctas";
+    }
 }
+
+   

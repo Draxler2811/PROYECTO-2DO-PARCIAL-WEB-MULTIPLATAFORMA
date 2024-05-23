@@ -72,6 +72,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/ol196/OneDrive/Documentos/Universidad/Octavo Semestre/Tecnologias web Multiplataforma/Parcial 2/DealDex/DealDex.WebSite/Pages/Login/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTG9naW5cTG9naW4uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/ol196/OneDrive/Documentos/Universidad/Octavo Semestre/Tecnologias web Multiplataforma/Parcial 2/DealDex/DealDex.WebSite/Pages/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJpdmFjeS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -106,6 +110,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/ol196/OneDrive/Documentos/Universidad/Octavo Semestre/Tecnologias web Multiplataforma/Parcial 2/DealDex/DealDex.WebSite/Pages/Reseña/List.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUmVzZcOxYVxMaXN0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ol196/OneDrive/Documentos/Universidad/Octavo Semestre/Tecnologias web Multiplataforma/Parcial 2/DealDex/DealDex.WebSite/Pages/Shared/_Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9Mb2dpbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/ol196/OneDrive/Documentos/Universidad/Octavo Semestre/Tecnologias web Multiplataforma/Parcial 2/DealDex/DealDex.WebSite/Pages/Shared/_ValidationScriptsPartial.cshtml]

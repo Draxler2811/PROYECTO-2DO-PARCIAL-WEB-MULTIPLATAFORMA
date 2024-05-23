@@ -15,7 +15,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="CarritoCategoryDto.Image"></label>
-                <input asp-for="CarritoCategoryDto.Image" class="form-control" maxlength="45"/>
+                <input asp-for="CarritoCategoryDto.Image" class="form-control" maxlength="1000"/>
                 <span class="text-danger" asp-validation-for="CarritoCategoryDto.Image"></span>
             </div>
             <div class="form-group">
@@ -40,6 +40,10 @@
             </div>
             @if (Model.Errors.Count > 0)
             {
+                @foreach (var error in Model.Errors)
+                {
+                    <li> @error</li>
+                }
 
             }
             <div class="row">

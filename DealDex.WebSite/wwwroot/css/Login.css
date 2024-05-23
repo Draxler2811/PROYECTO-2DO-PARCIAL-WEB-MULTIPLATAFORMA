@@ -1,0 +1,67 @@
+﻿/* Login.css */
+.login-page .container-fluid {
+    margin-top: 50px;
+}
+
+.login-page .login-box {
+    background-color: #f7f7f7;
+    border: 1px solid #ddd;
+    padding: 50px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.login-page h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.login-page .form-group label {
+    font-weight: bold;
+}
+
+.login-page .form-group input {
+    margin-bottom: 10px;
+}
+
+.login-page .alert-danger p {
+    margin: 0;
+}
+
+.login-page .btn-primary {
+    width: 100%;
+    background-color: #b300ff; /* Color morado */
+    border-color: #ffffff;    /* Color blanco */
+}
+
+/* Estilos adicionales para imágenes */
+.login-page .logo-container {
+    text-align: center;
+}
+
+.login-page .logo-container img {
+    width: 150px; /* Ajusta el tamaño de la imagen del logo */
+    border-radius: 50%; /* Hace que la imagen sea circular */
+}
+
+.login-page .background-image {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: -1;
+}
+::placeholder {
+    color: #999; /* Color del placeholder */
+    opacity: 1; /* Asegura que el color se aplique completamente */
+}
+
+/* Si quieres aplicar estilos específicos a los campos de entrada en la página de login */
+.login-page .form-control::placeholder {
+    color: #999; /* Color del placeholder */
+    opacity: 1; /* Asegura que el color se aplique completamente */
+}
+
+.login-page h2 {
+    color: white; /* Cambia el color del texto a blanco */
+}

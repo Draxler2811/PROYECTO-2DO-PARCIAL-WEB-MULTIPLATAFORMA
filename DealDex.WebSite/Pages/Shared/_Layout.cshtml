@@ -6,6 +6,12 @@
     <title>@ViewData["Title"] - DealDex.WebSite</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true"/>
+    <link rel="stylesheet" href="~/css/UserAgregar.css" asp-append-version="true"/>
+    <link rel="stylesheet" href="~/css/UserEditar.css" asp-append-version="true"/>
+    <link rel="stylesheet" href="~/css/ListUser.css" asp-append-version="true"/>
+    <link rel="stylesheet" href="~/css/ListProduct.css" asp-append-version="true"/>
+    <link rel="stylesheet" href="~/css/ListCart.css" asp-append-version="true"/>
+
     <link rel="stylesheet" href="~/DealDex.WebSite.styles.css" asp-append-version="true"/>
 </head>
 <body>
@@ -18,7 +24,7 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                <ul class="navbar-nav flex-grow-1">
+                <ul class="navbar-nav flex-grow-1 ml-auto">
                     <li class="nav-item">
                         <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
                     </li>
@@ -43,9 +49,10 @@
                     <li class="nav-item">
                         <a class="nav-link text-dark" asp-area="" asp-page="/Category/List">Category</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
-                    </li>
+                   <li class="nav-item">
+                       <a class="nav-link text-dark custom" asp-area="" asp-page="/Privacy">Privacy</a>
+                   </li>
+
                 </ul>
             </div>
         </div>

@@ -10,12 +10,12 @@
             <input type="hidden" asp-for="ProductCategoryDto.id"/>
             <div class="form-group">
                 <label asp-for="ProductCategoryDto.Image"></label>
-                <input asp-for="ProductCategoryDto.Image" class="form-control" maxlength="45"/>
+                <input asp-for="ProductCategoryDto.Image" class="form-control" maxlength="10000"/>
                 <span class="text-danger" asp-validation-for="ProductCategoryDto.Image"></span>
             </div>
             <div class="form-group">
                 <label asp-for="ProductCategoryDto.Titulo"></label>
-                <input asp-for="ProductCategoryDto.Titulo" class="form-control" maxlength="100"/>
+                <input asp-for="ProductCategoryDto.Titulo" class="form-control" maxlength="10000"/>
                 <span class="text-danger" asp-validation-for="ProductCategoryDto.Titulo"></span>
             </div>
             <div class="form-group">

@@ -1,0 +1,48 @@
+﻿/* ListUsers.css */
+.container-fluid {
+    margin-top: 50px;
+}
+
+.form-group {
+    text-align: right;
+    margin-bottom: 20px;
+}
+
+.btn-primary, .btn-success {
+    margin: 5px;
+}
+
+.user-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.user-card {
+    background-color: #ffffff;
+    border: 2px solid #b300ff; /* Borde morado */
+    border-radius: 15px; /* Bordes redondeados */
+    padding: 20px;
+    width: 220px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.user-card h3 {
+    color: #b300ff; /* Color morado para el texto */
+    margin-bottom: 10px;
+}
+
+.user-card p {
+    margin: 5px 0;
+}
+
+.user-card .btn {
+    margin-top: 10px;
+    width: 80%;
+}

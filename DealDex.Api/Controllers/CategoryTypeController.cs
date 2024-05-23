@@ -99,6 +99,7 @@ public class CategoryProductController : ControllerBase
             return BadRequest(response);
         }
         
+        
         if (categoryTypeDto.id == 0)
         {
             response.Errors.Add("El campo id no puede ser cero.");

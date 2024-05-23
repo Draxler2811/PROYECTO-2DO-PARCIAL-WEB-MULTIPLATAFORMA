@@ -70,6 +70,10 @@ public async Task<ActionResult<Response<CarritoCategoryDto>>> Post([FromBody] Ca
     {
         validationErrors.Add("El producto relacionado no existe");
     }
+    if (!await _productCategoryService.ProductCategoryExist(carritoCategoryDtoSinAdd.IdUser))
+    {
+        validationErrors.Add("El usuario  relacionado no existe");
+    }
     
     if (carritoCategoryDtoSinAdd.IdProducto == 0)
     {
@@ -145,24 +149,19 @@ public async Task<ActionResult<Response<CarritoCategoryDto>>> Update([FromBody] 
     var response = new Response<CarritoCategoryDto>();
 
     var validationErrors = new List<string>();
-
+    //
     if (!await _carritoCategoryServices.CarritoCategoryExist(carritoDto.id))
     {
         response.Errors.Add("Product Category not found");
         return NotFound(response);
     }
+
     if (await _carritoCategoryServices.ExistByName(carritoDto.Titulo, carritoDto.id))
     {
-        response.Errors.Add($"Product Brand Name {carritoDto.Titulo} already exists");
+        response.Errors.Add($"Product Category Name {carritoDto.Titulo} already exists");
         return BadRequest(response);
     }
-    
-    
-    if (!await _usersCategoryService.UsersCategoryExist(carritoDto.IdUser))
-    {
-        validationErrors.Add("La categoría asociada al IdCategory especificado no existe.");
-    }
-    
+    //
     if (carritoDto.IdUser == 0)
     {
         validationErrors.Add("El campo IdCategory es obligatorio.");

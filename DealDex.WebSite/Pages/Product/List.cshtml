@@ -16,39 +16,22 @@
     <div class="row">
         <div class="col-md-1"></div>
         <div class="col-10">
-            <table class="table">
-                <tr>
-                    <th>Titulo</th>
-                    <th>Precio</th>
-                    <th>Image</th>
-                    <th>Descripcion</th>
-                    <th>IdCategory</th>
-                    <th>Estado</th>
-                    <th>Ubicaion</th>
-                    <th>IdSupplier</th>
-                    <th></th>
-                </tr>
+            <div class="product-list">
                 @foreach (var category in @Model.Product)
                 {
-                    <tr>
-                        <td>@category.Titulo</td>
-                        <td>@category.Precio</td>
-                        <td>@category.Image</td>
-                        <td>@category.Descripcion</td>
-                        <td>@category.IdCategory</td>
-                        <td>@category.Estado</td>
-                        <td>@category.Ubicacion</td>
-                        <td>@category.IdSupplier</td>
-
-                        <td>
-                            <a a-asp-area="" asp-page="/Product/Editar" asp-route-id="@category.id"
-                               class="btn btn-primary" role="button">Edit</a>
-                            <a a-asp-area="" asp-page="/Product/Delete" asp-route-id="@category.id"
-                               class="btn btn-danger" role="button">Delete</a>
-                        </td>
-                    </tr>
+                    <div class="product-item">
+                        <div class="product-info">
+                            <div class="product-title">@category.Titulo</div>
+                            <img src="@category.Image" alt="Product Image" class="img-thumbnail" />
+                            <div class="product-price">$@category.Precio</div>
+                        </div>
+                        <div class="product-buttons">
+                            <a asp-page="/Product/Editar" asp-route-id="@category.id" class="btn btn-primary" role="button">Edit</a>
+                            <a asp-page="/Product/Delete" asp-route-id="@category.id" class="btn btn-danger" role="button">Delete</a>
+                        </div>
+                    </div>
                 }
-            </table>
+            </div>
         </div>
         <div class="col-md-1"></div>
     </div>

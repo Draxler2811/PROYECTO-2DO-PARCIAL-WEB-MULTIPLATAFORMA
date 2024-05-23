@@ -15,4 +15,6 @@ public interface IUsersService
 
     Task<Response<bool>> DeleteAsync(int id);
 
+    Task<bool> ValidateCredentials(string correo, string contraseña);
+
 }
