@@ -58,7 +58,7 @@ public async Task<ActionResult<Response<CarritoCategoryDto>>> Post([FromBody] Ca
     
     if (await _carritoCategoryServices.ExistByName(carritoCategoryDtoSinAdd.Titulo))
     {
-        response.Errors.Add($"Brand name {carritoCategoryDtoSinAdd.Titulo} already exists");
+        response.Errors.Add($"Titulo {carritoCategoryDtoSinAdd.Titulo} already exists");
         return BadRequest(response);
     }
     
@@ -152,13 +152,13 @@ public async Task<ActionResult<Response<CarritoCategoryDto>>> Update([FromBody] 
     //
     if (!await _carritoCategoryServices.CarritoCategoryExist(carritoDto.id))
     {
-        response.Errors.Add("Product Category not found");
+        response.Errors.Add("Carrito id  not found");
         return NotFound(response);
     }
 
     if (await _carritoCategoryServices.ExistByName(carritoDto.Titulo, carritoDto.id))
     {
-        response.Errors.Add($"Product Category Name {carritoDto.Titulo} already exists");
+        response.Errors.Add($"Titulo  {carritoDto.Titulo} already exists");
         return BadRequest(response);
     }
     //
@@ -167,7 +167,7 @@ public async Task<ActionResult<Response<CarritoCategoryDto>>> Update([FromBody] 
     {
         validationErrors.Add("El producto relacionado no existe");
     }
-    if (!await _productCategoryService.ProductCategoryExist(carritoDto.IdUser))
+    if (!await _usersCategoryService.UsersCategoryExist(carritoDto.IdUser))
     {
         validationErrors.Add("El usuario  relacionado no existe");
     }

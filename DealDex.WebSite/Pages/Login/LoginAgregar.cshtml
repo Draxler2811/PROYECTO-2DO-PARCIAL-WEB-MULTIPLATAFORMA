@@ -1,12 +1,9 @@
 ﻿@page
-@model DealDex.WebSite.Pages.Login.Login
-
+@model DealDex.WebSite.Pages.Login.LoginAgregar
 
 @{
     Layout = "Shared/_Login";
-
 }
-
 
 <head>
     <link rel="stylesheet" href="~/css/Login.css" />
@@ -18,8 +15,13 @@
             <div class="logo-container">
                 <img src="~/css/Logo.jpeg" alt="Logo" class="img-fluid" />
             </div>
-            <h2>Login</h2>
+            <h2>Add</h2>
             <form method="post">
+                <input type="hidden" />
+                <div class="form-group">
+                    <input asp-for="UsersCategoryDto.NombreUsu" class="form-control" maxlength="45" placeholder="Nombre de usuario"/>
+                    <span class="text-danger" asp-validation-for="UsersCategoryDto.NombreUsu"></span>
+                </div>
                 <div class="form-group">
                     <input asp-for="UsersCategoryDto.Correo" class="form-control" maxlength="45" placeholder="Correo"/>
                     <span class="text-danger" asp-validation-for="UsersCategoryDto.Correo"></span>
@@ -32,18 +34,20 @@
                 @if (Model.Errors.Count > 0)
                 {
                     <div class="alert alert-danger">
-                        @foreach (var error in Model.Errors)
-                        {
-                            <p>@error</p>
-                        }
+                        <ul>
+                            @foreach (var error in Model.Errors)
+                            {
+                                <li>@error</li>
+                            }
+                        </ul>
                     </div>
                 }
 
-               <div class="row">
-                                  <div class="col-md-12 text-right">
-                                      <button type="submit" class="btn btn-primary mr-3">Login</button>
-                        <a asp-page="/Login/LoginAgregar" class="btn btn-success btn-black">Crear Cuenta</a>
-                                  </div>
+                <div class="row">
+                    <div class="col-md-12 text-right">
+                        <button type="submit" class="btn btn-primary mr-3">Save</button>
+                        <a asp-page="/Login/Login" class="btn btn-success">Cancel</a>
+                    </div>
                 </div>
             </form>
         </div>

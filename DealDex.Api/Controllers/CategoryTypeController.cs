@@ -48,7 +48,7 @@ public class CategoryProductController : ControllerBase
         
         if (await _categoryTypeServices.ExistByName(categoryTypeDtoSinId.Nombre))
         {
-            response.Errors.Add($"Brand name {categoryTypeDtoSinId.Nombre} already exists");
+            response.Errors.Add($"Nombre {categoryTypeDtoSinId.Nombre} already exists");
             return BadRequest(response);
         }
         
@@ -90,12 +90,12 @@ public class CategoryProductController : ControllerBase
 
         if (!await _categoryTypeServices.CategoryTypeExist(categoryTypeDto.id))
         {
-            response.Errors.Add("Product Category not found");
+            response.Errors.Add("Category not found");
             return NotFound(response);
         }
         if (await _categoryTypeServices.ExistByName(categoryTypeDto.Nombre, categoryTypeDto.id))
         {
-            response.Errors.Add($"Product Brand Name {categoryTypeDto.Nombre} already exists");
+            response.Errors.Add($"Nombre {categoryTypeDto.Nombre} already exists");
             return BadRequest(response);
         }
         

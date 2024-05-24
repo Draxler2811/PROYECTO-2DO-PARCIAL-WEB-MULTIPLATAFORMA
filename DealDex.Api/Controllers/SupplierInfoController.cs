@@ -55,7 +55,7 @@ public class SupplierController : ControllerBase
         
         if (await _supplierInfoService.ExistByName(supplierInfoDtoSinId.Correo))
         {
-            response.Errors.Add($"Brand name {supplierInfoDtoSinId.Correo} already exists");
+            response.Errors.Add($"Correo {supplierInfoDtoSinId.Correo} already exists");
             return BadRequest(response);
         }
 
@@ -118,9 +118,9 @@ public class SupplierController : ControllerBase
             response.Errors.Add("Product Category not found");
             return NotFound(response);
         }
-        if (await _supplierInfoService.ExistByName(supplierInfoDto.Nombre, supplierInfoDto.id))
+        if (await _supplierInfoService.ExistByName(supplierInfoDto.Correo, supplierInfoDto.id))
         {
-            response.Errors.Add($"Product Brand Name {supplierInfoDto.Nombre} already exists");
+            response.Errors.Add($"Correo {supplierInfoDto.Correo} already exists");
             return BadRequest(response);
         }
         

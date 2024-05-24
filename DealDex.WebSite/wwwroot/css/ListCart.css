@@ -52,4 +52,7 @@
     margin-right: 5px;
 }
 
- 
+.container-fluid {
+    position: relative; /* Para que los elementos absolutamente posicionados se ajusten a este contenedor */
+    padding-bottom: 100px; /* Ajusta este valor según sea necesario para asegurarte de que el fondo negro cubra toda la página */
+}

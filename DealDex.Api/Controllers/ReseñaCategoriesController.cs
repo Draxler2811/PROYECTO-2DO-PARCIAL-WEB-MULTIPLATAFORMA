@@ -53,7 +53,7 @@ public class ProductReviewController :ControllerBase
 
         if (await _reseñasCategoryServices.ExistByName(categoryDtoSinId.Titulo))
         {
-            response.Errors.Add($"Brand name {categoryDtoSinId.Titulo} already exists");
+            response.Errors.Add($"Titulo {categoryDtoSinId.Titulo} already exists");
             return BadRequest(response);
         }
         if (!await _productCategoryService.ProductCategoryExist(categoryDtoSinId.IdProducto))
@@ -118,12 +118,12 @@ public class ProductReviewController :ControllerBase
         
         if (!await _reseñasCategoryServices.ReseñaCategoryExist(categoryDto.id))
         {
-            response.Errors.Add("Product Category not found");
+            response.Errors.Add("Reseña not found");
             return NotFound(response);
         }
         if (await _reseñasCategoryServices.ExistByName(categoryDto.Titulo, categoryDto.id))
         {
-            response.Errors.Add($"Product Brand Name {categoryDto.Titulo} already exists");
+            response.Errors.Add($"Titulo {categoryDto.Titulo} already exists");
             return BadRequest(response);
         }
         

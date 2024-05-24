@@ -1,7 +1,6 @@
-﻿/* Estilos para el contenedor de la página de agregar categoría */
-.category-agregar-page {
-    background-color: black; /* Fondo de color negro */
-    color: white; /* Texto en color blanco */
+﻿.category-agregar-page {
+    background-color: black; 
+    color: white; 
     padding: 100px; /* Aumenta el espaciado interno para hacer el fondo negro más grande */
     margin: 0; /* Ajusta los márgenes para que el fondo negro ocupe toda la página */
     position: fixed; /* Hace que el contenedor se fije a la ventana del navegador */

@@ -46,3 +46,12 @@
     margin-top: 10px;
     width: 80%;
 }
+
+/* Additional styles for button alignment */
+.text-right {
+    text-align: right;
+}
+
+.row.justify-content-end {
+    justify-content: flex-end;
+}

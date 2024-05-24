@@ -50,7 +50,7 @@ public class UsersController : ControllerBase
 
         if (await _usersCategoryService.ExistByName(categoryDtoSinId.Correo))
         {
-            response.Errors.Add($"Brand name {categoryDtoSinId.Correo} already exists");
+            response.Errors.Add($"Correo {categoryDtoSinId.Correo} already exists");
             return BadRequest(response);
         }
         if (string.IsNullOrEmpty(categoryDtoSinId.Correo))
@@ -109,9 +109,9 @@ public class UsersController : ControllerBase
             response.Errors.Add("Product Category not found");
             return NotFound(response);
         }
-        if (await _usersCategoryService.ExistByName(categoryDto.NombreUsu, categoryDto.id))
+        if (await _usersCategoryService.ExistByName(categoryDto.Correo, categoryDto.id))
         {
-            response.Errors.Add($"Product Brand Name {categoryDto.NombreUsu} already exists");
+            response.Errors.Add($"Correo {categoryDto.Correo} already exists");
             return BadRequest(response);
         }
         if (categoryDto.id <= 0)
@@ -187,7 +187,4 @@ public class UsersController : ControllerBase
             return BadRequest(response);
         }
     }
-
-
-
 }

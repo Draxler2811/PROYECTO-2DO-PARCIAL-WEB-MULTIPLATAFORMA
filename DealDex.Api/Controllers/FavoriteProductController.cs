@@ -56,7 +56,7 @@ public async Task<ActionResult<Response<FavoriteProductDto>>> Post([FromBody] Fa
 
     if (await _favoriteProductServices.ExistByName(favoriteProductDtoSinId.Titulo))
     {
-        response.Errors.Add($"Brand name {favoriteProductDtoSinId.Titulo} already exists");
+        response.Errors.Add($"Titulo {favoriteProductDtoSinId.Titulo} already exists");
         return BadRequest(response);
     }
     
@@ -74,7 +74,10 @@ public async Task<ActionResult<Response<FavoriteProductDto>>> Post([FromBody] Fa
         validationErrors.Add("El campo IdProducto es obligatorio.");
     }
 
-    
+    if (!await _usersCategoryService.UsersCategoryExist(favoriteProductDtoSinId.IdUser))
+    {
+        validationErrors.Add("El id del usuario  especificado no existe.");
+    }
     
     if (string.IsNullOrEmpty(favoriteProductDtoSinId.Image))
     {
@@ -145,12 +148,12 @@ public async Task<ActionResult<Response<FavoriteProductDto>>> Post([FromBody] Fa
     
         if (!await _favoriteProductServices.FavoriteProductExist(favoritoDto.id))
         {
-            response.Errors.Add("Product Category not found");
+            response.Errors.Add("Favorite not found");
             return NotFound(response);
         }
         if (await _favoriteProductServices.ExistByName(favoritoDto.Titulo, favoritoDto.id))
         {
-            response.Errors.Add($"Product Brand Name {favoritoDto.Titulo} already exists");
+            response.Errors.Add($"Titulo {favoritoDto.Titulo} already exists");
             return BadRequest(response);
         }
         
@@ -168,7 +171,10 @@ public async Task<ActionResult<Response<FavoriteProductDto>>> Post([FromBody] Fa
         {
             validationErrors.Add("El campo IdProducto especificado no existe.");
         }
-    
+        if (!await _usersCategoryService.UsersCategoryExist(favoritoDto.IdUser))
+        {
+            validationErrors.Add("El id del usuario  especificado no existe.");
+        }
         if (favoritoDto.IdProducto == 0)
         {
             validationErrors.Add("El campo IdProducto es obligatorio.");

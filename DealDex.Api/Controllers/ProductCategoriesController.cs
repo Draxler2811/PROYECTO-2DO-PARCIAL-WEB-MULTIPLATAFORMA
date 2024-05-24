@@ -57,7 +57,7 @@ public async Task<ActionResult<Response<ProductCategoryDtoAdd>>> Post([FromBody]
     
     if (await _productCategoryService.ExistByName(categoryDtoSinId.Titulo))
     {
-        response.Errors.Add($"Product Category name {categoryDtoSinId.Titulo} already exists");
+        response.Errors.Add($"Titulo {categoryDtoSinId.Titulo} already exists");
         return BadRequest(response);
     }
 
@@ -157,12 +157,12 @@ public async Task<ActionResult<Response<ProductCategoryDtoAdd>>> Update([FromBod
     
     if (!await _productCategoryService.ProductCategoryExist(categoryDto.id))
     {
-        response.Errors.Add("Product Category not found");
+        response.Errors.Add("Product not found");
         return NotFound(response);
     }
     if (await _productCategoryService.ExistByName(categoryDto.Titulo, categoryDto.id))
     {
-        response.Errors.Add($"Product Brand Name {categoryDto.Titulo} already exists");
+        response.Errors.Add($"Titulo {categoryDto.Titulo} already exists");
         return BadRequest(response);
     }
     
