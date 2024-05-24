@@ -16,17 +16,17 @@
     <div class="row">
         <div class="col-md-1"></div>
         <div class="col-10">
-            <div class="card-columns">
+            <div class="custom-card-columns">
                 @foreach (var category in @Model.Cart)
                 {
-                    <div class="card">
-                        <img src="@category.Image" class="card-img-top" alt="Product Image">
-                        <div class="card-body">
-                            <h5 class="card-title">@category.Titulo</h5>
-                            <p class="card-text">Precio: @category.Precio</p>
-                            <p class="card-text">Cantidad: @category.Cantidad</p>
+                    <div class="custom-card">
+                        <img src="@category.Image" class="custom-card-img-top" alt="Product Image">
+                        <div class="custom-card-body">
+                            <h5 class="custom-card-title">@category.Titulo</h5>
+                            <p class="custom-card-text">Precio: @category.Precio</p>
+                            <p class="custom-card-text">Cantidad: @category.Cantidad</p>
                         </div>
-                        <div class="card-footer">
+                        <div class="custom-card-footer">
                             <a a-asp-area="" asp-page="/Cart/Editar" asp-route-id="@category.id"
                                class="btn btn-primary" role="button">Edit</a>
                             <a a-asp-area="" asp-page="/Cart/Delete" asp-route-id="@category.id"

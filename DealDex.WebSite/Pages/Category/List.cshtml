@@ -3,43 +3,34 @@
 
 <div class="container-fluid">
     <form method="get">
-        <div class = "row">
-            <div class = "col-md-8"></div>
-            <div class = "col-md-4">
-                <br/>
-                <button id = "btnSearch" class="btn btn-primary mr-3" >Search</button>
-                <a asp-page="/Category/Agregar" class="btn btn-success"> Add New</a>
+        <div class="row">
+            <div class="col-md-8"></div>
+            <div class="col-md-4">
+                <br />
+                <button id="btnSearch" class="btn btn-primary mr-3">Search</button>
+                <a asp-page="/Category/Agregar" class="btn btn-success">Add New</a>
             </div>
         </div>
     </form>
-    
-    
+
     <div class="row">
         <div class="col-md-1"></div>
         <div class="col-10">
-            <table class="table">
-                <tr>
-                    <th>Nombre</th>
-                  
-                    
-                    <th></th>
-                </tr>
+            <div class="category-list">
                 @foreach (var category in @Model.CategoryTypeDto)
                 {
-                    <tr>
-                        <td>@category.Nombre</td>
-               
-                        <td>
-                            <a a-asp-area="" asp-page="/Category/Editar" asp-route-id="@category.id"
-                               class="btn btn-primary" role="button">Edit</a>
-                            <a a-asp-area="" asp-page="/Category/Delete" asp-route-id="@category.id"
-                               class="btn btn-danger" role="button">Delete</a>
-                        </td>
-                    </tr>
+                    <div class="category-item">
+                        <div class="category-info">
+                            <div class="category-name">@category.Nombre</div>
+                        </div>
+                        <div class="category-buttons">
+                            <a a-asp-area="" asp-page="/Category/Editar" asp-route-id="@category.id" class="btn btn-primary" role="button">Edit</a>
+                            <a a-asp-area="" asp-page="/Category/Delete" asp-route-id="@category.id" class="btn btn-danger" role="button">Delete</a>
+                        </div>
+                    </div>
                 }
-            </table>
+            </div>
         </div>
         <div class="col-md-1"></div>
     </div>
-    
 </div>

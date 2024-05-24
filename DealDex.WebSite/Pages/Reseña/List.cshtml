@@ -1,43 +1,48 @@
 ﻿@page
 @model DealDex.WebSite.Pages.Reseña.ListModel
 
-<div class="container-fluid">
+<div class="container-fluid container-reseñas">
     <form method="get">
-        <div class = "row">
-            <div class = "col-md-8"></div>
-            <div class = "col-md-4">
+        <div class="row">
+            <div class="col-md-8"></div>
+            <div class="col-md-4">
                 <br/>
-                <button id = "btnSearch" class="btn btn-primary mr-3" >Search</button>
-                <a asp-page="/Reseña/Agregar" class="btn btn-success"> Add New</a>
+                <button id="btnSearch" class="btn btn-primary mr-3">Search</button>
+                <a asp-page="/Reseña/Agregar" class="btn btn-success">Add New</a>
             </div>
         </div>
     </form>
-    
     
     <div class="row">
         <div class="col-md-1"></div>
         <div class="col-10">
             <table class="table">
                 <tr>
-                    <th>Cantidad</th>
                     <th>Imagen</th>
-                    <th>Precio</th>
-                    <th>Titulo</th>
+                    <th>Título y Valoración</th>
                     <th>IdProducto</th>
-                    <th>IdUser</th>
-                    
-                    <th></th>
+                    <th>Acciones</th>
                 </tr>
                 @foreach (var category in @Model.Reseña)
                 {
                     <tr>
-                        <td>@category.Valoracion</td>
-                        <td>@category.Titulo</td>
+                        <td><div class="image-container"><img src="https://store-images.s-microsoft.com/image/apps.36764.13817186670444302.148c432a-9fce-4c7d-bf13-8a2bd3a527b3.2a7b94f3-ed66-45b6-aaf3-337c18d442cd" alt="Descripción de la imagen"></div></td>
+                        <td>
+                            <div class="info-container">
+                                <h5>@category.Titulo</h5>
+                                <div class="rating">
+                                    @for (int i = 0; i < category.Valoracion; i++)
+                                    {
+                                        <span class="star">&#9733;</span>
+                                    }
+                                </div>
+                            </div>
+                        </td>
                         <td>@category.IdProducto</td>
                         <td>
-                            <a a-asp-area="" asp-page="/Reseña/Editar" asp-route-id="@category.id"
+                            <a asp-area="" asp-page="/Reseña/Editar" asp-route-id="@category.id"
                                class="btn btn-primary" role="button">Edit</a>
-                            <a a-asp-area="" asp-page="/Reseña/Delete" asp-route-id="@category.id"
+                            <a asp-area="" asp-page="/Reseña/Delete" asp-route-id="@category.id"
                                class="btn btn-danger" role="button">Delete</a>
                         </td>
                     </tr>
@@ -46,5 +51,4 @@
         </div>
         <div class="col-md-1"></div>
     </div>
-    
 </div>

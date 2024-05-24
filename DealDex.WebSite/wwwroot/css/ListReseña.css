@@ -1,0 +1,86 @@
+﻿.container-reseñas {
+    /* Estilos específicos para el contenedor de reseñas */
+    background-color: #f2f2f2;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.container-reseñas table {
+    /* Estilos para la tabla dentro del contenedor */
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.container-reseñas th,
+.container-reseñas td {
+    /* Estilos para las celdas de la tabla */
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+    text-align: left;
+}
+
+.container-reseñas th {
+    /* Estilos para las celdas de encabezado */
+    background-color: #f2f2f2;
+    color: #333;
+}
+
+.image-container {
+    /* Estilos para el contenedor de la imagen */
+    width: 50px;
+    height: 50px;
+    overflow: hidden;
+    border-radius: 50%;
+}
+
+.image-container img {
+    /* Estilos para la imagen */
+    width: 100%;
+    height: auto;
+}
+
+.info-container {
+    /* Estilos para el contenedor de información */
+    display: flex;
+    flex-direction: column;
+}
+
+.info-container h5 {
+    /* Estilos para el título */
+    margin: 0;
+}
+
+.rating {
+    /* Estilos para el contenedor de la valoración */
+    color: gold;
+    font-size: 20px;
+}
+
+.star {
+    /* Estilos para la estrella */
+    display: inline-block;
+    margin-right: 3px;
+}
+
+.btn {
+    /* Estilos para los botones */
+    margin-top: 5px;
+}
+.image-container {
+    /* Estilos para el contenedor de la imagen */
+    width: 100px;
+    height: 100px;
+    overflow: hidden;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center; /* Centra horizontalmente la imagen */
+    align-items: center; /* Centra verticalmente la imagen */
+}
+
+.image-container img {
+    /* Estilos para la imagen */
+    width: 100%; /* Ajusta la imagen para que ocupe todo el espacio del contenedor */
+    height: auto;
+    border-radius: 50%; /* Asegura que la imagen sea circular */
+}

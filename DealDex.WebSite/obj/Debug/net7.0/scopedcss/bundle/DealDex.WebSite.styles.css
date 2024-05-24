@@ -1,49 +1,75 @@
 /* _content/DealDex.WebSite/Pages/Shared/_Layout.cshtml.rz.scp.css */
-/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
-for details on configuring this project to bundle and minify static web assets. */
-
+/* Estilos para la marca de navegación y enlaces del encabezado */
 a.navbar-brand[b-ofxwxyqy8r] {
   white-space: normal;
   text-align: center;
   word-break: break-all;
+  color: white; /* Cambiar el color del texto de la marca de navegación */
 }
 
-a[b-ofxwxyqy8r] {
-  color: #0077cc;
+.navbar-nav .nav-link[b-ofxwxyqy8r] {
+  color: white !important; /* Cambiar el color del texto de los enlaces del encabezado */
 }
 
+/* Estilos para los botones */
 .btn-primary[b-ofxwxyqy8r] {
   color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
+  background-color: #652CB3;
+  border-color: #652CB3;
 }
 
-.nav-pills .nav-link.active[b-ofxwxyqy8r], .nav-pills .show > .nav-link[b-ofxwxyqy8r] {
+/* Estilos para las píldoras de navegación */
+.nav-pills .nav-link.active[b-ofxwxyqy8r],
+.nav-pills .show > .nav-link[b-ofxwxyqy8r] {
   color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
+  background-color: #652CB3;
+  border-color: #652CB3;
 }
 
+/* Estilos para los bordes */
 .border-top[b-ofxwxyqy8r] {
-  border-top: 1px solid #e5e5e5;
-}
-.border-bottom[b-ofxwxyqy8r] {
-  border-bottom: 1px solid #e5e5e5;
+  border-top: 1px solid #e5e5e5 !important;
 }
 
+.border-bottom[b-ofxwxyqy8r] {
+  border-bottom: 1px solid #e5e5e5 !important;
+}
+
+/* Estilos para las sombras */
 .box-shadow[b-ofxwxyqy8r] {
   box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
 }
 
+/* Estilos para el botón de aceptar política */
 button.accept-policy[b-ofxwxyqy8r] {
   font-size: 1rem;
   line-height: inherit;
 }
 
+/* Estilos para el pie de página */
 .footer[b-ofxwxyqy8r] {
   position: absolute;
   bottom: 0;
   width: 100%;
   white-space: nowrap;
   line-height: 60px;
+  background-color: #b300ff; /* Cambiar el color de fondo del pie de página */
+  color: white; /* Cambiar el color del texto del pie de página */
+}
+
+footer a[b-ofxwxyqy8r] {
+  color: white !important; /* Cambiar el color del texto de los enlaces del pie de página */
+}
+
+header[b-ofxwxyqy8r] {
+  background-color: #652CB3 !important; /* Cambiar el color de fondo del encabezado a morado */
+  color: white !important; /* Asegurar que el color del texto en el header sea blanco */
+}
+
+header .navbar-nav .nav-link[b-ofxwxyqy8r] {
+  color: white !important; /* Asegurar que el color de los enlaces en el header sea blanco */
+}
+
+header .navbar-brand[b-ofxwxyqy8r] {
+  color: white !important; /* Asegurar que el color de la marca de navegación en el header sea blanco */
 }

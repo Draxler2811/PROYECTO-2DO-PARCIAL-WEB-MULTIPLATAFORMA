@@ -1,0 +1,65 @@
+﻿/* Estilos para el contenedor de la lista de categorías */
+.category-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+/* Estilos para cada elemento de la lista de categorías */
+.category-item {
+    width: calc(33.33% - 20px); /* Ajusta el ancho del elemento */
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: #f7f7f7;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.category-info {
+    text-align: center;
+}
+
+.category-name {
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.category-buttons {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.category-buttons a {
+    margin-left: 10px;
+}
+
+/* Estilos para cada elemento de la lista de categorías */
+.category-item {
+    width: calc(33.33% - 20px); /* Ajusta el ancho del elemento */
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: #f7f7f7;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.category-info {
+    text-align: center;
+}
+
+.category-name {
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.category-buttons {
+    display: flex;
+    justify-content: center; /* Cambio aquí: centra los botones horizontalmente */
+    margin-top: 10px; /* Agregado aquí: espacio entre el nombre y los botones */
+}
+
+.category-buttons a {
+    margin-left: 10px;
+}

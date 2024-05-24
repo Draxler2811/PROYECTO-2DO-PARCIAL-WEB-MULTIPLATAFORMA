@@ -71,6 +71,11 @@ public async Task<ActionResult<Response<ProductCategoryDtoAdd>>> Post([FromBody]
         validationErrors.Add("La categoría asociada al IdSupplier especificado no existe.");
     }
 
+    if (!await _categoryTypeServices.CategoryTypeExist(categoryDtoSinId.IdCategory))
+    {
+        validationErrors.Add("La categoría asociada al IdCategory especificado no existe.");
+    }
+
     if (categoryDtoSinId.IdSupplier == 0)
     {
         validationErrors.Add("El campo IdSupplier es obligatorio.");
@@ -162,16 +167,15 @@ public async Task<ActionResult<Response<ProductCategoryDtoAdd>>> Update([FromBod
     }
     
     
+    if (!await _supplierInfoService.SupplierInfoExist(categoryDto.IdSupplier))
+    {
+        validationErrors.Add("La categoría asociada al IdSupplier especificado no existe.");
+    }
+
     if (!await _categoryTypeServices.CategoryTypeExist(categoryDto.IdCategory))
     {
         validationErrors.Add("La categoría asociada al IdCategory especificado no existe.");
     }
-
-    if (!await _categoryTypeServices.CategoryTypeExist(categoryDto.IdSupplier))
-    {
-        validationErrors.Add("La categoría asociada al IdSupplier especificado no existe.");
-    }
-            
     if (categoryDto.IdSupplier == 0)
     {
         validationErrors.Add("El campo IdSupplier es obligatorio.");

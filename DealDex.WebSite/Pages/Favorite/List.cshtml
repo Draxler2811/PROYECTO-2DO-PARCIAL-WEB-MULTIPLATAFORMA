@@ -3,51 +3,39 @@
 
 <div class="container-fluid">
     <form method="get">
-        <div class = "row">
-            <div class = "col-md-8"></div>
-            <div class = "col-md-4">
+        <div class="row">
+            <div class="col-md-8"></div>
+            <div class="col-md-4">
                 <br/>
-                <button id = "btnSearch" class="btn btn-primary mr-3" >Search</button>
+                <button id="btnSearch" class="btn btn-primary mr-3">Search</button>
                 <a asp-page="/Favorite/Agregar" class="btn btn-success"> Add New</a>
             </div>
         </div>
     </form>
     
-    
     <div class="row">
         <div class="col-md-1"></div>
         <div class="col-10">
-            <table class="table">
-                <tr>
-                    <th>Cantidad</th>
-                    <th>Imagen</th>
-                    <th>Precio</th>
-                    <th>Titulo</th>
-                    <th>IdProducto</th>
-                    <th>IdUser</th>
-                    
-                    <th></th>
-                </tr>
+            <div class="custom-card-columns">
                 @foreach (var category in @Model.FavoriteProductDtos)
                 {
-                    <tr>
-                        <td>@category.Cantidad</td>
-                        <td><img src="@category.Image" alt="Product Image" class="img-thumbnail" style="width:50px;height:50px;"/></td>
-                        <td>@category.Precio</td>
-                        <td>@category.Titulo</td>
-                        <td>@category.IdProducto</td>
-                        <td>@category.IdUser</td>
-                        <td>
+                    <div class="custom-card">
+                        <img src="@category.Image" class="custom-card-img-top" alt="Product Image">
+                        <div class="custom-card-body">
+                            <h5 class="custom-card-title">@category.Titulo</h5>
+                            <p class="custom-card-text">Precio: @category.Precio</p>
+                            <p class="custom-card-text">Cantidad: @category.Cantidad</p>
+                        </div>
+                        <div class="custom-card-footer">
                             <a a-asp-area="" asp-page="/Favorite/Editar" asp-route-id="@category.id"
                                class="btn btn-primary" role="button">Edit</a>
                             <a a-asp-area="" asp-page="/Favorite/Delete" asp-route-id="@category.id"
                                class="btn btn-danger" role="button">Delete</a>
-                        </td>
-                    </tr>
+                        </div>
+                    </div>
                 }
-            </table>
+            </div>
         </div>
         <div class="col-md-1"></div>
     </div>
-    
 </div>

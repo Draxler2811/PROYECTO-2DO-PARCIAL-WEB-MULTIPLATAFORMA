@@ -5,12 +5,104 @@
       "PackagePath": "staticwebassets\\DealDex.WebSite.bundle.scp.css"
     },
     {
+      "Id": "C:\\Users\\ol196\\OneDrive\\Documentos\\Universidad\\Octavo Semestre\\Tecnologias web Multiplataforma\\Parcial 2\\DealDex\\DealDex.WebSite\\wwwroot\\css\\AgregarCard.css",
+      "PackagePath": "staticwebassets\\css\\AgregarCard.css"
+    },
+    {
+      "Id": "C:\\Users\\ol196\\OneDrive\\Documentos\\Universidad\\Octavo Semestre\\Tecnologias web Multiplataforma\\Parcial 2\\DealDex\\DealDex.WebSite\\wwwroot\\css\\AgregarCategoria.css",
+      "PackagePath": "staticwebassets\\css\\AgregarCategoria.css"
+    },
+    {
+      "Id": "C:\\Users\\ol196\\OneDrive\\Documentos\\Universidad\\Octavo Semestre\\Tecnologias web Multiplataforma\\Parcial 2\\DealDex\\DealDex.WebSite\\wwwroot\\css\\AgregarFavorite.css",
+      "PackagePath": "staticwebassets\\css\\AgregarFavorite.css"
+    },
+    {
+      "Id": "C:\\Users\\ol196\\OneDrive\\Documentos\\Universidad\\Octavo Semestre\\Tecnologias web Multiplataforma\\Parcial 2\\DealDex\\DealDex.WebSite\\wwwroot\\css\\AgregarProduct.css",
+      "PackagePath": "staticwebassets\\css\\AgregarProduct.css"
+    },
+    {
+      "Id": "C:\\Users\\ol196\\OneDrive\\Documentos\\Universidad\\Octavo Semestre\\Tecnologias web Multiplataforma\\Parcial 2\\DealDex\\DealDex.WebSite\\wwwroot\\css\\AgregarReseña.css",
+      "PackagePath": "staticwebassets\\css\\AgregarReseña.css"
+    },
+    {
+      "Id": "C:\\Users\\ol196\\OneDrive\\Documentos\\Universidad\\Octavo Semestre\\Tecnologias web Multiplataforma\\Parcial 2\\DealDex\\DealDex.WebSite\\wwwroot\\css\\AgregarSupplier.css",
+      "PackagePath": "staticwebassets\\css\\AgregarSupplier.css"
+    },
+    {
+      "Id": "C:\\Users\\ol196\\OneDrive\\Documentos\\Universidad\\Octavo Semestre\\Tecnologias web Multiplataforma\\Parcial 2\\DealDex\\DealDex.WebSite\\wwwroot\\css\\DeleteCart.css",
+      "PackagePath": "staticwebassets\\css\\DeleteCart.css"
+    },
+    {
+      "Id": "C:\\Users\\ol196\\OneDrive\\Documentos\\Universidad\\Octavo Semestre\\Tecnologias web Multiplataforma\\Parcial 2\\DealDex\\DealDex.WebSite\\wwwroot\\css\\DeleteCategory.css",
+      "PackagePath": "staticwebassets\\css\\DeleteCategory.css"
+    },
+    {
+      "Id": "C:\\Users\\ol196\\OneDrive\\Documentos\\Universidad\\Octavo Semestre\\Tecnologias web Multiplataforma\\Parcial 2\\DealDex\\DealDex.WebSite\\wwwroot\\css\\DeleteProduct.css",
+      "PackagePath": "staticwebassets\\css\\DeleteProduct.css"
+    },
+    {
+      "Id": "C:\\Users\\ol196\\OneDrive\\Documentos\\Universidad\\Octavo Semestre\\Tecnologias web Multiplataforma\\Parcial 2\\DealDex\\DealDex.WebSite\\wwwroot\\css\\DeleteProveedor.css",
+      "PackagePath": "staticwebassets\\css\\DeleteProveedor.css"
+    },
+    {
+      "Id": "C:\\Users\\ol196\\OneDrive\\Documentos\\Universidad\\Octavo Semestre\\Tecnologias web Multiplataforma\\Parcial 2\\DealDex\\DealDex.WebSite\\wwwroot\\css\\DeleteReseña.css",
+      "PackagePath": "staticwebassets\\css\\DeleteReseña.css"
+    },
+    {
+      "Id": "C:\\Users\\ol196\\OneDrive\\Documentos\\Universidad\\Octavo Semestre\\Tecnologias web Multiplataforma\\Parcial 2\\DealDex\\DealDex.WebSite\\wwwroot\\css\\DeleteUsuario.css",
+      "PackagePath": "staticwebassets\\css\\DeleteUsuario.css"
+    },
+    {
+      "Id": "C:\\Users\\ol196\\OneDrive\\Documentos\\Universidad\\Octavo Semestre\\Tecnologias web Multiplataforma\\Parcial 2\\DealDex\\DealDex.WebSite\\wwwroot\\css\\Deletefavorite.css",
+      "PackagePath": "staticwebassets\\css\\Deletefavorite.css"
+    },
+    {
+      "Id": "C:\\Users\\ol196\\OneDrive\\Documentos\\Universidad\\Octavo Semestre\\Tecnologias web Multiplataforma\\Parcial 2\\DealDex\\DealDex.WebSite\\wwwroot\\css\\EditarCart.css",
+      "PackagePath": "staticwebassets\\css\\EditarCart.css"
+    },
+    {
+      "Id": "C:\\Users\\ol196\\OneDrive\\Documentos\\Universidad\\Octavo Semestre\\Tecnologias web Multiplataforma\\Parcial 2\\DealDex\\DealDex.WebSite\\wwwroot\\css\\EditarCategory.css",
+      "PackagePath": "staticwebassets\\css\\EditarCategory.css"
+    },
+    {
+      "Id": "C:\\Users\\ol196\\OneDrive\\Documentos\\Universidad\\Octavo Semestre\\Tecnologias web Multiplataforma\\Parcial 2\\DealDex\\DealDex.WebSite\\wwwroot\\css\\EditarFavorite.css",
+      "PackagePath": "staticwebassets\\css\\EditarFavorite.css"
+    },
+    {
+      "Id": "C:\\Users\\ol196\\OneDrive\\Documentos\\Universidad\\Octavo Semestre\\Tecnologias web Multiplataforma\\Parcial 2\\DealDex\\DealDex.WebSite\\wwwroot\\css\\EditarProduct.css",
+      "PackagePath": "staticwebassets\\css\\EditarProduct.css"
+    },
+    {
+      "Id": "C:\\Users\\ol196\\OneDrive\\Documentos\\Universidad\\Octavo Semestre\\Tecnologias web Multiplataforma\\Parcial 2\\DealDex\\DealDex.WebSite\\wwwroot\\css\\EditarProveedor.css",
+      "PackagePath": "staticwebassets\\css\\EditarProveedor.css"
+    },
+    {
+      "Id": "C:\\Users\\ol196\\OneDrive\\Documentos\\Universidad\\Octavo Semestre\\Tecnologias web Multiplataforma\\Parcial 2\\DealDex\\DealDex.WebSite\\wwwroot\\css\\EditarReseña.css",
+      "PackagePath": "staticwebassets\\css\\EditarReseña.css"
+    },
+    {
       "Id": "C:\\Users\\ol196\\OneDrive\\Documentos\\Universidad\\Octavo Semestre\\Tecnologias web Multiplataforma\\Parcial 2\\DealDex\\DealDex.WebSite\\wwwroot\\css\\ListCart.css",
       "PackagePath": "staticwebassets\\css\\ListCart.css"
     },
     {
+      "Id": "C:\\Users\\ol196\\OneDrive\\Documentos\\Universidad\\Octavo Semestre\\Tecnologias web Multiplataforma\\Parcial 2\\DealDex\\DealDex.WebSite\\wwwroot\\css\\ListCategory.css",
+      "PackagePath": "staticwebassets\\css\\ListCategory.css"
+    },
+    {
+      "Id": "C:\\Users\\ol196\\OneDrive\\Documentos\\Universidad\\Octavo Semestre\\Tecnologias web Multiplataforma\\Parcial 2\\DealDex\\DealDex.WebSite\\wwwroot\\css\\ListFavorite.css",
+      "PackagePath": "staticwebassets\\css\\ListFavorite.css"
+    },
+    {
       "Id": "C:\\Users\\ol196\\OneDrive\\Documentos\\Universidad\\Octavo Semestre\\Tecnologias web Multiplataforma\\Parcial 2\\DealDex\\DealDex.WebSite\\wwwroot\\css\\ListProduct.css",
       "PackagePath": "staticwebassets\\css\\ListProduct.css"
+    },
+    {
+      "Id": "C:\\Users\\ol196\\OneDrive\\Documentos\\Universidad\\Octavo Semestre\\Tecnologias web Multiplataforma\\Parcial 2\\DealDex\\DealDex.WebSite\\wwwroot\\css\\ListReseña.css",
+      "PackagePath": "staticwebassets\\css\\ListReseña.css"
+    },
+    {
+      "Id": "C:\\Users\\ol196\\OneDrive\\Documentos\\Universidad\\Octavo Semestre\\Tecnologias web Multiplataforma\\Parcial 2\\DealDex\\DealDex.WebSite\\wwwroot\\css\\ListSupplier.css",
+      "PackagePath": "staticwebassets\\css\\ListSupplier.css"
     },
     {
       "Id": "C:\\Users\\ol196\\OneDrive\\Documentos\\Universidad\\Octavo Semestre\\Tecnologias web Multiplataforma\\Parcial 2\\DealDex\\DealDex.WebSite\\wwwroot\\css\\ListUser.css",

@@ -1,4 +1,4 @@
-﻿/* Cart.css */
+﻿/* Favorite.css */
 
 .container-fluid {
     position: relative; /* Para que los elementos absolutamente posicionados se ajusten a este contenedor */
@@ -52,4 +52,14 @@
     margin-right: 5px;
 }
 
- 
+.container-fluid::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(0, 0, 0); /* Color de fondo negro con un poco de transparencia */
+    z-index: -1; /* Asegura que el fondo esté detrás del contenido */
+    border-radius: 8px; /* Ajusta el radio del borde según sea necesario */
+}
