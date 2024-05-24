@@ -1,64 +1,68 @@
 ﻿@page
 @model DealDex.WebSite.Pages.Favorite.Agregar
 
-<div class="container-fluid">
+<div class="container-fluid" id="favorite-agregar-container">
     <div class="row">
         <div class="col-md-1"></div>
-        <div class="col-md-10"></div>
-        <h2>Agregar</h2>
-        <form method="post">
-            <input type="hidden"/>
-            <div class="form-group">
-                <label asp-for="FavoriteProduct.Titulo"></label>
-                <input asp-for="FavoriteProduct.Titulo" class="form-control" maxlength="45"/>
-                <span class="text-danger" asp-validation-for="FavoriteProduct.Titulo"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="FavoriteProduct.Image"></label>
-                <input asp-for="FavoriteProduct.Image" class="form-control" maxlength="1000"/>
-                <span class="text-danger" asp-validation-for="FavoriteProduct.Image"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="FavoriteProduct.Precio"></label>
-                <input asp-for="FavoriteProduct.Precio" class="form-control" maxlength="45"/>
-                <span class="text-danger" asp-validation-for="FavoriteProduct.Precio"></span>
-            </div>
-               <div class="form-group">
-                                        <label asp-for="FavoriteProduct.Cantidad"></label>
-                                        <input asp-for="FavoriteProduct.Cantidad" class="form-control" maxlength="45"/>
-                                        <span class="text-danger" asp-validation-for="FavoriteProduct.Cantidad"></span>
-                                    </div>
-            <div class="form-group">
-                <label asp-for="FavoriteProduct.IdProducto"></label>
-                <input asp-for="FavoriteProduct.IdProducto" class="form-control" maxlength="45"/>
-                <span class="text-danger" asp-validation-for="FavoriteProduct.IdProducto"></span>
-            </div>
-             <div class="form-group">
-                            <label asp-for="FavoriteProduct.IdUser"></label>
-                            <input asp-for="FavoriteProduct.IdUser" class="form-control" maxlength="45"/>
-                            <span class="text-danger" asp-validation-for="FavoriteProduct.IdUser"></span>
-                        </div>
-           
-            @if (Model.Errors.Count > 0)
-            {
-                <div class="alert alert-danger" role="alert">
-                    <ul>
-                        @foreach (var error in Model.Errors)
-                        {
-                            <li>@error</li>
-                        }
-                    </ul>
+        <div class="col-md-10">
+            <div class="card">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h2>Agregar</h2>
+                        <form method="post">
+                            <input type="hidden" />
+                            <div class="form-group">
+                                <label asp-for="FavoriteProduct.Titulo"></label>
+                                <input asp-for="FavoriteProduct.Titulo" class="form-control" maxlength="45" />
+                                <span class="text-danger" asp-validation-for="FavoriteProduct.Titulo"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="FavoriteProduct.Image"></label>
+                                <input asp-for="FavoriteProduct.Image" class="form-control" maxlength="1000" />
+                                <span class="text-danger" asp-validation-for="FavoriteProduct.Image"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="FavoriteProduct.Precio"></label>
+                                <input asp-for="FavoriteProduct.Precio" class="form-control" maxlength="45" />
+                                <span class="text-danger" asp-validation-for="FavoriteProduct.Precio"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="FavoriteProduct.Cantidad"></label>
+                                <input asp-for="FavoriteProduct.Cantidad" class="form-control" maxlength="45" />
+                                <span class="text-danger" asp-validation-for="FavoriteProduct.Cantidad"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="FavoriteProduct.IdProducto"></label>
+                                <input asp-for="FavoriteProduct.IdProducto" class="form-control" maxlength="45" />
+                                <span class="text-danger" asp-validation-for="FavoriteProduct.IdProducto"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="FavoriteProduct.IdUser"></label>
+                                <input asp-for="FavoriteProduct.IdUser" class="form-control" maxlength="45" />
+                                <span class="text-danger" asp-validation-for="FavoriteProduct.IdUser"></span>
+                            </div>
+                            @if (Model.Errors.Count > 0)
+                            {
+                                <div class="alert alert-danger" role="alert">
+                                    <ul>
+                                        @foreach (var error in Model.Errors)
+                                        {
+                                            <li>@error</li>
+                                        }
+                                    </ul>
+                                </div>
+                            }
+                            <div class="row">
+                                <div class="col-md-12 text-right">
+                                    <button type="submit" class="btn btn-primary mr-3">Save</button>
+                                    <a class="btn btn-secondary">Cancel</a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
                 </div>
-            }
-            <div class="row">
-                <div class="col-md-12 text-right">
-                    <button type="submit" class="btn btn-primary mr-3">Save</button>
-                    <a class="btn btn-secondary">Cancel</a>
-                </div>
             </div>
-        </form>
-    </div>
-    <div>
+        </div>
         <div class="col-md-1"></div>
     </div>
 </div>

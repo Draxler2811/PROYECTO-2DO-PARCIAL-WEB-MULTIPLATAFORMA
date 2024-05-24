@@ -51,10 +51,15 @@ public class Editar : PageModel
         
             response = await _service.UpdateAsync(CarritoCategoryDto);
         
-        
+            Errors = response.Errors;
+
+            if (Errors.Count > 0)
+            {
+                return Page();
+            }
+
         
 
-        CarritoCategoryDto = response.Data;
         return RedirectToPage("./List");
     }
 }

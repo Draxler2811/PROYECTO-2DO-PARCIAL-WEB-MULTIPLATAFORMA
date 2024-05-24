@@ -51,9 +51,12 @@ public class Editar : PageModel
         response = await _service.UpdateAsync(ReseñaCategoryDto);
         
         
-        
+        Errors = response.Errors;
 
-        ReseñaCategoryDto = response.Data;
+        if (Errors.Count > 0)
+        {
+            return Page();
+        }
         return RedirectToPage("./List");
     }
 }

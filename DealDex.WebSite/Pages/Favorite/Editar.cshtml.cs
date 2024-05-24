@@ -50,10 +50,12 @@ public class Editar : PageModel
         
         response = await _service.UpdateAsync(FavoriteProductDto);
         
-        
-        
+        Errors = response.Errors;
 
-        FavoriteProductDto = response.Data;
+        if (Errors.Count > 0)
+        {
+            return Page();
+        }
         return RedirectToPage("./List");
     }
 }

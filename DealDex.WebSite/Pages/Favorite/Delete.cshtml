@@ -1,52 +1,62 @@
 ﻿@page "{id:int}"
 @model DealDex.WebSite.Pages.Favorite.Delete
 
-<div class="container-fluid">
+<div class="container-fluid" id="favorite-delete-container">
     <div class="row">
         <div class="col-md-1"></div>
-        <div class="col-md-10"></div>
-        <h2>Delete Product Category</h2>
-        <form method="post">
-            <input type="hidden" asp-for="FavoriteProductDto.id"/>
-            <div class="form-group">
-                <label asp-for="FavoriteProductDto.Titulo"></label>
-                <input readonly="" asp-for="FavoriteProductDto.Titulo" class="form-control" maxlength="45"/>
-            </div>
-            <div class="form-group">
-                <label asp-for="FavoriteProductDto.Cantidad"></label>
-                <input readonly="" asp-for="FavoriteProductDto.Cantidad" class="form-control" maxlength="100"/>
-            </div>
-            <div class="form-group">
-                <label asp-for="FavoriteProductDto.Image"></label>
-                <input readonly="" asp-for="FavoriteProductDto.Image" class="form-control" maxlength="100"/>
-            </div>
-            <div class="form-group">
-                <label asp-for="FavoriteProductDto.Precio"></label>
-                <input readonly="" asp-for="FavoriteProductDto.Precio" class="form-control" maxlength="100"/>
-            </div>
-            <div class="form-group">
-                <label asp-for="FavoriteProductDto.IdProducto"></label>
-                <input readonly="" asp-for="FavoriteProductDto.IdProducto" class="form-control" maxlength="100"/>
-            </div>
-            <div class="form-group">
-                <label asp-for="FavoriteProductDto.IdUser"></label>
-                <input readonly="" asp-for="FavoriteProductDto.IdUser" class="form-control" maxlength="100"/>
-            </div>
-           
-            
-            @if (Model.Errors.Count > 0)
-            {
-
-            }
-            <div class="row">
-                <div class="col-md-12 text-right">
-                    <button type="submit" class="btn btn-primary mr-3">Delete</button>
-                    <a class="btn btn-secondary">Cancel</a>
+        <div class="col-md-10">
+            <div class="card">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h2>Delete Product Category</h2>
+                        <form method="post">
+                            <input type="hidden" asp-for="FavoriteProductDto.id"/>
+                            <div class="form-group">
+                                <label asp-for="FavoriteProductDto.Titulo"></label>
+                                <input readonly="" asp-for="FavoriteProductDto.Titulo" class="form-control" maxlength="45"/>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="FavoriteProductDto.Cantidad"></label>
+                                <input readonly="" asp-for="FavoriteProductDto.Cantidad" class="form-control" maxlength="100"/>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="FavoriteProductDto.Image"></label>
+                                <input readonly="" asp-for="FavoriteProductDto.Image" class="form-control" maxlength="100"/>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="FavoriteProductDto.Precio"></label>
+                                <input readonly="" asp-for="FavoriteProductDto.Precio" class="form-control" maxlength="100"/>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="FavoriteProductDto.IdProducto"></label>
+                                <input readonly="" asp-for="FavoriteProductDto.IdProducto" class="form-control" maxlength="100"/>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="FavoriteProductDto.IdUser"></label>
+                                <input readonly="" asp-for="FavoriteProductDto.IdUser" class="form-control" maxlength="100"/>
+                            </div>
+                            @if (Model.Errors.Count > 0)
+                            {
+                                <div class="alert alert-danger" role="alert">
+                                    <ul>
+                                        @foreach (var error in Model.Errors)
+                                        {
+                                            <li>@error</li>
+                                        }
+                                    </ul>
+                                </div>
+                            }
+                            <div class="row">
+                                <div class="col-md-12 text-right">
+                                    <button type="submit" class="btn btn-primary mr-3">Delete</button>
+                                    <a class="btn btn-secondary">Cancel</a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
-        </form>
-    </div>
-    <div>
+        </div>
         <div class="col-md-1"></div>
     </div>
 </div>

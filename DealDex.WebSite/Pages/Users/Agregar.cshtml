@@ -2,48 +2,50 @@
 @model DealDex.WebSite.Pages.Users.Agregar
 
 <head>
-    <link rel="stylesheet" href="~/css/Agregar.css" />
+    <link rel="stylesheet" href="~/css/AgregarUsuarios.css" />
 </head>
-<div class="container-fluid agregar-page">
-    <div class="row">
-        <div class="col-md-1"></div>
-        <div class="col-md-10">
-            <div class="logo-container">
-                <img src="~/css/Logo.jpeg" alt="Logo" class="img-fluid" />
-            </div>
-            <h2>Agregar</h2>
-            <form method="post">
-                <input type="hidden" />
-                <div class="form-group">
-                    <input asp-for="UsersCategoryDto.NombreUsu" class="form-control" maxlength="45" placeholder="Nombre de usuario"/>
-                    <span class="text-danger" asp-validation-for="UsersCategoryDto.NombreUsu"></span>
+
+<body class="agregar-user-page">
+    <div class="container-fluid agregar-user">
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-10">
+                <div class="logo-container">
+                    <img src="~/css/Logo.jpeg" alt="Logo" class="img-fluid" />
                 </div>
-                <div class="form-group">
-                    <input asp-for="UsersCategoryDto.Correo" class="form-control" maxlength="45" placeholder="Correo"/>
-                    <span class="text-danger" asp-validation-for="UsersCategoryDto.Correo"></span>
-                </div>
-                <div class="form-group">
-                    <input asp-for="UsersCategoryDto.Contraseña" type="password" class="form-control" maxlength="45" placeholder="Contraseña"/>
-                    <span class="text-danger" asp-validation-for="UsersCategoryDto.Contraseña"></span>
-                </div>
-                @if (Model.Errors.Count > 0)
-                {
-                    <div class="alert alert-danger" role="alert">
-                        <ul>
-                            @foreach (var error in Model.Errors)
-                            {
-                                <li>@error</li>
-                            }
-                        </ul>
+                <h2>Agregar</h2>
+                <form method="post">
+                    <input type="hidden" />
+                    <div class="form-group">
+                        <input asp-for="UsersCategoryDto.NombreUsu" class="form-control" maxlength="45" placeholder="Nombre de usuario"/>
+                        <span class="text-danger" asp-validation-for="UsersCategoryDto.NombreUsu"></span>
                     </div>
-                }
-                <div class="btn-container">
-                    <button type="submit" class="btn btn-primary mr-3">Save</button>
-                    <a class="btn btn-secondary" href="#">Cancel</a>
-                </div>
-            </form>
+                    <div class="form-group">
+                        <input asp-for="UsersCategoryDto.Correo" class="form-control" maxlength="45" placeholder="Correo"/>
+                        <span class="text-danger" asp-validation-for="UsersCategoryDto.Correo"></span>
+                    </div>
+                    <div class="form-group">
+                        <input asp-for="UsersCategoryDto.Contraseña" type="password" class="form-control" maxlength="45" placeholder="Contraseña"/>
+                        <span class="text-danger" asp-validation-for="UsersCategoryDto.Contraseña"></span>
+                    </div>
+                    @if (Model.Errors.Count > 0)
+                    {
+                        <div class="alert alert-danger" role="alert">
+                            <ul>
+                                @foreach (var error in Model.Errors)
+                                {
+                                    <li>@error</li>
+                                }
+                            </ul>
+                        </div>
+                    }
+                    <div class="btn-container">
+                        <button type="submit" class="btn btn-primary mr-3">Save</button>
+                        <a class="btn btn-secondary" href="#">Cancel</a>
+                    </div>
+                </form>
+            </div>
+            <div class="col-md-1"></div>
         </div>
-        <div class="col-md-1"></div>
     </div>
-    <img src="https://img.freepik.com/vector-premium/paginas-web-estan-pantalla-portatil-telefono-movil-mintiendo-tecnologia-moderna_593483-1027.jpg?w=996" alt="Fondo" class="background-image" />
-</div>
+</body>

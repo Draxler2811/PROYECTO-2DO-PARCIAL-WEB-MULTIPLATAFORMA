@@ -4,63 +4,66 @@ using DealDex.WebSite.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace DealDex.WebSite.Pages.Product;
-
-public class Editar : PageModel
+namespace DealDex.WebSite.Pages.Product
 {
-    [BindProperty] public ProductCategoryDtoAdd ProductCategoryDto { get; set; }
-
-    public List<string> Errors { get; set; } = new List<string>();
-
-    private readonly IProductService _service;
-
-    public Editar(IProductService service)
+    public class Editar : PageModel
     {
-        _service = service;
-    }
+        [BindProperty] public ProductCategoryDtoAdd ProductCategoryDto { get; set; }
 
-    public async Task<IActionResult> OnGet(int? id)
-    {
-        ProductCategoryDto = new ProductCategoryDtoAdd();
-        if (id.HasValue)
+        public List<string> Errors { get; set; } = new List<string>();
+
+        private readonly IProductService _service;
+
+        public Editar(IProductService service)
         {
-            //Obtener la informacion del servicio
-            var response = await _service.GetById(id.Value);
-            ProductCategoryDto = response.Data;
+            _service = service;
         }
 
-        if (ProductCategoryDto == null)
+        public async Task<IActionResult> OnGet(int? id)
         {
-            return RedirectToPage("/Error");
-        }
+            ProductCategoryDto = new ProductCategoryDtoAdd();
+            if (id.HasValue)
+            {
+                var response = await _service.GetById(id.Value);
+                ProductCategoryDto = response.Data;
+            }
 
-        return Page();
+            if (ProductCategoryDto == null)
+            {
+                return RedirectToPage("/Error");
+            }
 
-    }
-
-    public async Task<IActionResult> OnPostAsync()
-    {
-        if (!ModelState.IsValid)
-        {
             return Page();
-
         }
 
-        Response<ProductCategoryDtoAdd> response;
-
-        //Actualizacion
-        if (ProductCategoryDto.id > 0)
+        public async Task<IActionResult> OnPostAsync()
         {
-            response = await _service.UpdateAsync(ProductCategoryDto);
-        }
-        else
-        {
-            //Insercion
-            response = await _service.SaveAsync(ProductCategoryDto);
+            if (!ModelState.IsValid)
+            {
+                return Page();
+            }
 
-        }
+            Response<ProductCategoryDtoAdd> response;
 
-        ProductCategoryDto = response.Data;
-        return RedirectToPage("./List");
+            // Actualizacion
+            if (ProductCategoryDto.id > 0)
+            {
+                response = await _service.UpdateAsync(ProductCategoryDto);
+            }
+            else
+            {
+                // Insercion
+                response = await _service.SaveAsync(ProductCategoryDto);
+            }
+
+            Errors = response.Errors;
+
+            if (Errors.Count > 0)
+            {
+                return Page();
+            }
+
+            return RedirectToPage("./List");
+        }
     }
 }

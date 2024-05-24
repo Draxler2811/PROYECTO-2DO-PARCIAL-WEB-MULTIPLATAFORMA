@@ -1,56 +1,51 @@
-﻿/* Agregar.css */
-.agregar-page {
+﻿/* AgregarUsuarios.css */
+.agregar-user-page .container-fluid {
     margin-top: 50px;
 }
 
-.agregar-page .logo-container {
-    text-align: center;
-    margin-bottom: 20px;
+.agregar-user-page .login-box {
+    background-color: #f7f7f7;
+    border: 1px solid #ddd;
+    padding: 50px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
-.agregar-page .logo-container img {
-    width: 150px; /* Ajusta el tamaño de la imagen del logo */
-    border-radius: 50%; /* Hace que la imagen sea circular */
-}
-
-.agregar-page h2 {
+.agregar-user-page h2 {
     text-align: center;
     margin-bottom: 20px;
     color: white; /* Cambia el color del texto a blanco */
 }
 
-.agregar-page .form-group {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.agregar-page .form-group label {
+.agregar-user-page .form-group label {
     font-weight: bold;
-    text-align: center;
-    width: 100%; /* Asegura que el label esté centrado */
 }
 
-.agregar-page .form-group input {
-    width: 50%; /* Ajusta el ancho del campo de entrada */
-    padding: 5px; /* Ajusta el relleno del campo de entrada */
+.agregar-user-page .form-group input {
     margin-bottom: 10px;
-    text-align: center; /* Asegura que el texto dentro del campo esté centrado */
 }
 
-.agregar-page .alert-danger ul {
+.agregar-user-page .alert-danger p {
     margin: 0;
-    padding: 0;
-    list-style: none;
-    text-align: center; /* Centra el texto dentro de la alerta */
 }
 
-.agregar-page .btn-primary {
+.agregar-user-page .btn-primary {
+    width: 100%;
     background-color: #b300ff; /* Color morado */
-    border-color: #ffffff;     /* Color blanco */
+    border-color: #ffffff;    /* Color blanco */
 }
 
-.agregar-page .background-image {
+/* Estilos adicionales para imágenes */
+.agregar-user-page .logo-container {
+    text-align: center;
+}
+
+.agregar-user-page .logo-container img {
+    width: 150px; /* Ajusta el tamaño de la imagen del logo */
+    border-radius: 50%; /* Hace que la imagen sea circular */
+}
+
+.agregar-user-page .background-image {
     position: fixed;
     bottom: 0;
     left: 0;
@@ -58,7 +53,7 @@
     z-index: -1;
 }
 
-.agregar-page .btn-container {
-    text-align: center;
-    margin-top: 10px;
+.agregar-user-page .form-control::placeholder {
+    color: #999; /* Color del placeholder */
+    opacity: 1; /* Asegura que el color se aplique completamente */
 }

@@ -162,6 +162,16 @@ public async Task<ActionResult<Response<CarritoCategoryDto>>> Update([FromBody] 
         return BadRequest(response);
     }
     //
+    
+    if (!await _productCategoryService.ProductCategoryExist(carritoDto.IdProducto))
+    {
+        validationErrors.Add("El producto relacionado no existe");
+    }
+    if (!await _productCategoryService.ProductCategoryExist(carritoDto.IdUser))
+    {
+        validationErrors.Add("El usuario  relacionado no existe");
+    }
+    
     if (carritoDto.IdUser == 0)
     {
         validationErrors.Add("El campo IdCategory es obligatorio.");
