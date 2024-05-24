@@ -1,40 +1,51 @@
 ﻿@page "{id:int}"
 @model DealDex.WebSite.Pages.Users.Delete
 
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-md-1"></div>
-        <div class="col-md-10"></div>
-        <h2>Delete Product Category</h2>
-        <form method="post">
-            <input type="hidden" asp-for="UsersCategoryDto.id"/>
-            <div class="form-group">
-                <label asp-for="UsersCategoryDto.NombreUsu"></label>
-                <input readonly="" asp-for="UsersCategoryDto.NombreUsu" class="form-control" maxlength="45"/>
-            </div>
-            <div class="form-group">
-                <label asp-for="UsersCategoryDto.Correo"></label>
-                <input readonly="" asp-for="UsersCategoryDto.Correo" class="form-control" maxlength="45"/>
-            </div>
-            
-            <div class="form-group">
-                <label asp-for="UsersCategoryDto.Contraseña"></label>
-                <input readonly="" asp-for="UsersCategoryDto.Contraseña" class="form-control" maxlength="45"/>
-            </div>
-            
-            @if (Model.Errors.Count > 0)
-            {
+<head>
+    <link rel="stylesheet" href="~/css/DeleteUsuarios.css" />
+</head>
 
-            }
-            <div class="row">
-                <div class="col-md-12 text-right">
-                    <button type="submit" class="btn btn-primary mr-3">Delete</button>
-                    <a class="btn btn-secondary">Cancel</a>
+<body class="delete-user-page">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-10">
+                <div class="logo-container">
+                    <img src="~/css/Logo.jpeg" alt="Logo" class="img-fluid" />
                 </div>
+                <h2>Delete User</h2>
+                <form method="post">
+                    <input type="hidden" asp-for="UsersCategoryDto.id"/>
+                    <div class="form-group">
+                        <label asp-for="UsersCategoryDto.NombreUsu"></label>
+                        <input readonly="" asp-for="UsersCategoryDto.NombreUsu" class="form-control" maxlength="45"/>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="UsersCategoryDto.Correo"></label>
+                        <input readonly="" asp-for="UsersCategoryDto.Correo" class="form-control" maxlength="45"/>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="UsersCategoryDto.Contraseña"></label>
+                        <input readonly="" asp-for="UsersCategoryDto.Contraseña" class="form-control" maxlength="45"/>
+                    </div>
+                    @if (Model.Errors.Count > 0)
+                    {
+                        <div class="alert alert-danger" role="alert">
+                            <ul>
+                                @foreach (var error in Model.Errors)
+                                {
+                                    <li>@error</li>
+                                }
+                            </ul>
+                        </div>
+                    }
+                    <div class="btn-container">
+                        <button type="submit" class="btn btn-primary mr-3">Delete</button>
+                                    <a asp-page="/Users/List" class="btn btn-success"> Cancel</a>
+                    </div>
+                </form>
             </div>
-        </form>
+            <div class="col-md-1"></div>
+        </div>
     </div>
-    <div>
-        <div class="col-md-1"></div>
-    </div>
-</div>
+</body>

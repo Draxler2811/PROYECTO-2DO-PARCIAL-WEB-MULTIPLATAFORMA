@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using DealDex.Core.Entities;
 using DealDex.Core.Http;
 using DealDex.Api.Dto;
+using DealDex.Api.Dto.Carrito;
 using DealDex.Api.Dto.Reseñas;
 using DealDex.Api.Repositories.Interfecies;
 using DealDex.Api.Services.Interfaces;
@@ -55,7 +56,10 @@ public class ProductReviewController :ControllerBase
             response.Errors.Add($"Brand name {categoryDtoSinId.Titulo} already exists");
             return BadRequest(response);
         }
-
+        if (!await _productCategoryService.ProductCategoryExist(categoryDtoSinId.IdProducto))
+        {
+            validationErrors.Add("El producto relacionado no existe");
+        }
         if (categoryDtoSinId.IdProducto == 0)
         {
             validationErrors.Add("El campo IdProducto es obligatorio.");

@@ -1,45 +1,54 @@
 ﻿@page "{id:int}"
 @model DealDex.WebSite.Pages.Suppliers.Delete
 
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-md-1"></div>
-        <div class="col-md-10"></div>
-        <h2>Delete Product Category</h2>
-        <form method="post">
-            <input type="hidden" asp-for="SupplierInfoDto.id"/>
-            <div class="form-group">
-                <label asp-for="SupplierInfoDto.Nombre"></label>
-                <input readonly="" asp-for="SupplierInfoDto.Nombre" class="form-control" maxlength="45"/>
-            </div>
-            <div class="form-group">
-                <label asp-for="SupplierInfoDto.Correo"></label>
-                <input readonly="" asp-for="SupplierInfoDto.Correo" class="form-control" maxlength="45"/>
-            </div>
-            
-            <div class="form-group">
-                <label asp-for="SupplierInfoDto.Correo"></label>
-                <input readonly="" asp-for="SupplierInfoDto.Cuidad" class="form-control" maxlength="45"/>
-            </div>
-            <div class="form-group">
-                <label asp-for="SupplierInfoDto.Direccion"></label>
-                <input readonly="" asp-for="SupplierInfoDto.Direccion" class="form-control" maxlength="45"/>
-            </div>
-            
-            
-            @if (Model.Errors.Count > 0)
-            {
+<head>
+    <link rel="stylesheet" href="~/css/EditarSupplier.css" />
+</head>
 
-            }
-            <div class="row">
-                <div class="col-md-12 text-right">
-                    <button type="submit" class="btn btn-primary mr-3">Delete</button>
-                    <a class="btn btn-secondary">Cancel</a>
-                </div>
+<body class="eliminar-supplier-page">
+    <div class="container-fluid eliminar-supplier">
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-10">
+                <h2>Delete Product Category</h2>
+                <form method="post">
+                    <input type="hidden" asp-for="SupplierInfoDto.id" />
+                    <div class="form-group">
+                        <label asp-for="SupplierInfoDto.Nombre"></label>
+                        <input readonly asp-for="SupplierInfoDto.Nombre" class="form-control" maxlength="45" />
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="SupplierInfoDto.Correo"></label>
+                        <input readonly asp-for="SupplierInfoDto.Correo" class="form-control" maxlength="45" />
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="SupplierInfoDto.Cuidad"></label>
+                        <input readonly asp-for="SupplierInfoDto.Cuidad" class="form-control" maxlength="45" />
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="SupplierInfoDto.Direccion"></label>
+                        <input readonly asp-for="SupplierInfoDto.Direccion" class="form-control" maxlength="45" />
+                    </div>
+                    @if (Model.Errors.Count > 0)
+                    {
+                        <div class="alert alert-danger" role="alert">
+                            <ul>
+                                @foreach (var error in Model.Errors)
+                                {
+                                    <li>@error</li>
+                                }
+                            </ul>
+                        </div>
+                    }
+                    <div class="row">
+                        <div class="col-md-12 text-right">
+                            <button type="submit" class="btn btn-primary mr-3">Delete</button>
+                                    <a asp-page="/Suppliers/List" class="btn btn-success"> Cancel</a>
+                        </div>
+                    </div>
+                </form>
             </div>
-        </form>
+            <div class="col-md-1"></div>
+        </div>
     </div>
-    <div>
-        <div class="col-md-1"></div>
-    </div>
-</div>
+</body>

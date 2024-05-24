@@ -1,48 +1,49 @@
 ﻿@page
 @model DealDex.WebSite.Pages.Reseña.Agregar
 
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-md-1"></div>
-        <div class="col-md-10"></div>
-        <h2>Agregar</h2>
-        <form method="post">
-            <input type="hidden"/>
-            <div class="form-group">
-                <label asp-for="ReseñaCategoryDto.Titulo"></label>
-                <input asp-for="ReseñaCategoryDto.Titulo" class="form-control" maxlength="45"/>
-                <span class="text-danger" asp-validation-for="ReseñaCategoryDto.Titulo"></span>
+<div class="resena-container">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-10">
+                <h2>Agregar</h2>
+                <form method="post">
+                    <input type="hidden"/>
+                    <div class="form-group">
+                        <label asp-for="ReseñaCategoryDto.Titulo"></label>
+                        <input asp-for="ReseñaCategoryDto.Titulo" class="form-control" maxlength="45"/>
+                        <span class="text-danger" asp-validation-for="ReseñaCategoryDto.Titulo"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ReseñaCategoryDto.Valoracion"></label>
+                        <input asp-for="ReseñaCategoryDto.Valoracion" class="form-control" maxlength="45"/>
+                        <span class="text-danger" asp-validation-for="ReseñaCategoryDto.Valoracion"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ReseñaCategoryDto.IdProducto"></label>
+                        <input asp-for="ReseñaCategoryDto.IdProducto" class="form-control" maxlength="45"/>
+                        <span class="text-danger" asp-validation-for="ReseñaCategoryDto.IdProducto"></span>
+                    </div>
+                    @if (Model.Errors.Count > 0)
+                    {
+                        <div class="alert alert-danger" role="alert">
+                            <ul>
+                                @foreach (var error in Model.Errors)
+                                {
+                                    <li>@error</li>
+                                }
+                            </ul>
+                        </div>
+                    }
+                    <div class="row">
+                        <div class="col-md-12 text-right">
+                            <button type="submit" class="btn btn-primary mr-3">Save</button>
+                                    <a asp-page="/Reseña/List" class="btn btn-success"> Cancel</a>
+                        </div>
+                    </div>
+                </form>
             </div>
-            <div class="form-group">
-                <label asp-for="ReseñaCategoryDto.Valoracion"></label>
-                <input asp-for="ReseñaCategoryDto.Valoracion" class="form-control" maxlength="45"/>
-                <span class="text-danger" asp-validation-for="ReseñaCategoryDto.Valoracion"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ReseñaCategoryDto.IdProducto"></label>
-                <input asp-for="ReseñaCategoryDto.IdProducto" class="form-control" maxlength="45"/>
-                <span class="text-danger" asp-validation-for="ReseñaCategoryDto.IdProducto"></span>
-            </div>
-            @if (Model.Errors.Count > 0)
-            {
-                <div class="alert alert-danger" role="alert">
-                    <ul>
-                        @foreach (var error in Model.Errors)
-                        {
-                            <li>@error</li>
-                        }
-                    </ul>
-                </div>
-            }
-            <div class="row">
-                <div class="col-md-12 text-right">
-                    <button type="submit" class="btn btn-primary mr-3">Save</button>
-                    <a class="btn btn-secondary">Cancel</a>
-                </div>
-            </div>
-        </form>
-    </div>
-    <div>
-        <div class="col-md-1"></div>
+            <div class="col-md-1"></div>
+        </div>
     </div>
 </div>

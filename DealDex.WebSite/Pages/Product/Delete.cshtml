@@ -1,67 +1,66 @@
 ﻿@page "{id:int}"
 @model DealDex.WebSite.Pages.Product.Delete
 
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-md-1"></div>
-        <div class="col-md-10"></div>
-        <h2>Delete Product Category</h2>
-        <form method="post">
-            <input type="hidden" asp-for="ProductCategoryDto.id"/>
-            
-            <div class="form-group">
-                <label asp-for="ProductCategoryDto.Image"></label>
-                <input readonly="" asp-for="ProductCategoryDto.Image" class="form-control" maxlength="45"/>
-            </div>
-            
-            <div class="form-group">
-                <label asp-for="ProductCategoryDto.Titulo"></label>
-                <input readonly="" asp-for="ProductCategoryDto.Titulo" class="form-control" maxlength="100"/>
-            </div>
-            
-            <div class="form-group">
-                <label asp-for="ProductCategoryDto.Precio"></label>
-                <input readonly="" asp-for="ProductCategoryDto.Precio" class="form-control" maxlength="100"/>
-            </div>
-            
-            <div class="form-group">
-                <label asp-for="ProductCategoryDto.Descripcion"></label>
-                <input readonly="" asp-for="ProductCategoryDto.Descripcion" class="form-control" maxlength="100"/>
-            </div>
-            
-            <div class="form-group">
-                <label asp-for="ProductCategoryDto.IdCategory"></label>
-                <input readonly="" asp-for="ProductCategoryDto.IdCategory" class="form-control" maxlength="100"/>
-            </div>
-            
-            <div class="form-group">
-                <label asp-for="ProductCategoryDto.Estado"></label>
-                <input readonly="" asp-for="ProductCategoryDto.Estado" class="form-control" maxlength="100"/>
-            </div>
-            
-            <div class="form-group">
-                <label asp-for="ProductCategoryDto.Ubicacion"></label>
-                <input readonly="" asp-for="ProductCategoryDto.Ubicacion" class="form-control" maxlength="100"/>
-            </div>
-            
-            <div class="form-group">
-                <label asp-for="ProductCategoryDto.IdSupplier"></label>
-                <input readonly="" asp-for="ProductCategoryDto.IdSupplier" class="form-control" maxlength="100"/>
-            </div>
-            
-            @if (Model.Errors.Count > 0)
-            {
+<div class="container-fluid" id="product-delete-container">
+    <div class="card">
+        <div class="row">
+            <div class="col-md-12">
+                <h2>Delete Product Category</h2>
+                <form method="post">
+                    <input type="hidden" asp-for="ProductCategoryDto.id"/>
 
-            }
-            <div class="row">
-                <div class="col-md-12 text-right">
-                    <button type="submit" class="btn btn-primary mr-3">Delete</button>
-                    <a class="btn btn-secondary">Cancel</a>
-                </div>
+                    <div class="form-group">
+                        <label asp-for="ProductCategoryDto.Image"></label>
+                        <input readonly="" asp-for="ProductCategoryDto.Image" class="form-control" maxlength="45"/>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="ProductCategoryDto.Titulo"></label>
+                        <input readonly="" asp-for="ProductCategoryDto.Titulo" class="form-control" maxlength="100"/>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="ProductCategoryDto.Precio"></label>
+                        <input readonly="" asp-for="ProductCategoryDto.Precio" class="form-control" maxlength="100"/>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="ProductCategoryDto.Descripcion"></label>
+                        <input readonly="" asp-for="ProductCategoryDto.Descripcion" class="form-control" maxlength="100"/>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="ProductCategoryDto.IdCategory"></label>
+                        <input readonly="" asp-for="ProductCategoryDto.IdCategory" class="form-control" maxlength="100"/>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="ProductCategoryDto.Estado"></label>
+                        <input readonly="" asp-for="ProductCategoryDto.Estado" class="form-control" maxlength="100"/>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="ProductCategoryDto.Ubicacion"></label>
+                        <input readonly="" asp-for="ProductCategoryDto.Ubicacion" class="form-control" maxlength="100"/>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="ProductCategoryDto.IdSupplier"></label>
+                        <input readonly="" asp-for="ProductCategoryDto.IdSupplier" class="form-control" maxlength="100"/>
+                    </div>
+
+                    @if (Model.Errors.Count > 0)
+                    {
+
+                    }
+                    <div class="row">
+                        <div class="col-md-12 text-right">
+                            <button type="submit" class="btn btn-primary mr-3">Delete</button>
+                                    <a asp-page="/Product/List" class="btn btn-success"> Cancel</a>
+                        </div>
+                    </div>
+                </form>
             </div>
-        </form>
-    </div>
-    <div>
-        <div class="col-md-1"></div>
+        </div>
     </div>
 </div>
